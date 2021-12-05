@@ -3,7 +3,7 @@ import json
 from data.Thumbnail import Thumbnail
 
 
-class Photo:
+class Article:
     KEY_ID = "id"
     KEY_WIDTH = "width"
     KEY_HEIGHT = "height"
@@ -21,10 +21,10 @@ class Photo:
         self.width = int(dictionary[self.KEY_WIDTH])
         self.height = int(dictionary[self.KEY_HEIGHT])
         self.size = int(dictionary[self.KEY_SIZE])
-        self.thumbnail = Thumbnail(dictionary[self.KEY_THUMBNAIL]) if dictionary[
-                                                                          self.KEY_THUMBNAIL] is not None else None
+        self.thumbnail = Thumbnail(dictionary[self.KEY_THUMBNAIL]) if dictionary[self.KEY_THUMBNAIL] is not None else None
 
     def to_json_obj(self):
+
         dictionary = {}
 
         if self.id is not None:

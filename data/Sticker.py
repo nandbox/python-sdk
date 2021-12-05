@@ -3,7 +3,7 @@ import json
 from data.Thumbnail import Thumbnail
 
 
-class Photo:
+class Sticker:
     KEY_ID = "id"
     KEY_WIDTH = "width"
     KEY_HEIGHT = "height"
@@ -13,7 +13,6 @@ class Photo:
     id = None
     width = None
     height = None
-    size = None
     thumbnail = None
 
     def __init__(self, dictionary):
@@ -25,6 +24,7 @@ class Photo:
                                                                           self.KEY_THUMBNAIL] is not None else None
 
     def to_json_obj(self):
+
         dictionary = {}
 
         if self.id is not None:

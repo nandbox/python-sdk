@@ -15,7 +15,7 @@ class Thumbnail:
         self.width = int(dictionary[self.KEY_WIDTH])
         self.height = int(dictionary[self.KEY_HEIGHT])
 
-    def to_json_object(self):
+    def to_json_obj(self):
         dictionary = {}
 
         if self.id is not None:

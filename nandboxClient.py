@@ -8,6 +8,9 @@ import datetime
 import traceback
 
 import nandbox
+import util.Utils
+from data.User import User
+from inmessages.IncomingMessage import IncomingMessage
 from outmessages.TextOutMessage import TextOutMessage
 from util import Utils
 
@@ -105,7 +108,7 @@ class nandboxClient:
 
                     try:
                         time.sleep(
-                            3)  # this blocks the thread no the process: https://stackoverflow.com/questions/92928/time-sleep-sleeps-thread-or-process
+                            3)  # this blocks the thread not the process: https://stackoverflow.com/questions/92928/time-sleep-sleeps-thread-or-process
                     except():
                         self.interrupted = True
                         return
@@ -241,10 +244,15 @@ class nandboxClient:
                 def send_text(self, chat_id, text, reference):
                     self.send_text(chat_id, text, reference, None, None, None, None, None, None)
 
-                def send_text(self,  chat_id, text, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, chat_settings, bg_color):
+                def send_text(self, chat_id, text, reference, reply_to_message_id, to_user_id, web_page_preview,
+                              disable_notification, chat_settings, bg_color):
                     message = TextOutMessage()
 
-                    self.prepare_out_message(message=message, chat_id=chat_id, reference=reference, reply_to_message_id=reply_to_message_id, to_user_id=to_user_id, web_page_preview=web_page_preview, disable_notification=disable_notification, caption=None, chat_settings=chat_settings)
+                    self.prepare_out_message(message=message, chat_id=chat_id, reference=reference,
+                                             reply_to_message_id=reply_to_message_id, to_user_id=to_user_id,
+                                             web_page_preview=web_page_preview,
+                                             disable_notification=disable_notification, caption=None,
+                                             chat_settings=chat_settings)
 
                     message.method = "sendMessage"
                     message.text = text
@@ -254,7 +262,48 @@ class nandboxClient:
 
         @staticmethod
         def on_message(self, ws, message):
-            print(message)
+            user = User()
+
+            last_message = int(round(time.time() * 1000))
+
+            logging.info("INTERNAL: ONMESSAGE")
+
+            dictionary = json.loads(message)
+
+            logging.info(util.Utils.format_date(datetime.now) + " >>>>>>>>> Update Obj : " + dictionary)
+
+            method = str(dictionary[nandboxClient.KEY_METHOD])
+
+            if method is not None:
+                logging.info("method: " + method)
+                if method == "TOKEN_AUTH_OK":
+                    print("Authenticated!")
+                    logging.info("Authenticated!")
+                    authenticated = True
+                    nandboxClient.BOT_ID = str(dictionary[nandboxClient.InternalWebSocket.KEY_ID])
+                    print("====> Your Bot Id is : " + nandboxClient.BOT_ID)
+                    print("====> Your Bot Name is : " + str(dictionary[nandboxClient.InternalWebSocket.KEY_NAME]))
+                    logging.info("====> Your Bot Id is : " + nandboxClient.BOT_ID)
+                    logging.info("====> Your Bot Name is : " + str(dictionary[nandboxClient.InternalWebSocket.KEY_NAME]))
+
+                    if nandboxClient.InternalWebSocket.pingThread is not None:
+                        try:
+                            nandboxClient.InternalWebSocket.pingThread.interrupted = True
+                        except():
+                            logging.error(traceback._cause_message)
+
+                    ping_thread = None
+                    ping_thread = nandboxClient.InternalWebSocket.PingThread()
+                    ping_thread.name = "PingThread"
+                    ping_thread.start()
+                    nandboxClient.InternalWebSocket.callback.on_connect(api=nandboxClient.InternalWebSocket.api)
+                    return
+                elif method == "message":
+                    incoming_message = IncomingMessage()
+                    nandboxClient.InternalWebSocket.callback.on_receive(incoming_message)
+                    return
+
+
 
         @staticmethod
         def on_error(self, error):

@@ -43,7 +43,7 @@ class User:
 
         self.short_name = str(dictionary[self.KEY_SHORT_NAME])
 
-    def to_json_object(self):
+    def to_json_obj(self):
         dictionary = {}
 
         if self.id is not None:
