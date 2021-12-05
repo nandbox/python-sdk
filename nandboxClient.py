@@ -9,8 +9,18 @@ import traceback
 
 import nandbox
 import util.Utils
+from data.Chat import Chat
 from data.User import User
+from inmessages.BlackList import BlackList
+from inmessages.ChatAdministrators import ChatAdministrators
+from inmessages.ChatMember import ChatMember
+from inmessages.ChatMenuCallback import ChatMenuCallback
 from inmessages.IncomingMessage import IncomingMessage
+from inmessages.InlineMessageCallback import InlineMessageCallback
+from inmessages.InlineSearch import InlineSearch
+from inmessages.MessageAck import MessageAck
+from inmessages.PermanentUrl import PermanentUrl
+from inmessages.WhiteList import WhiteList
 from outmessages.TextOutMessage import TextOutMessage
 from util import Utils
 
@@ -284,7 +294,8 @@ class nandboxClient:
                     print("====> Your Bot Id is : " + nandboxClient.BOT_ID)
                     print("====> Your Bot Name is : " + str(dictionary[nandboxClient.InternalWebSocket.KEY_NAME]))
                     logging.info("====> Your Bot Id is : " + nandboxClient.BOT_ID)
-                    logging.info("====> Your Bot Name is : " + str(dictionary[nandboxClient.InternalWebSocket.KEY_NAME]))
+                    logging.info(
+                        "====> Your Bot Name is : " + str(dictionary[nandboxClient.InternalWebSocket.KEY_NAME]))
 
                     if nandboxClient.InternalWebSocket.pingThread is not None:
                         try:
@@ -299,9 +310,82 @@ class nandboxClient:
                     nandboxClient.InternalWebSocket.callback.on_connect(api=nandboxClient.InternalWebSocket.api)
                     return
                 elif method == "message":
-                    incoming_message = IncomingMessage()
+                    incoming_message = IncomingMessage(dictionary)
                     nandboxClient.InternalWebSocket.callback.on_receive(incoming_message)
                     return
+                elif method == "scheduledMessage":
+                    incoming_schedule_message = IncomingMessage(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_schedule_message(incoming_schedule_message)
+                    return
+                elif method == "chatMenuCallback":
+                    chat_menu_callback = ChatMenuCallback(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_chat_menu_callback(chat_menu_callback)
+                    return
+                elif method == "inlineMessageCallback":
+                    inline_message_callback = InlineMessageCallback(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_inline_message_callback(inline_message_callback)
+                    return
+                elif method == "inlineSearch":
+                    inline_search = InlineSearch(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_inline_search(inline_search)
+                    return
+                elif method == "messageAck":
+                    msg_ack = MessageAck(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_message_ack_callback(msg_ack)
+                    return
+                elif method == "userJoinedBot":
+                    user = User(dictionary[nandboxClient.InternalWebSocket.KEY_USER])
+                    nandboxClient.InternalWebSocket.callback.on_user_joined_bot(user)
+                    return
+                elif method == "chatMember":
+                    chat_member = ChatMember(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_chat_member(chat_member)
+                    return
+                elif method == "myProfile":
+                    user = User(dictionary[nandboxClient.InternalWebSocket.KEY_USER])
+                    nandboxClient.InternalWebSocket.callback.on_my_profile(user)
+                    return
+                elif method == "userDetails":
+                    user = User(dictionary[nandboxClient.InternalWebSocket.KEY_USER])
+                    nandboxClient.InternalWebSocket.callback.on_user_details(user)
+                    return
+                elif method == "chatDetails":
+                    chat = Chat(dictionary[nandboxClient.InternalWebSocket.KEY_CHAT])
+                    nandboxClient.InternalWebSocket.callback.on_chat_details(chat)
+                    return
+                elif method == "chatAdministrators":
+                    chat_administrators = ChatAdministrators(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_chat_administrators(chat_administrators)
+                    return
+                elif method == "userStartedBot":
+                    user = User(dictionary[nandboxClient.InternalWebSocket.KEY_USER])
+                    nandboxClient.InternalWebSocket.callback.user_started_bot(user)
+                    return
+                elif method == "userStoppedBot":
+                    user = User(dictionary[nandboxClient.InternalWebSocket.KEY_USER])
+                    nandboxClient.InternalWebSocket.callback.user_stopped_bot(user)
+                    return
+                elif method == "userLeftBot":
+                    user = User(dictionary[nandboxClient.InternalWebSocket.KEY_USER])
+                    nandboxClient.InternalWebSocket.callback.user_left_bot(user)
+                    return
+                elif method == "blacklist":
+                    blacklist = BlackList(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_black_list(blacklist)
+                    return
+                elif method == "whitelist":
+                    whitelist = WhiteList(dictionary)
+                    nandboxClient.InternalWebSocket.callback.on_white_list(whitelist)
+                    return
+                elif method == "permanentUrl":
+                    permanent_url = PermanentUrl(dictionary)
+                    nandboxClient.InternalWebSocket.callback.permanent_url(permanent_url)
+                    return
+                else:
+                    nandboxClient.InternalWebSocket.callback.on_receive_obj(dictionary)
+            else:
+                error = str(dictionary[nandboxClient.KEY_ERROR])
+                logging.error("Error : " + error)
 
 
 
