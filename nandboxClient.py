@@ -383,6 +383,7 @@ class nandboxClient:
                     return
                 else:
                     nandboxClient.InternalWebSocket.callback.on_receive_obj(dictionary)
+                    return
             else:
                 error = str(dictionary[nandboxClient.KEY_ERROR])
                 logging.error("Error : " + error)
@@ -392,7 +393,10 @@ class nandboxClient:
         @staticmethod
         def on_error(self, error):
             logging.error("INTERNAL: ONERROR")
-            logging.error(error)
+            logging.error("Error due to : " + error + " On : " + util.Utils.format_date(datetime.datetime.now()))
+
+
+
 
         def get_session(self):
             return self.session
