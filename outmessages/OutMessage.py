@@ -36,7 +36,7 @@ class OutMessage:
     chat_settings = None
     schedule_date = None
 
-    def to_json_object(self):
+    def to_json_obj(self):
         obj = {}
 
         if self.method is not None:

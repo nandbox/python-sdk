@@ -13,7 +13,7 @@ class TextOutMessage(OutMessage):
     def __init__(self):
         self.method = "sendMessage"
 
-    def to_json_object(self):
+    def to_json_obj(self):
         _, obj = super(TextOutMessage, self).to_json_object()
 
         if self.text is not None:
