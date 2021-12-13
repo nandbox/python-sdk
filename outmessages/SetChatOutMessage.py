@@ -1,0 +1,22 @@
+import json
+
+from outmessages.OutMessage import OutMessage
+
+
+class SetChatOutMessage(OutMessage):
+    KEY_CHAT = "chat"
+
+    chat = None
+
+    def __init__(self):
+        self.method = "setChat"
+
+    def to_json_obj(self):
+        _, dictionary = super(SetChatOutMessage, self).to_json_obj()
+
+        if self.chat is not None:
+            dictionary[self.KEY_CHAT] = self.chat
+
+        return json.dumps(dictionary), dictionary
+
+    

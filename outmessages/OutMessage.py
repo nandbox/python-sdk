@@ -60,10 +60,7 @@ class OutMessage:
         if self.menu_ref is not None:
             obj[self.KEY_MENU_REF] = self.menu_ref
         if self.inline_menus is not None:
-            inline_menus_array = []
-            for i in range(0, len(self.inline_menus)):
-                inline_menus_array.append(self.inline_menus.to_json_object)
-            obj[self.KEY_INLINE_MENU] = inline_menus_array
+            obj[self.KEY_INLINE_MENU] = self.inline_menus
         if self.chat_settings is not None:
             obj[self.KEY_CHAT_SETTINGS] = self.chat_settings
         if self.schedule_date is not None:

@@ -1,0 +1,21 @@
+import json
+
+from outmessages.OutMessage import OutMessage
+
+
+class AddBlacklistPatternsOutMessage(OutMessage):
+    KEY_DATA = "data"
+
+    data = []
+
+    def __init__(self):
+        self.method = "addBlacklistPatterns"
+
+    def to_json_obj(self):
+        _, dictionary = super(AddBlacklistPatternsOutMessage, self).to_json_obj()
+
+        if self.data is not None:
+            dictionary[self.KEY_DATA] = self.data
+
+        return json.dumps(dictionary), dictionary
+    
