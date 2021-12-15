@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class PhotoOutMessage(OutMessage):
-    KEY_PHOTO = "photo"
+    __KEY_PHOTO = "photo"
 
     photo = None
 
@@ -15,6 +15,6 @@ class PhotoOutMessage(OutMessage):
         _, dictionary = super(PhotoOutMessage, self).to_json_obj()
 
         if self.photo is not None:
-            dictionary[self.KEY_PHOTO] = self.photo
+            dictionary[self.__KEY_PHOTO] = self.photo
 
         return json.dumps(dictionary), dictionary

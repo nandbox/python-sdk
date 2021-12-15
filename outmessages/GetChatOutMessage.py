@@ -12,7 +12,7 @@ class GetChatOutMessage(OutMessage):
         _, dictionary = super(GetChatOutMessage, self).to_json_obj()
 
         if self.chat_id is not None:
-            dictionary[self.KEY_CHAT_ID] = self.chat_id
+            dictionary[self.__KEY_CHAT_ID] = self.chat_id
 
         return json.dumps(dictionary), dictionary
     

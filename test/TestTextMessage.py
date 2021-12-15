@@ -1,7 +1,9 @@
 import json
 
 from NandboxClient import NandboxClient
+from data.Button import Button
 from nandbox import Nandbox
+from util import Utils
 
 CONFIG_FILE = "../config.json"
 
@@ -18,8 +20,29 @@ napi = nandbox.Api()
 CYELLOW = '\033[93m'
 CEND = '\033[0m'
 
-def handle_incoming_text_msg(msg):
-    pass
+
+def create_button(label, callback, order, bg_color, txt_color, btn_query, next_menu_ref):
+    btn = Button({})
+
+    btn.button_label = label
+    btn.button_callback = callback
+    btn.button_order = order
+    btn.button_bgcolor = bg_color
+    btn.button_textcolor = txt_color
+    btn.button_query = btn_query
+    btn.next_menu = next_menu_ref
+
+    return btn
+
+
+def handle_incoming_text_msg(incoming_msg):
+    print("incoming_msg.status " + incoming_msg.status)
+    print("incoming_msg.text : " + incoming_msg.text)
+
+    if "3m" == incoming_msg.text:
+        chatId = incoming_msg.chat.id
+
+        Utils.set_navigation_button(chat_id=chatId, next_menu="mainMenu", api=napi)
 
 
 class nCallBack(nandbox.Callback):
@@ -40,7 +63,7 @@ class nCallBack(nandbox.Callback):
         print("incoming_msg.date : " + incoming_msg.date)
         print("incoming_msg.reference : " + incoming_msg.reference)
         print("incoming_msg.caption: " + incoming_msg.caption)
-        if incoming_msg.sent_to() is not None:
+        if incoming_msg.sent_to is not None:
             print("incoming_msg.sent_to.id : " + incoming_msg.sent_to.id)
         print("================start of Chat Object ===================")
         print("incoming_msg.chat.id : " + incoming_msg.chat.id)
@@ -57,3 +80,7 @@ class nCallBack(nandbox.Callback):
 
         if incoming_msg.is_text_msg():
             handle_incoming_text_msg(incoming_msg)
+
+
+callBack = nCallBack()
+client.connect(config['Token'], callBack)

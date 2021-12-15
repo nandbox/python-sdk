@@ -4,8 +4,8 @@ from outmessages.OutMessage import OutMessage
 
 
 class GeneratePermanentUrl(OutMessage):
-    KEY_FILE = "file"
-    KEY_PARAM1 = "param1"
+    __KEY_FILE = "file"
+    __KEY_PARAM1 = "param1"
 
     file = None
     param1 = None
@@ -17,9 +17,9 @@ class GeneratePermanentUrl(OutMessage):
         _, dictionary = super(GeneratePermanentUrl, self).to_json_obj()
 
         if self.file is not None:
-            dictionary[self.KEY_FILE] = self.file
+            dictionary[self.__KEY_FILE] = self.file
         if self.param1 is not None:
-            dictionary[self.KEY_PARAM1] = self.param1
+            dictionary[self.__KEY_PARAM1] = self.param1
 
         return json.dumps(dictionary), dictionary
     

@@ -5,8 +5,8 @@ from outmessages.OutMessage import OutMessage
 
 
 class GifOutMessage(OutMessage):
-    KEY_PHOTO = "photo"
-    KEY_VIDEO = "video"
+    __KEY_PHOTO = "photo"
+    __KEY_VIDEO = "video"
 
     class GifType(enum.Enum):
         PHOTO = 1
@@ -30,11 +30,11 @@ class GifOutMessage(OutMessage):
 
         if self.gif is not None:
             if self.gif_type == GifOutMessage.GifType.PHOTO:
-                dictionary[self.KEY_PHOTO] = self.gif
+                dictionary[self.__KEY_PHOTO] = self.gif
             elif self.gif_type == GifOutMessage.GifType.VIDEO:
-                dictionary[self.KEY_VIDEO] = self.gif
+                dictionary[self.__KEY_VIDEO] = self.gif
             else:
-                dictionary[self.KEY_PHOTO] = self.gif
+                dictionary[self.__KEY_PHOTO] = self.gif
 
         return json.dumps(dictionary), dictionary
 

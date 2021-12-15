@@ -4,9 +4,9 @@ from outmessages.OutMessage import OutMessage
 
 
 class DocumentOutMessage(OutMessage):
-    KEY_DOCUMENT = "document"
-    KEY_NAME = "name"
-    KEY_SIZE = "size"
+    __KEY_DOCUMENT = "document"
+    __KEY_NAME = "name"
+    __KEY_SIZE = "size"
 
     document = None
     name = None
@@ -19,11 +19,11 @@ class DocumentOutMessage(OutMessage):
         _, dictionary = super(DocumentOutMessage, self).to_json_obj()
 
         if self.document is not None:
-            dictionary[self.KEY_DOCUMENT] = self.document
+            dictionary[self.__KEY_DOCUMENT] = self.document
         if self.name is not None:
-            dictionary[self.KEY_NAME] = self.name
+            dictionary[self.__KEY_NAME] = self.name
         if self.size is not None:
-            dictionary[self.KEY_SIZE] = self.size
+            dictionary[self.__KEY_SIZE] = self.size
 
         return json.dumps(dictionary), dictionary
 

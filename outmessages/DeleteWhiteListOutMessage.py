@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class DeleteWhiteListOutMessage(OutMessage):
-    KEY_USERS = "users"
+    __KEY_USERS = "users"
 
     users = []
 
@@ -15,7 +15,7 @@ class DeleteWhiteListOutMessage(OutMessage):
         _, dictionary = super(DeleteWhiteListOutMessage, self).to_json_obj()
 
         if self.users is not None:
-            dictionary[self.KEY_USERS] = self.users
+            dictionary[self.__KEY_USERS] = self.users
 
         return json.dumps(dictionary), dictionary
     

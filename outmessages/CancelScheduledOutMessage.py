@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class CancelScheduledOutMessage(OutMessage):
-    KEY_MESSAGE_ID = "message_id"
+    __KEY_MESSAGE_ID = "message_id"
 
     message_id = None
 
@@ -15,6 +15,6 @@ class CancelScheduledOutMessage(OutMessage):
         _, dictionary = super(CancelScheduledOutMessage, self).to_json_obj()
 
         if self.message_id is not None:
-            dictionary[self.KEY_MESSAGE_ID] = self.message_id
+            dictionary[self.__KEY_MESSAGE_ID] = self.message_id
 
         return json.dumps(dictionary), dictionary

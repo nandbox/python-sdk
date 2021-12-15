@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class SetNavigationButtonOutMessage(OutMessage):
-    KEY_NAVIGATION_BUTTONS = "navigation_buttons"
+    __KEY_NAVIGATION_BUTTONS = "navigation_buttons"
 
     navigation_buttons = []
 
@@ -15,7 +15,7 @@ class SetNavigationButtonOutMessage(OutMessage):
         _, dictionary = super(SetNavigationButtonOutMessage, self).to_json_obj()
 
         if self.navigation_buttons is not None:
-            dictionary[self.KEY_NAVIGATION_BUTTONS] = self.navigation_buttons
+            dictionary[self.__KEY_NAVIGATION_BUTTONS] = self.navigation_buttons
 
         return json.dumps(dictionary), dictionary
     

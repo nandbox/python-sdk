@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class DeleteBlackListPatternsOutMessage(OutMessage):
-    KEY_PATTERN = "pattern"
+    __KEY_PATTERN = "pattern"
 
     pattern = []
 
@@ -12,7 +12,7 @@ class DeleteBlackListPatternsOutMessage(OutMessage):
         _, dictionary = super(DeleteBlackListPatternsOutMessage, self).to_json_obj()
 
         if self.pattern is not None:
-            dictionary[self.KEY_PATTERN] = self.pattern
+            dictionary[self.__KEY_PATTERN] = self.pattern
 
         return json.dumps(dictionary), dictionary
     

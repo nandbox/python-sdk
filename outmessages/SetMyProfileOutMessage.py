@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class SetMyProfileOutMessage(OutMessage):
-    KEY_USER = "user"
+    __KEY_USER = "user"
 
     user = None
 
@@ -15,7 +15,7 @@ class SetMyProfileOutMessage(OutMessage):
         _, dictionary = super(SetMyProfileOutMessage, self).to_json_obj()
 
         if self.user is not None:
-            dictionary[self.KEY_USER] = self.user
+            dictionary[self.__KEY_USER] = self.user
 
         return json.dumps(dictionary), dictionary
     

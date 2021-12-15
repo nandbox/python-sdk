@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class GetUserOutMessage(OutMessage):
-    KEY_USER_ID = "user_id"
+    __KEY_USER_ID = "user_id"
 
     user_id = None
 
@@ -15,7 +15,7 @@ class GetUserOutMessage(OutMessage):
         _, dictionary = super(GetUserOutMessage, self).to_json_obj()
 
         if self.user_id is not None:
-            dictionary[self.KEY_USER_ID] = self.user_id
+            dictionary[self.__KEY_USER_ID] = self.user_id
 
         return json.dumps(dictionary), dictionary
     

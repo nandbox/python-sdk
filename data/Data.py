@@ -2,23 +2,23 @@ import json
 
 
 class Data:
-    KEY_PATTERN = "pattern"
-    KEY_EXAMPLE = "example"
+    __KEY_PATTERN = "pattern"
+    __KEY_EXAMPLE = "example"
 
     pattern = None
     example = None
 
     def __init__(self, dictionary):
-        self.pattern = str(dictionary[self.KEY_PATTERN]) if self.KEY_PATTERN in dictionary.keys() else None
-        self.example = str(dictionary[self.KEY_EXAMPLE]) if self.KEY_EXAMPLE in dictionary.keys() else None
+        self.pattern = str(dictionary[self.__KEY_PATTERN]) if self.__KEY_PATTERN in dictionary.keys() else None
+        self.example = str(dictionary[self.__KEY_EXAMPLE]) if self.__KEY_EXAMPLE in dictionary.keys() else None
 
     def to_json_obj(self):
 
         dictionary = {}
 
         if self.pattern is not None:
-            dictionary[self.KEY_PATTERN] = self.pattern
+            dictionary[self.__KEY_PATTERN] = self.pattern
         if self.example is not None:
-            dictionary[self.KEY_EXAMPLE] = self.example
+            dictionary[self.__KEY_EXAMPLE] = self.example
 
         return json.dumps(dictionary), dictionary

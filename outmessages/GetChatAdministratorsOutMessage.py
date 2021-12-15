@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class GetChatAdministratorsOutMessage(OutMessage):
-    KEY_CHAT_ID = "chat_id"
+    __KEY_CHAT_ID = "chat_id"
 
     def __init__(self):
         self.method = "getChatAdministrators"
@@ -13,7 +13,7 @@ class GetChatAdministratorsOutMessage(OutMessage):
         _, dictionary = super(GetChatAdministratorsOutMessage, self).to_json_obj()
 
         if self.chat_id is not None:
-            dictionary[self.KEY_CHAT_ID] = self.chat_id
+            dictionary[self.__KEY_CHAT_ID] = self.chat_id
 
         return json.dumps(dictionary), dictionary
 

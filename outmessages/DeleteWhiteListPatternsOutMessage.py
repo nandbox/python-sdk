@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class DeleteWhiteListPatternsOutMessage(OutMessage):
-    KEY_PATTERN = "pattern"
+    __KEY_PATTERN = "pattern"
 
     pattern = []
 

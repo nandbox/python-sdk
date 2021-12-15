@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class SetChatMenuOutMessage(OutMessage):
-    KEY_MENU = "menus"
+    __KEY_MENU = "menus"
 
     menus = []
 
@@ -15,6 +15,6 @@ class SetChatMenuOutMessage(OutMessage):
         _, dictionary = super(SetChatMenuOutMessage, self).to_json_obj()
 
         if self.menus is not None:
-            dictionary[self.KEY_MENU] = self.menus
+            dictionary[self.__KEY_MENU] = self.menus
 
         return json.dumps(dictionary), dictionary

@@ -4,7 +4,7 @@ from outmessages.OutMessage import OutMessage
 
 
 class AddBlacklistPatternsOutMessage(OutMessage):
-    KEY_DATA = "data"
+    __KEY_DATA = "data"
 
     data = []
 
@@ -15,7 +15,7 @@ class AddBlacklistPatternsOutMessage(OutMessage):
         _, dictionary = super(AddBlacklistPatternsOutMessage, self).to_json_obj()
 
         if self.data is not None:
-            dictionary[self.KEY_DATA] = self.data
+            dictionary[self.__KEY_DATA] = self.data
 
         return json.dumps(dictionary), dictionary
     

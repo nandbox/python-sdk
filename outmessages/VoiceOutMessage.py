@@ -4,8 +4,8 @@ from outmessages.OutMessage import OutMessage
 
 
 class VoiceOutMessage(OutMessage):
-    KEY_VOICE = "voice"
-    KEY_SIZE = "size"
+    __KEY_VOICE = "voice"
+    __KEY_SIZE = "size"
 
     voice = None
     size = None
@@ -17,8 +17,8 @@ class VoiceOutMessage(OutMessage):
         _, dictionary = super(VoiceOutMessage, self).to_json_obj()
 
         if self.voice is not None:
-            dictionary[self.KEY_VOICE] = self.voice
+            dictionary[self.__KEY_VOICE] = self.voice
         if self.size is not None:
-            dictionary[self.KEY_SIZE] = self.size
+            dictionary[self.__KEY_SIZE] = self.size
 
         return json.dumps(dictionary), dictionary

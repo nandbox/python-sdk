@@ -4,10 +4,10 @@ from outmessages.OutMessage import OutMessage
 
 
 class LocationOutMessage(OutMessage):
-    KEY_NAME = "name"
-    KEY_DETAILS = "details"
-    KEY_LONGITUDE = "longitude"
-    KEY_LATITUDE = "latitude"
+    __KEY_NAME = "name"
+    __KEY_DETAILS = "details"
+    __KEY_LONGITUDE = "longitude"
+    __KEY_LATITUDE = "latitude"
 
     longitude = None
     latitude = None
@@ -21,13 +21,13 @@ class LocationOutMessage(OutMessage):
         _, dictionary = super(LocationOutMessage, self).to_json_obj()
 
         if self.name is not None:
-            dictionary[self.KEY_NAME] = self.name
+            dictionary[self.__KEY_NAME] = self.name
         if self.details is not None:
-            dictionary[self.KEY_DETAILS] = self.details
+            dictionary[self.__KEY_DETAILS] = self.details
         if self.latitude is not None:
-            dictionary[self.KEY_LATITUDE] = self.latitude
+            dictionary[self.__KEY_LATITUDE] = self.latitude
         if self.longitude is not None:
-            dictionary[self.KEY_LONGITUDE] = self.longitude
+            dictionary[self.__KEY_LONGITUDE] = self.longitude
 
         return json.dumps(dictionary), dictionary
 
