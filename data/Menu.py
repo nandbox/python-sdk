@@ -12,10 +12,10 @@ class Menu:
 
     def __init__(self, dictionary):
         rows_arr = dictionary[self.KEY_ROWS]
-        self.rows = [Row()]*len(rows_arr)
+        self.rows = []
         for i in range(len(rows_arr)):
             self.rows.append(Row(rows_arr[i]))
-        self.menu_ref = str(dictionary[self.KEY_MENU_REF])
+        self.menu_ref = str(dictionary[self.KEY_MENU_REF]) if self.KEY_MENU_REF in dictionary.keys() else None
 
     def to_json_obj(self):
 

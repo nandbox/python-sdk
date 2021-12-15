@@ -14,15 +14,14 @@ class ChatAdministrators:
 
     def __init__(self, dictionary):
 
-        chat_administrators_dict = dictionary[self.KEY_CHAT_ADMINISTRATORS]
+        chat_administrators_dict = dictionary[self.KEY_CHAT_ADMINISTRATORS] if self.KEY_CHAT_ADMINISTRATORS in dictionary.keys() else {}
 
-        self.chat = Chat(chat_administrators_dict[self.KEY_CHAT]) if chat_administrators_dict[
-                                                                         self.KEY_CHAT] is not None else None
+        self.chat = Chat(chat_administrators_dict.get(self.KEY_CHAT, {}))
 
-        admin_arr_obj = chat_administrators_dict[self.KEY_ADMINISTRATORS]
+        admin_arr_obj = chat_administrators_dict[self.KEY_ADMINISTRATORS] if self.KEY_ADMINISTRATORS in chat_administrators_dict.keys() else None
         if admin_arr_obj is not None:
             length = len(admin_arr_obj)
-            admin = [User()] * length
+            admin = [User({})] * length
             for i in range(length):
                 admin[i] = User(admin_arr_obj[i])
 

@@ -26,21 +26,20 @@ class InlineMessageCallback:
     button_query_result = None
 
     def __init__(self, dictionary):
-        inline_message_dict = dictionary[self.KEY_INLINE_MESSAGE_CALLBACK]
+        inline_message_dict = dictionary[self.KEY_INLINE_MESSAGE_CALLBACK] if self.KEY_INLINE_MESSAGE_CALLBACK in dictionary.keys() else {}
 
-        from_user = User(inline_message_dict[self.KEY_FROM])
+        from_user = User(inline_message_dict.get(self.KEY_FROM, {}))
 
-        self.chat = Chat(inline_message_dict[self.KEY_CHAT]) if inline_message_dict[self.KEY_CHAT] is not None else None
+        self.chat = Chat(inline_message_dict.get(self.KEY_CHAT, {}))
 
-        btn_query_result = ButtonQueryResult(inline_message_dict[self.KEY_BUTTON_QUERY_RESULTS]) if inline_message_dict[
-                                                                                               self.KEY_BUTTON_QUERY_RESULTS] is not None else None
-        self.message_id = str(inline_message_dict[self.KEY_MESSAGE_ID])
-        self.menu_ref = str(inline_message_dict[self.KEY_MENU_REF])
-        self.reference = str(inline_message_dict[self.KEY_REFERENCE])
+        btn_query_result = ButtonQueryResult(inline_message_dict.get(self.KEY_BUTTON_QUERY_RESULTS, {}))
+        self.message_id = str(inline_message_dict[self.KEY_MESSAGE_ID]) if self.KEY_MESSAGE_ID in inline_message_dict.keys() else None
+        self.menu_ref = str(inline_message_dict[self.KEY_MENU_REF]) if self.KEY_MENU_REF in inline_message_dict.keys() else None
+        self.reference = str(inline_message_dict[self.KEY_REFERENCE]) if self.KEY_REFERENCE in inline_message_dict.keys() else None
         self.from_ = from_user
         self.button_query_result = btn_query_result
-        self.button_callback = str(inline_message_dict[self.KEY_BUTTON_CALLBACK])
-        self.date = int(inline_message_dict[self.KEY_DATE])
+        self.button_callback = str(inline_message_dict[self.KEY_BUTTON_CALLBACK]) if self.KEY_BUTTON_CALLBACK in inline_message_dict.keys() else None
+        self.date = int(inline_message_dict[self.KEY_DATE]) if self.KEY_DATE in inline_message_dict.keys() else None
 
     def to_json_obj(self):
 

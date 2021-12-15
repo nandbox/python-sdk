@@ -21,7 +21,7 @@ class User:
     version = None
     terminal = None
     type = None
-    is_bot = None
+    is_bot = False
     last_seen = None
     status = None
     profile = None
@@ -29,19 +29,20 @@ class User:
     short_name = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.KEY_ID])
-        self.name = str(dictionary[self.KEY_NAME])
-        self.version = str(dictionary[self.KEY_VERSION])
-        self.terminal = str(dictionary[self.KEY_TERMINAL])
-        self.type = str(dictionary[self.KEY_TYPE])
-        self.is_bot = bool(dictionary[self.KEY_IS_BOT])
-        self.last_seen = str(dictionary[self.KEY_LAST_SEEN])
-        self.status = str(dictionary[self.KEY_STATUS])
-        self.profile = str(dictionary[self.KEY_PROFILE])
+        # print(str(dictionary))
+        self.id = str(dictionary[self.KEY_ID]) if self.KEY_ID in dictionary.keys() else None
+        self.name = str(dictionary[self.KEY_NAME]) if self.KEY_NAME in dictionary.keys() else None
+        self.version = str(dictionary[self.KEY_VERSION]) if self.KEY_VERSION in dictionary.keys() else None
+        self.terminal = str(dictionary[self.KEY_TERMINAL]) if self.KEY_TERMINAL in dictionary.keys() else None
+        self.type = str(dictionary[self.KEY_TYPE]) if self.KEY_TYPE in dictionary.keys() else None
+        self.is_bot = bool(dictionary[self.KEY_IS_BOT]) if self.KEY_IS_BOT in dictionary.keys() else None
+        self.last_seen = str(dictionary[self.KEY_LAST_SEEN]) if self.KEY_LAST_SEEN in dictionary.keys() else None
+        self.status = str(dictionary[self.KEY_STATUS]) if self.KEY_STATUS in dictionary.keys() else None
+        self.profile = str(dictionary[self.KEY_PROFILE]) if self.KEY_PROFILE in dictionary.keys() else None
 
-        self.photo = Photo(dictionary[self.KEY_PHOTO]) if dictionary[self.KEY_PHOTO] is not None else None
+        self.photo = Photo(dictionary.get(self.KEY_PHOTO, {}))
 
-        self.short_name = str(dictionary[self.KEY_SHORT_NAME])
+        self.short_name = str(dictionary[self.KEY_SHORT_NAME]) if self.KEY_SHORT_NAME in dictionary.keys() else None
 
     def to_json_obj(self):
         dictionary = {}
@@ -65,7 +66,8 @@ class User:
         if self.profile is not None:
             dictionary[self.KEY_PROFILE] = self.profile
         if self.photo is not None:
-            dictionary[self.KEY_PHOTO] = self.photo
+            _, photo_dict = self.photo.to_json_obj()
+            dictionary[self.KEY_PHOTO] = photo_dict
         if self.short_name is not None:
             dictionary[self.KEY_SHORT_NAME] = self.short_name
 

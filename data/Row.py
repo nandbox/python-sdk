@@ -12,7 +12,7 @@ class Row:
 
     def __init__(self, *args):
 
-        if len(args == 0):
+        if len(args) == 0:
             return  # empty constructor
         elif len(args) == 1:
             if isinstance(args[0], Button):
@@ -21,13 +21,13 @@ class Row:
                 self.buttons = args[0]
             elif isinstance(args[0], dict):
                 dictionary = args[0]
-                buttons_arr = dictionary[self.KEY_BUTTONS]
-                self.buttons = [Button()] * len(buttons_arr)
+                buttons_arr = dictionary[self.KEY_BUTTONS] if self.KEY_BUTTONS in dictionary.keys() else []
+                self.buttons = []
 
                 for i in range(len(buttons_arr)):
                     self.buttons.append(Button(buttons_arr[i]))
 
-                self.row_order = dictionary[self.KEY_ROW_ORDER]
+                self.row_order = dictionary[self.KEY_ROW_ORDER] if self.KEY_ROW_ORDER in dictionary.keys() else None
 
     def to_json_obj(self):
 

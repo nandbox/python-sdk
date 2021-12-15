@@ -26,22 +26,21 @@ class ChatMenuCallback:
     menu_ref = None
 
     def __init__(self, dictionary):
-        chat_menu_callback_dict = dictionary[self.KEY_CHAT_MENU_CALL_BACK]
+        chat_menu_callback_dict = dictionary[self.KEY_CHAT_MENU_CALL_BACK] if self.KEY_CHAT_MENU_CALL_BACK in dictionary.keys() else {}
 
-        from_user = User(dictionary[self.KEY_FROM])
+        from_user = User(chat_menu_callback_dict.get(self.KEY_FROM, {}))
 
-        self.chat = Chat(dictionary[self.KEY_CHAT]) if dictionary[self.KEY_CHAT] is not None else None
+        self.chat = Chat(chat_menu_callback_dict.get(self.KEY_CHAT, {}))
 
-        btn_query_result = ButtonQueryResult(dictionary[self.KEY_BUTTON_QUERY_RESULTS]) if dictionary[
-                                                                                               self.KEY_BUTTON_QUERY_RESULTS] is not None else None
+        btn_query_result = ButtonQueryResult(chat_menu_callback_dict.get(self.KEY_BUTTON_QUERY_RESULTS, {}))
 
-        self.method = str(dictionary[self.KEY_METHOD])
-        self.menu_ref = str(dictionary[self.KEY_MENU_REF])
+        self.method = str(chat_menu_callback_dict[self.KEY_METHOD]) if self.KEY_METHOD in chat_menu_callback_dict.keys() else None
+        self.menu_ref = str(chat_menu_callback_dict[self.KEY_MENU_REF]) if self.KEY_MENU_REF in chat_menu_callback_dict.keys() else None
         self.from_ = from_user
         self.button_query_result = btn_query_result
-        self.button_callback = str(dictionary[self.KEY_BUTTON_CALLBACK])
-        self.next_menu = str(dictionary[self.KEY_NEXT_MENU])
-        self.date = int(dictionary[self.KEY_DATE])
+        self.button_callback = str(chat_menu_callback_dict[self.KEY_BUTTON_CALLBACK]) if self.KEY_BUTTON_CALLBACK in chat_menu_callback_dict.keys() else None
+        self.next_menu = str(chat_menu_callback_dict[self.KEY_NEXT_MENU]) if self.KEY_NEXT_MENU in chat_menu_callback_dict.keys() else None
+        self.date = int(chat_menu_callback_dict[self.KEY_DATE]) if self.KEY_DATE in chat_menu_callback_dict.keys() else None
 
     def to_json_obj(self):
 

@@ -14,10 +14,10 @@ class TagDefinition:
 
     def __init__(self, dictionary):
 
-        self.id = str(dictionary[self.KEY_ID])
-        self.name = str(dictionary[self.KEY_NAME])
-        self.description = str(dictionary[self.KEY_DESCRIPTION])
-        self.is_private = str(dictionary[self.KEY_ISPRIVATE])
+        self.id = str(dictionary[self.KEY_ID]) if self.KEY_ID in dictionary.keys() else None
+        self.name = str(dictionary[self.KEY_NAME]) if self.KEY_NAME in dictionary.keys() else None
+        self.description = str(dictionary[self.KEY_DESCRIPTION]) if self.KEY_DESCRIPTION in dictionary.keys() else None
+        self.is_private = str(dictionary[self.KEY_ISPRIVATE]) if self.KEY_ISPRIVATE in dictionary.keys() else None
 
     def to_json_obj(self):
 

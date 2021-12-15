@@ -34,19 +34,19 @@ class Chat:
 
     def __init__(self, dictionary):
 
-        self.id = str(dictionary[self.KEY_ID])
-        self.title = str(dictionary[self.KEY_TITLE])
-        self.name = str(dictionary[self.KEY_NAME])
-        self.type = str(dictionary[self.KEY_TYPE])
-        self.version = str(dictionary[self.KEY_VERSION])
-        self.language_code = int(dictionary[self.KEY_LANGUAGE_CODE])
-        self.regions = str(dictionary[self.KEY_REGIONS])
-        self.description = str(dictionary[self.KEY_DESCRIPTION])
-        self.category = str(dictionary[self.KEY_CATEGORY])
-        self.member_count = int(dictionary[self.KEY_MEMBER_COUNT])
-        self.invite_link = str(dictionary[self.KEY_INVITE_LINK])
+        self.id = str(dictionary[self.KEY_ID]) if self.KEY_ID in dictionary.keys() else None
+        self.title = str(dictionary[self.KEY_TITLE]) if self.KEY_TITLE in dictionary.keys() else None
+        self.name = str(dictionary[self.KEY_NAME]) if self.KEY_NAME in dictionary.keys() else None
+        self.type = str(dictionary[self.KEY_TYPE]) if self.KEY_TYPE in dictionary.keys() else None
+        self.version = str(dictionary[self.KEY_VERSION]) if self.KEY_VERSION in dictionary.keys() else None
+        self.language_code = int(dictionary[self.KEY_LANGUAGE_CODE]) if self.KEY_LANGUAGE_CODE in dictionary.keys() else None
+        self.regions = str(dictionary[self.KEY_REGIONS]) if self.KEY_REGIONS in dictionary.keys() else None
+        self.description = str(dictionary[self.KEY_DESCRIPTION]) if self.KEY_DESCRIPTION in dictionary.keys() else None
+        self.category = str(dictionary[self.KEY_CATEGORY]) if self.KEY_CATEGORY in dictionary.keys() else None
+        self.member_count = int(dictionary[self.KEY_MEMBER_COUNT]) if self.KEY_MEMBER_COUNT in dictionary.keys() else None
+        self.invite_link = str(dictionary[self.KEY_INVITE_LINK]) if self.KEY_INVITE_LINK in dictionary.keys() else None
 
-        tags_arr_obj = dictionary[self.KEY_TAGS_DEFINITION]
+        tags_arr_obj = dictionary.get(self.KEY_TAGS_DEFINITION, None)
         if tags_arr_obj is not None:
             self.tags_definition = [None] * len(tags_arr_obj)
             for i in range(len(tags_arr_obj)):

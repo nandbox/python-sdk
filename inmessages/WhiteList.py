@@ -15,13 +15,13 @@ class WhiteList:
     users = []
 
     def __init__(self, dictionary):
-        blacklist_dict = dictionary[self.KEY_WHITELIST]
+        whitelist_dict = dictionary[self.KEY_WHITELIST] if self.KEY_WHITELIST in dictionary.keys() else {}
 
-        self.eop = str(blacklist_dict[self.KEY_EOP])
-        self.chat = Chat(blacklist_dict[self.KEY_CHAT]) if blacklist_dict[self.KEY_CHAT] is not None else None
+        self.eop = str(whitelist_dict[self.KEY_EOP]) if self.KEY_EOP in whitelist_dict.keys() else None
+        self.chat = Chat(whitelist_dict.get(self.KEY_CHAT, {}))
 
-        users_arr_obj = blacklist_dict[self.KEY_USERS]
-        self.users = [SignupUser()] * len(users_arr_obj)
+        users_arr_obj = whitelist_dict[self.KEY_USERS] if self.KEY_USERS in whitelist_dict.keys() else []
+        self.users = [SignupUser({})] * len(users_arr_obj)
         for i in range(len(users_arr_obj)):
             self.users[i] = SignupUser(users_arr_obj[i])
 

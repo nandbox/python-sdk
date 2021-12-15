@@ -26,16 +26,16 @@ class ChatMember:
 
     def __init__(self, dictionary):
 
-        chat_member_dict = dictionary[self.KEY_CHAT_MEMBER]
+        chat_member_dict = dictionary[self.KEY_CHAT_MEMBER] if self.KEY_CHAT_MEMBER in dictionary.keys() else {}
 
-        self.user = User(chat_member_dict[self.KEY_USER]) if chat_member_dict[self.KEY_USER] is not None else None
-        self.chat = Chat(chat_member_dict[self.KEY_CHAT]) if chat_member_dict[self.KEY_CHAT] is not None else None
-        self.type = str(chat_member_dict[self.KEY_TYPE])
-        self.member_since = int(chat_member_dict[self.KEY_MEMBER_SINCE])
-        self.status = str(chat_member_dict[self.KEY_STATUS])
-        self.tags = chat_member_dict[self.KEY_TAGS]
-        self.account_type = chat_member_dict[self.KEY_ACCOUNT_TYPE]
-        self.msisdn = chat_member_dict[self.KEY_MSISDN]
+        self.user = User(chat_member_dict.get(self.KEY_USER, None))
+        self.chat = Chat(chat_member_dict.get(self.KEY_CHAT, None))
+        self.type = str(chat_member_dict[self.KEY_TYPE]) if self.KEY_TYPE in chat_member_dict.keys() else None
+        self.member_since = int(chat_member_dict[self.KEY_MEMBER_SINCE]) if self.KEY_MEMBER_SINCE in chat_member_dict.keys() else None
+        self.status = str(chat_member_dict[self.KEY_STATUS]) if self.KEY_STATUS in chat_member_dict.keys() else None
+        self.tags = chat_member_dict[self.KEY_TAGS] if self.KEY_TAGS in chat_member_dict.keys() else None
+        self.account_type = chat_member_dict[self.KEY_ACCOUNT_TYPE] if self.KEY_ACCOUNT_TYPE in chat_member_dict.keys() else None
+        self.msisdn = chat_member_dict[self.KEY_MSISDN] if self.KEY_MSISDN in chat_member_dict.keys() else None
 
     def to_json_obj(self):
 

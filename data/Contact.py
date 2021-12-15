@@ -9,8 +9,8 @@ class Contact:
     phone_number = None
 
     def __init__(self, dictionary):
-        self.name = str(dictionary[self.KEY_NAME])
-        self.phone_number = str(dictionary[self.KEY_PHONE_NUMBER])
+        self.name = str(dictionary[self.KEY_NAME]) if self.KEY_NAME in dictionary.keys() else None
+        self.phone_number = str(dictionary[self.KEY_PHONE_NUMBER]) if self.KEY_PHONE_NUMBER in dictionary.keys() else None
 
     def to_json_obj(self):
 

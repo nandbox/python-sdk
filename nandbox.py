@@ -1,4 +1,4 @@
-class nandbox:
+class Nandbox:
     class Callback:
         def on_connect(self, api):
             pass
@@ -70,112 +70,62 @@ class nandbox:
         def send(self, message):
             pass
 
-        def send_text(self, chat_id, text):
-            pass
-
         def send_text_with_background(self, chat_id, text, bg_color):
             pass
 
-        def send_text(self, chat_id, text, reference):
+        def send_text(self, chat_id, text, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                      disable_notification=None, chat_settings=None, bg_color=None, tab=None):
             pass
 
-        def send_text(self, chat_id, text, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, chat_settings, bg_color):
+        def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                       disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
-        def send_photo(self, chat_id, photo_file_id, caption):
+        def send_video(self, chat_id, video_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                       disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
-        def send_photo(self, chat_id, photo_file_id, reference, caption):
+        def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                       disable_notification=None, caption=None, performer=None, title=None, chat_settings=None, tab=None):
             pass
 
-        def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, caption, chat_settings):
+        def send_contact(self, chat_id, phone_number, name, reference, reply_to_message_id=None, to_user_id=None,
+                         web_page_preview=None, disable_notification=None, chat_settings=None, tab=None):
             pass
 
-        def send_video(self, chat_id, video_file_id, caption):
+        def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                       disable_notification=None, caption=None, size=None, chat_settings=None, tab=None):
             pass
 
-        def send_video(self, chat_id, video_file_id, reference, caption):
+        def send_document(self, chat_id, document_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                          disable_notification=None, caption=None, name=None, size=None, chat_settings=None, tab=None):
             pass
 
-        def send_video(self, chat_id, video_file_id, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, caption, chat_settings):
+        def send_location(self, chat_id, latitude, longitude, reference, reply_to_message_id=None, to_user_id=None,
+                          web_page_preview=None, disable_notification=None, name=None, details=None, chat_settings=None, tab=None):
             pass
 
-        def send_audio(self, chat_id, audio_file_id, caption):
+        def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                     disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
-        def send_audio(self, chat_id, audio_file_id, reference, caption):
+        def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+                           disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
-        def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, caption, performer, title, chat_settings):
+        def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None, tab=None):
             pass
 
-        def send_contact(self, chat_id, phone_number, name):
+        def update_text_msg(self, message_id, text, to_user_id, tab):
             pass
 
-        def send_contact(self, chat_id, phone_number, name, reference):
+        def update_media_caption(self, message_id, caption, to_user_id, tab):
             pass
 
-        def send_contact(self, chat_id, phone_number, name, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, chat_settings):
+        def update_chat_msg(self, message_id, text, chat_id, tab):
             pass
 
-        def send_voice(self, chat_id, voice_file_id, caption):
-            pass
-
-        def send_voice(self, chat_id, voice_file_id, reference, caption):
-            pass
-
-        def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, caption, size, chat_settings):
-            pass
-
-        def send_document(self, chat_id, document_file_id, caption):
-            pass
-
-        def send_document(self, chat_id, document_file_id, reference, caption):
-            pass
-
-        def send_document(self, chat_id, document_file_id, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, caption, name, size, chat_settings):
-            pass
-
-        def send_location(self, chat_id, latitude, longitude):
-            pass
-
-        def send_location(self, chat_id, latitude, longitude, reference):
-            pass
-
-        def send_location(self, chat_id, latitude, longitude, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, name, details, chat_settings):
-            pass
-
-        def send_gif(self, chat_id, gif_file_id, caption):
-            pass
-
-        def send_gif(self, chat_id, gif_file_id, reference, caption):
-            pass
-
-        def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, caption, chat_settings):
-            pass
-
-        def send_gif_video(self, chat_id, gif_file_id, caption):
-            pass
-
-        def send_gif_video(self, chat_id, gif_file_id, reference, caption):
-            pass
-
-        def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id, to_user_id, web_page_preview, disable_notification, caption, chat_settings):
-            pass
-
-        def update_message(self, message_id, text, to_user_id):
-            pass
-
-        def update_text_msg(self, message_id, text, to_user_id):
-            pass
-
-        def update_media_caption(self, message_id, caption, to_user_id):
-            pass
-
-        def update_chat_msg(self, message_id, text, chat_id):
-            pass
-
-        def update_chat_media_caption(self, message_id, caption, chat_id):
+        def update_chat_media_caption(self, message_id, caption, chat_id, tab):
             pass
 
         def get_user(self, user_id):
@@ -243,4 +193,3 @@ class nandbox:
 
         def delete_white_list_patterns(self, chat_id, pattern):
             pass
-

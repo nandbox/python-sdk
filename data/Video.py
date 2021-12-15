@@ -19,12 +19,12 @@ class Video:
     duration = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.KEY_ID])
-        self.width = int(dictionary[self.KEY_WIDTH])
-        self.height = int(dictionary[self.KEY_HEIGHT])
-        self.size = int(dictionary[self.KEY_SIZE])
-        self.thumbnail = Thumbnail(dictionary[self.KEY_THUMBNAIL]) if dictionary[self.KEY_THUMBNAIL] is not None else None
-        self.duration = int(dictionary[self.KEY_DURATION])
+        self.id = str(dictionary[self.KEY_ID]) if self.KEY_ID in dictionary.keys() else None
+        self.width = int(dictionary[self.KEY_WIDTH]) if self.KEY_WIDTH in dictionary.keys() else None
+        self.height = int(dictionary[self.KEY_HEIGHT]) if self.KEY_HEIGHT in dictionary.keys() else None
+        self.size = int(dictionary[self.KEY_SIZE]) if self.KEY_SIZE in dictionary.keys() else None
+        self.thumbnail = Thumbnail(dictionary.get(self.KEY_THUMBNAIL, {}))
+        self.duration = int(dictionary[self.KEY_DURATION]) if self.KEY_DURATION in dictionary.keys() else None
 
     def to_json_obj(self):
 
@@ -39,7 +39,8 @@ class Video:
         if self.size is not None:
             dictionary[self.KEY_SIZE] = self.size
         if self.thumbnail is not None:
-            dictionary[self.KEY_THUMBNAIL] = self.thumbnail
+            _, thumbnail_dict = self.thumbnail.to_json_obj()
+            dictionary[self.KEY_THUMBNAIL] = thumbnail_dict
         if self.duration is not None:
             dictionary[self.KEY_DURATION] = self.duration
 

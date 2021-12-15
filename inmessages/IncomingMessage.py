@@ -18,7 +18,6 @@ from data.WhiteListUser import WhiteListUser
 
 
 class IncomingMessage:
-
     KEY_MESSAGE = "message"
     KEY_MESSAGE_ID = "message_id"
     KEY_TYPE = "type"
@@ -82,37 +81,37 @@ class IncomingMessage:
     def __init__(self, dictionary):
         msg_dict = dictionary[self.KEY_MESSAGE]
 
-        from_user = User(msg_dict[self.KEY_FROM])
-        sent_to_user = User(msg_dict[self.KEY_SENT_TO]) if msg_dict[self.KEY_SENT_TO] is not None else None
+        from_user = User(msg_dict.get(self.KEY_FROM, {}))
+        sent_to_user = User(msg_dict.get(self.KEY_SENT_TO, {}))
 
-        self.chat = Chat(msg_dict[self.KEY_CHAT]) if msg_dict[self.KEY_CHAT] is not None else None
-        self.location = Location(msg_dict[self.KEY_LOCATION]) if msg_dict[self.KEY_LOCATION] is not None else None
-        self.contact = Contact(msg_dict[self.KEY_CONTACT]) if msg_dict[self.KEY_CONTACT] is not None else None
-        self.document = Document(msg_dict[self.KEY_DOCUMENT]) if msg_dict[self.KEY_DOCUMENT] is not None else None
-        self.photo = Photo(msg_dict[self.KEY_PHOTO]) if msg_dict[self.KEY_PHOTO] is not None else None
-        self.gif = Gif(msg_dict[self.KEY_GIF]) if msg_dict[self.KEY_GIF] is not None else None
-        self.voice = Voice(msg_dict[self.KEY_VOICE]) if msg_dict[self.KEY_VOICE] is not None else None
-        self.video = Video(msg_dict[self.KEY_VIDEO]) if msg_dict[self.KEY_VIDEO] is not None else None
-        self.audio = Audio(msg_dict[self.KEY_AUDIO]) if msg_dict[self.KEY_AUDIO] is not None else None
-        self.article = Article(msg_dict[self.KEY_ARTICLE]) if msg_dict[self.KEY_ARTICLE] is not None else None
-        self.sticker = Sticker(msg_dict[self.KEY_STICKER]) if msg_dict[self.KEY_STICKER] is not None else None
-        self.text_file = TextFile(msg_dict[self.KEY_TEXT_FILE]) if msg_dict[self.KEY_TEXT_FILE] is not None else None
-        self.text = str(msg_dict[self.KEY_TEXT])
-        self.message_id = str(msg_dict[self.KEY_MESSAGE_ID])
-        self.date = int(str(msg_dict[self.KEY_DATE]))
-        self.reference = int(str(msg_dict[self.KEY_REFERENCE]))
+        self.chat = Chat(msg_dict.get(self.KEY_CHAT, {}))
+        self.location = Location(msg_dict.get(self.KEY_LOCATION, {}))
+        self.contact = Contact(msg_dict.get(self.KEY_CONTACT, {}))
+        self.document = Document(msg_dict.get(self.KEY_DOCUMENT, {}))
+        self.photo = Photo(msg_dict.get(self.KEY_PHOTO, {}))
+        self.gif = Gif(msg_dict.get(self.KEY_GIF, {}))
+        self.voice = Voice(msg_dict.get(self.KEY_VOICE, {}))
+        self.video = Video(msg_dict.get(self.KEY_VIDEO, {}))
+        self.audio = Audio(msg_dict.get(self.KEY_AUDIO, {}))
+        self.article = Article(msg_dict.get(self.KEY_ARTICLE, {}))
+        self.sticker = Sticker(msg_dict.get(self.KEY_STICKER, {}))
+        self.text_file = TextFile(msg_dict.get(self.KEY_TEXT_FILE, {}))
+        self.text = str(msg_dict[self.KEY_TEXT]) if self.KEY_TEXT in msg_dict.keys() else None
+        self.message_id = str(msg_dict[self.KEY_MESSAGE_ID]) if self.KEY_MESSAGE_ID in msg_dict.keys() else None
+        self.date = int(str(msg_dict[self.KEY_DATE])) if self.KEY_DATE in msg_dict.keys() else None
+        self.reference = int(str(msg_dict[self.KEY_REFERENCE])) if self.KEY_REFERENCE in msg_dict.keys() else None
         self.from_ = from_user
         self.sent_to = sent_to_user
-        self.from_admin = int(msg_dict[self.KEY_FROM_ADMIN])
-        self.type = str(msg_dict[self.KEY_TYPE])
-        self.caption = str(msg_dict[self.KEY_CAPTION])
-        self.url = str(msg_dict[self.KEY_URL])
-        self.reply_to_message_id = str(msg_dict[self.KEY_REPLY_TO_MESSAGE_ID])
-        self.status = str(self.KEY_STATUS)
-        self.chat_settings = int(self.KEY_CHAT_SETTINGS)
-        self.bg_color = str(self.KEY_BG_COLOR)
-        self.white_list_user = WhiteListUser(msg_dict[self.KEY_WHITELIST_USER]) if msg_dict[self.KEY_WHITELIST_USER] is not None else None
-        self.schedule_date = int(str(msg_dict[self.KEY_SCHEDULE_DATE])) if msg_dict[self.KEY_SCHEDULE_DATE] is not None else None
+        self.from_admin = int(msg_dict[self.KEY_FROM_ADMIN]) if self.KEY_FROM_ADMIN in msg_dict.keys() else None
+        self.type = str(msg_dict[self.KEY_TYPE]) if self.KEY_TYPE in msg_dict.keys() else None
+        self.caption = str(msg_dict[self.KEY_CAPTION]) if self.KEY_CAPTION in msg_dict.keys() else None
+        self.url = str(msg_dict[self.KEY_URL]) if self.KEY_URL in msg_dict.keys() else None
+        self.reply_to_message_id = str(msg_dict[self.KEY_REPLY_TO_MESSAGE_ID]) if self.KEY_REPLY_TO_MESSAGE_ID in msg_dict.keys() else None
+        self.status = str(msg_dict[self.KEY_STATUS]) if self.KEY_STATUS in msg_dict.keys() else None
+        self.chat_settings = int(msg_dict[self.KEY_CHAT_SETTINGS]) if self.KEY_CHAT_SETTINGS in msg_dict.keys() else None
+        self.bg_color = str(msg_dict[self.KEY_BG_COLOR]) if self.KEY_BG_COLOR in msg_dict.keys() else None
+        self.white_list_user = WhiteListUser(msg_dict.get(self.KEY_WHITELIST_USER, {}))
+        self.schedule_date = int(str(msg_dict[self.KEY_SCHEDULE_DATE]))if self.KEY_SCHEDULE_DATE in msg_dict.keys() else None
 
     def to_json_obj(self):
 
@@ -188,16 +187,45 @@ class IncomingMessage:
         if self.schedule_date is not None:
             dictionary[self.KEY_SCHEDULE_DATE] = self.schedule_date
 
-        logging.info("to " + dictionary)
+        logging.info("to " + str(dictionary))
 
         return json.dumps(dictionary), dictionary
 
+    def is_msg_with_type(self, msg_type):
+        return msg_type == self.type
 
+    def is_video_msg(self):
+        return self.is_msg_with_type("video")
 
+    def is_text_msg(self):
+        return self.is_msg_with_type("text")
 
+    def is_photo_msg(self):
+        return self.is_msg_with_type("photo")
 
+    def is_audio_msg(self):
+        return self.is_msg_with_type("audio")
 
+    def is_location_msg(self):
+        return self.is_msg_with_type("location")
 
+    def is_voice_msg(self):
+        return self.is_msg_with_type("voice")
 
+    def is_gif_msg(self):
+        return self.is_msg_with_type("gif")
 
+    def is_sticker_msg(self):
+        return self.is_msg_with_type("sticker")
 
+    def is_text_file_msg(self):
+        return self.is_msg_with_type("text_file")
+
+    def is_document_msg(self):
+        return self.is_msg_with_type("document")
+
+    def is_contact_msg(self):
+        return self.is_msg_with_type("contact")
+
+    def is_article_msg(self):
+        return self.is_msg_with_type("article")

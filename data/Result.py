@@ -23,15 +23,15 @@ class Result:
     height = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.KEY_ID])
-        self.caption = str(dictionary[self.KEY_CAPTION])
-        self.title = str(dictionary[self.KEY_TITLE])
-        self.description = str(dictionary[self.KEY_DESCRIPTION])
-        self.url = str(dictionary[self.KEY_URL])
-        self.type = str(dictionary[self.KEY_TYPE])
-        self.thumb_url = str(dictionary[self.KEY_THUMB_URL])
-        self.width = int(dictionary[self.KEY_WIDTH])
-        self.height = int(dictionary[self.KEY_HEIGHT])
+        self.id = str(dictionary[self.KEY_ID]) if self.KEY_ID in dictionary.keys() else None
+        self.caption = str(dictionary[self.KEY_CAPTION]) if self.KEY_CAPTION in dictionary.keys() else None
+        self.title = str(dictionary[self.KEY_TITLE]) if self.KEY_TITLE in dictionary.keys() else None
+        self.description = str(dictionary[self.KEY_DESCRIPTION]) if self.KEY_DESCRIPTION in dictionary.keys() else None
+        self.url = str(dictionary[self.KEY_URL]) if self.KEY_URL in dictionary.keys() else None
+        self.type = str(dictionary[self.KEY_TYPE]) if self.KEY_TYPE in dictionary.keys() else None
+        self.thumb_url = str(dictionary[self.KEY_THUMB_URL]) if self.KEY_THUMB_URL in dictionary.keys() else None
+        self.width = int(dictionary[self.KEY_WIDTH]) if self.KEY_WIDTH in dictionary.keys() else None
+        self.height = int(dictionary[self.KEY_HEIGHT]) if self.KEY_HEIGHT in dictionary.keys() else None
 
     def to_json_obj(self):
 

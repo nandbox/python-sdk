@@ -6,7 +6,7 @@ from outmessages.OutMessage import OutMessage
 class AddWhiteListOutMessage(OutMessage):
     KEY_USERS = "users"
 
-    white_list_user = []
+    white_list_users = []
 
     def __init__(self):
         self.method = "addWhitelist"
@@ -14,8 +14,8 @@ class AddWhiteListOutMessage(OutMessage):
     def to_json_obj(self):
         _, dictionary = super(AddWhiteListOutMessage, self).to_json_obj()
 
-        if self.white_list_user is not None:
-            dictionary[self.KEY_USERS] = self.white_list_user
+        if self.white_list_users is not None:
+            dictionary[self.KEY_USERS] = self.white_list_users
 
         return json.dumps(dictionary), dictionary
 

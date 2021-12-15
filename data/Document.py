@@ -11,9 +11,9 @@ class Document:
     size = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.KEY_ID])
-        self.name = str(dictionary[self.KEY_NAME])
-        self.size = int(dictionary[self.KEY_SIZE])
+        self.id = str(dictionary[self.KEY_ID]) if self.KEY_ID in dictionary.keys() else None
+        self.name = str(dictionary[self.KEY_NAME]) if self.KEY_NAME in dictionary.keys() else None
+        self.size = int(dictionary[self.KEY_SIZE]) if self.KEY_SIZE in dictionary.keys() else None
 
     def to_json_obj(self):
 

@@ -9,8 +9,8 @@ class TextFile:
     id = None
 
     def __init__(self, dictionary):
-        self.size = int(dictionary[self.KEY_SIZE])
-        self.id = str(dictionary[self.KEY_ID])
+        self.size = int(dictionary[self.KEY_SIZE]) if self.KEY_SIZE in dictionary.keys() else None
+        self.id = str(dictionary[self.KEY_ID]) if self.KEY_ID in dictionary.keys() else None
 
     def to_json_obj(self):
 

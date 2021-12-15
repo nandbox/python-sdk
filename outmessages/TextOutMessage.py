@@ -14,7 +14,7 @@ class TextOutMessage(OutMessage):
         self.method = "sendMessage"
 
     def to_json_obj(self):
-        _, obj = super(TextOutMessage, self).to_json_object()
+        _, obj = super(TextOutMessage, self).to_json_obj()
 
         if self.text is not None:
             obj[self.KEY_TEXT] = self.text

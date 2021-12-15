@@ -9,8 +9,8 @@ class WhiteListUser:
     tags = []
 
     def __init__(self, dictionary):
-        self.signup_user = str(dictionary[self.KEY_SIGNUP_USER])
-        self.tags = dictionary[self.KEY_TAGS]
+        self.signup_user = str(dictionary[self.KEY_SIGNUP_USER]) if self.KEY_SIGNUP_USER in dictionary.keys() else None
+        self.tags = dictionary[self.KEY_TAGS] if self.KEY_TAGS in dictionary.keys() else None
 
     def to_json_obj(self):
 

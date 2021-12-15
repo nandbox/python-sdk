@@ -35,19 +35,19 @@ class Button:
     nav_type = None
 
     def __init__(self, dictionary):
-        self.button_order = int(dictionary[self.KEY_BUTTON_ORDER])
-        self.button_span = int(dictionary[self.KEY_BUTTON_SPAN])
-        self.button_textcolor = str(dictionary[self.KEY_BUTTON_TEXT_COLOR])
-        self.button_bgcolor = str(dictionary[self.KEY_BUTTON_BG_COLOR])
-        self.button_callback = str(dictionary[self.KEY_BUTTON_CALLBACK])
-        self.button_label = str(dictionary[self.KEY_BUTTON_LABEL])
-        self.button_url = str(dictionary[self.KEY_BUTTON_URL])
-        self.button_query = str(dictionary[self.KEY_BUTTON_QUERY])
-        self.next_menu = str(dictionary[self.KEY_NEXT_MENU])
-        self.chat = str(dictionary[self.KEY_CHAT])
-        self.button_icon = str(dictionary[self.KEY_BUTTON_ICON])
-        self.button_icon_bgcolor = str(dictionary[self.KEY_BUTTON_ICON_BG_COLOR])
-        self.nav_type = str(dictionary[self.KEY_BUTTON_NAV_TYPE])
+        self.button_order = int(dictionary[self.KEY_BUTTON_ORDER]) if self.KEY_BUTTON_ORDER in dictionary.keys() else None
+        self.button_span = int(dictionary[self.KEY_BUTTON_SPAN]) if self.KEY_BUTTON_SPAN in dictionary.keys() else None
+        self.button_textcolor = str(dictionary[self.KEY_BUTTON_TEXT_COLOR]) if self.KEY_BUTTON_TEXT_COLOR in dictionary.keys() else None
+        self.button_bgcolor = str(dictionary[self.KEY_BUTTON_BG_COLOR]) if self.KEY_BUTTON_BG_COLOR in dictionary.keys() else None
+        self.button_callback = str(dictionary[self.KEY_BUTTON_CALLBACK]) if self.KEY_BUTTON_CALLBACK in dictionary.keys() else None
+        self.button_label = str(dictionary[self.KEY_BUTTON_LABEL]) if self.KEY_BUTTON_LABEL in dictionary.keys() else None
+        self.button_url = str(dictionary[self.KEY_BUTTON_URL]) if self.KEY_BUTTON_URL in dictionary.keys() else None
+        self.button_query = str(dictionary[self.KEY_BUTTON_QUERY]) if self.KEY_BUTTON_QUERY in dictionary.keys() else None
+        self.next_menu = str(dictionary[self.KEY_NEXT_MENU]) if self.KEY_NEXT_MENU in dictionary.keys() else None
+        self.chat = str(dictionary[self.KEY_CHAT]) if self.KEY_CHAT in dictionary.keys() else None
+        self.button_icon = str(dictionary[self.KEY_BUTTON_ICON]) if self.KEY_BUTTON_ICON in dictionary.keys() else None
+        self.button_icon_bgcolor = str(dictionary[self.KEY_BUTTON_ICON_BG_COLOR]) if self.KEY_BUTTON_ICON_BG_COLOR in dictionary.keys() else None
+        self.nav_type = str(dictionary[self.KEY_BUTTON_NAV_TYPE]) if self.KEY_BUTTON_NAV_TYPE in dictionary.keys() else None
 
     def to_json_obj(self):
 

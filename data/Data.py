@@ -9,8 +9,8 @@ class Data:
     example = None
 
     def __init__(self, dictionary):
-        self.pattern = str(dictionary[self.KEY_PATTERN])
-        self.example = str(dictionary[self.KEY_EXAMPLE])
+        self.pattern = str(dictionary[self.KEY_PATTERN]) if self.KEY_PATTERN in dictionary.keys() else None
+        self.example = str(dictionary[self.KEY_EXAMPLE]) if self.KEY_EXAMPLE in dictionary.keys() else None
 
     def to_json_obj(self):
 
