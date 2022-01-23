@@ -25,7 +25,8 @@ class Row:
                 self.buttons = []
 
                 for i in range(len(buttons_arr)):
-                    self.buttons.append(Button(buttons_arr[i]))
+                    _, btn_dict = Button(buttons_arr[i]).to_json_obj()
+                    self.buttons.append(btn_dict)
 
                 self.row_order = dictionary[self.__KEY_ROW_ORDER] if self.__KEY_ROW_ORDER in dictionary.keys() else None
 
@@ -34,11 +35,11 @@ class Row:
         dictionary = {}
 
         if self.row_order is not None:
-            dictionary[self.__KEY_ROW_ORDER] = self.__KEY_ROW_ORDER
+            dictionary[self.__KEY_ROW_ORDER] = self.row_order
         if self.buttons is not None:
             buttons_arr = []
             for i in range(len(self.buttons)):
-                buttons_arr.append(self.buttons[i].to_json_obj())
+                buttons_arr.append(self.buttons[i])
             dictionary[self.__KEY_BUTTONS] = buttons_arr
 
         return json.dumps(dictionary), dictionary

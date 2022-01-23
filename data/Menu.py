@@ -14,7 +14,8 @@ class Menu:
         rows_arr = dictionary[self.__KEY_ROWS]
         self.rows = []
         for i in range(len(rows_arr)):
-            self.rows.append(Row(rows_arr[i]))
+            _, row_dict = Row(rows_arr[i]).to_json_obj()
+            self.rows.append(row_dict)
         self.menu_ref = str(dictionary[self.__KEY_MENU_REF]) if self.__KEY_MENU_REF in dictionary.keys() else None
 
     def to_json_obj(self):
@@ -26,7 +27,7 @@ class Menu:
         if self.rows is not None:
             rows_arr = []
             for i in range(len(self.rows)):
-                rows_arr.append(self.rows[i].to_json_obj())
+                rows_arr.append(self.rows[i])
             dictionary[self.__KEY_ROWS] = rows_arr
 
         return json.dumps(dictionary), dictionary

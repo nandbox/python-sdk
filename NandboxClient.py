@@ -163,12 +163,12 @@ class NandboxClient:
 
         def on_close(self, close_status_code, close_msg):
             logging.info("INTERNAL: ONCLOSE")
-            logging.info("StatusCode = " + str(close_status_code))
-            logging.info("Reason : " + str(close_msg))
+            logging.info(f"StatusCode = {str(close_status_code)}")
+            logging.info(f"Reason : {str(close_msg)}")
 
             now = datetime.datetime.now()
             dt_string = now.strftime("%Y/%m/%d %H:%M:%S")
-            logging.info("Date = " + dt_string)
+            logging.info(f"Date = {dt_string}")
 
             NandboxClient.InternalWebSocket.authenticated = False
 
@@ -185,7 +185,7 @@ class NandboxClient:
                     logging.info("Please wait 10 seconds for Reconnecting ")
                     time.sleep(10)
                     NandboxClient.closingCounter = NandboxClient.closingCounter + 1
-                    logging.info("Connection Closing counter is  : " + str(NandboxClient.closingCounter))
+                    logging.info(f"Connection Closing counter is  : {str(NandboxClient.closingCounter)}")
                 except Exception as e:
                     logging.info(e)
                     NandboxClient.InternalWebSocket.PingThread.interrupted = True
@@ -226,7 +226,7 @@ class NandboxClient:
 
         @staticmethod
         def send(string):
-            print(CGREEN + util.Utils.format_date(datetime.datetime.now()) + " >>>>>>>>> Sent JSON : " + string + CEND)
+            print(f'{CGREEN} {util.Utils.format_date(datetime.datetime.now())} >>>>>>>>> Sent JSON : {string} {CEND}')
             NandboxClient.webSocketClient.send(data=string)
 
         def on_open(self, ws):
@@ -244,7 +244,7 @@ class NandboxClient:
                     now = datetime.datetime.now()
                     dt_string = now.strftime("%Y/%m/%d %H:%M:%S")
 
-                    logging.info(dt_string + ">>>>>> Sending Message :" + message)
+                    logging.info(f"{dt_string} >>>>>> Sending Message : {message}")
                     NandboxClient.InternalWebSocket.send(string=message)  # TODO convert to string?
 
                 @staticmethod
@@ -888,22 +888,21 @@ class NandboxClient:
 
             dictionary = json.loads(message)
 
-            logging.info(util.Utils.format_date(datetime.datetime.now()) + " <<<<<<<<< Update Obj : " + message)
-            print(CRED + util.Utils.format_date(datetime.datetime.now()) + " <<<<<<<<< Update Obj : " + message + CEND)
+            logging.info(f"{util.Utils.format_date(datetime.datetime.now())} <<<<<<<<< Update Obj : {message}")
+            print(f'{CRED} {util.Utils.format_date(datetime.datetime.now())} <<<<<<<<< Update Obj : {message} {CEND}')
 
             method = str(dictionary[NandboxClient.KEY_METHOD])
 
             if method is not None:
-                logging.info("method: " + method)
+                logging.info(f"method: {method}")
                 if method == "TOKEN_AUTH_OK":
                     print("Authenticated!")
                     logging.info("Authenticated!")
                     NandboxClient.BOT_ID = str(dictionary[NandboxClient.InternalWebSocket.KEY_ID])
-                    print("====> Your Bot Id is : " + NandboxClient.BOT_ID)
-                    print("====> Your Bot Name is : " + str(dictionary[NandboxClient.InternalWebSocket.KEY_NAME]))
-                    logging.info("====> Your Bot Id is : " + NandboxClient.BOT_ID)
-                    logging.info(
-                        "====> Your Bot Name is : " + str(dictionary[NandboxClient.InternalWebSocket.KEY_NAME]))
+                    print(f"====> Your Bot Id is : {NandboxClient.BOT_ID}")
+                    print(f"====> Your Bot Name is : {str(dictionary[NandboxClient.InternalWebSocket.KEY_NAME])}")
+                    logging.info(f"====> Your Bot Id is : {NandboxClient.BOT_ID}")
+                    logging.info(f"====> Your Bot Name is : {str(dictionary[NandboxClient.InternalWebSocket.KEY_NAME])}")
 
                     if NandboxClient.InternalWebSocket.pingThread is not None:
                         try:
@@ -993,10 +992,10 @@ class NandboxClient:
                     return
             else:
                 error = str(dictionary[NandboxClient.KEY_ERROR])
-                logging.error("Error : " + error)
+                logging.error(f"Error : {error}")
 
         def on_error(self, ws, error):
             logging.error("INTERNAL: ONERROR")
             print("INTERNAL: ONERROR")
-            logging.error("Error due to : " + str(error) + " On : " + util.Utils.format_date(datetime.datetime.now()))
-            print("Error due to : " + str(error) + " On : " + util.Utils.format_date(datetime.datetime.now()))
+            logging.error(f"Error due to : {str(error)} On : {util.Utils.format_date(datetime.datetime.now())}")
+            print(f"Error due to : {str(error)} On : {util.Utils.format_date(datetime.datetime.now())}")
