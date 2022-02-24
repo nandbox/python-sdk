@@ -1,18 +1,24 @@
 import json
+import os
 
 from NandboxClient import NandboxClient
 from data.Button import Button
 from data.Menu import Menu
 from data.Row import Row
 from nandbox import Nandbox
+from outmessages.PhotoOutMessage import PhotoOutMessage
 from outmessages.SetChatMenuOutMessage import SetChatMenuOutMessage
 from util import Utils
+from util import MediaTransfer
 
 CONFIG_FILE = "../config.json"
+
 
 f = open(CONFIG_FILE)
 config = json.load(f)
 f.close()
+
+TOKEN = config['Token']
 
 client = NandboxClient.get(config)
 
@@ -40,7 +46,7 @@ def create_button(label, callback, order, bg_color, txt_color, btn_query, next_m
 
 def handle_incoming_text_msg(incoming_msg):
     print(f"incoming_msg.status {str(incoming_msg.status)}")
-    print("incoming_msg.text : {str(incoming_msg.text)}")
+    print(f"incoming_msg.text : {str(incoming_msg.text)}")
 
     if "3m" == incoming_msg.text:
         chatId = incoming_msg.chat.id
@@ -74,6 +80,37 @@ def handle_incoming_text_msg(incoming_msg):
         outMessage.menus.append(menu_dict)
         msg, _ = outMessage.to_json_obj()
         napi.send(msg)
+
+
+def handle_incoming_photo_msg(incoming_msg):
+    print(f"================start of Photo Object ===================")
+    print(f"incoming_msg.photo.id: {str(incoming_msg.photo.id)}")
+    print(f"incoming_msg.photo.width: {str(incoming_msg.photo.width)}")
+    print(f"incoming_msg.photo.height: {str(incoming_msg.photo.height)}")
+    print(f"incoming_msg.photo.size: {str(incoming_msg.photo.size)}")
+    print(f"================start of Photo Thumbnail  Object ===================")
+
+    if incoming_msg.photo.thumbnail is not None:
+        pass
+    else:
+        print("================No Thumbnail Object in this Photo ===================")
+
+    napi.generate_permanent_url(incoming_msg.photo.id, "Any Reference")
+    print("Hello")
+    MediaTransfer.download_file(TOKEN, incoming_msg.photo.id, f"{os.curdir}/download", None, config['DownloadServer'])
+    print("Bello")
+    napi.send_text(incoming_msg.chat.id, f"Photo size is : {incoming_msg.photo.size} and photo width is : {incoming_msg.photo.width} and photo height is : {incoming_msg.photo.height} and caption is : {incoming_msg.caption} \n\n Wait please sending you a photo ....", Utils.get_unique_id())
+
+    uploaded_photo_id = MediaTransfer.upload_file(TOKEN, f"{os.curdir}/upload/welcome.jpg", config['UploadServer'])
+
+    if uploaded_photo_id is not None:
+        photo_msg = PhotoOutMessage()
+        photo_msg.chat_id = incoming_msg.chat.id
+        photo_msg.reference = Utils.get_unique_id()
+        photo_msg.photo = uploaded_photo_id
+        photo_msg.caption = "Photo from Bot"
+        photo_msg.echo = 1
+        napi.send(photo_msg)
 
 
 class nCallBack(nandbox.Callback):
@@ -111,7 +148,9 @@ class nCallBack(nandbox.Callback):
 
         if incoming_msg.is_text_msg():
             handle_incoming_text_msg(incoming_msg)
+        elif incoming_msg.is_photo_msg():
+            handle_incoming_photo_msg(incoming_msg)
 
 
 callBack = nCallBack()
-client.connect(config['Token'], callBack)
+client.connect(TOKEN, callBack)
