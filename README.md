@@ -83,12 +83,12 @@ callBack = CallBack()
 client.connect(config['Token'], callBack)
 ```
 
-____Have a look at the [test](./nandboxbots/test) folder, you might find useful examples.____
+____Have a look at the [test](https://github.com/nandbox/nandboxbotsapi-py/tree/main/nandboxbots/test) folder, you might find useful examples.____
 
 ## License 
 MIT License
 
-Copyright (c) 2019 nandbox
+Copyright (c) 2022 nandbox
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
