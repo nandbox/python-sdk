@@ -30,7 +30,7 @@ Add your token and the other data to  `config.json` file just like below :
 }
 ```
 
-**2.Implement your main.js file :** To do that please follow the next instructions:
+**2.Implement your main.py file :** To do that please follow the next instructions:
 1. Make sure `config.json` file is created.
 2. Implement the `CallBack.on_connect` function.
 3. Implement the rest of the functions as your application requires.
