@@ -32,7 +32,13 @@ def upload_file(token, media_file_full_path, upload_server_url):
 
     }
     uploadStartTime = datetime.datetime.now()
-    r = requests.put(url=f"{upload_server_url}{file_name}", allow_redirects=True, headers=headers, timeout=40000, data=open(media_file_full_path, 'rb'))
+    r = requests.put(url=f"{upload_server_url}{file_name}", allow_redirects=True, headers=headers, timeout=40000,
+                     data=open(media_file_full_path, 'rb'))
     uploadEndTime = datetime.datetime.now()
     print(f'Uploaded file {file_name} took around {(uploadEndTime - uploadStartTime) / 1000} seconds')
-    print(r)
+
+    file_id = r.json()["file"]
+    print(file_id)
+
+    return file_id
+
