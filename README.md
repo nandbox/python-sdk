@@ -10,7 +10,7 @@ You can easily build your bot by following the below steps:
 
 If you don't know how to get bot configuration data and token from nandbox 
 
-- Open your bot in nandbox app then open  top right menu and click to `Get token` .This process explained in this [video](https://www.youtube.com/watch?v=FXb6tjOuxSc&feature=youtu.be).
+- Open your bot in nandbox app then open the top right menu and click to `Get token` .This process explained in this [video](https://www.youtube.com/watch?v=FXb6tjOuxSc&feature=youtu.be).
 
 
 You will get data like this:
@@ -88,7 +88,7 @@ ____Have a look at the [test](https://github.com/nandbox/nandboxbotsapi-py/tree/
 ## License 
 MIT License
 
-Copyright (c) 2022 nandbox
+Copyright (c) 2023 nandbox
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

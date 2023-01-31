@@ -374,6 +374,7 @@ class nCallBack(nandbox.Callback):
     def on_connect(self, api):
         global napi
         napi = api
+        # napi.get_chat_member(chat_id=90089893511487086, user_id=90089893511487086)
         print("Connected")
 
     def on_close(self):
@@ -384,6 +385,8 @@ class nCallBack(nandbox.Callback):
 
     def on_receive(self, incoming_msg):
         chatId = incoming_msg.chat.id
+
+        napi.get_chat_member(chatId, incoming_msg.from_.id)
 
         if incoming_msg.reply_to_message_id is not None:
             if incoming_msg.is_text_msg():
