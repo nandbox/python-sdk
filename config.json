@@ -1,6 +1,10 @@
 {
-    "Token": "90091784125966321:0:2d2MTqXvfUQAQUrZ4aLsAlSTRFaFLx",
-    "URI": "wss://w1.nandbox.net:5020/nandbox/api/",
-    "DownloadServer": "https://w1.nandbox.net:5020/nandbox/download/",
-    "UploadServer": "https://w1.nandbox.net:5020/nandbox/upload/"
+    "Token": "90091788682644557:0:76Uijte8kBnl3KsuqesVUVDWJ9GUgc",
+    "URI": "wss://d1.nandbox.net:5020/nandbox/api/",
+    "DownloadServer": "https://d1.nandbox.net:5020/nandbox/download/",
+    "UploadServer": "https://d1.nandbox.net:5020/nandbox/upload/",
+    "MaxLogSize": "10kb",
+    "NumberOfLogFiles":"5",
+    "LogLevel": "Debug",
+    "LogPath": "./logsInfo"
 }
