@@ -1,0 +1,53 @@
+2023-04-29 21:14:58,641 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:14:58,641 ERROR  NandboxClient:1000 - Error due to :  On : 2023/04/29 21:14:58
+2023-04-29 21:14:58,641 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:14:58,641 ERROR  NandboxClient:1000 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2023/04/29 21:14:58
+2023-04-29 21:16:45,979 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:16:45,980 ERROR  NandboxClient:1000 - Error due to :  On : 2023/04/29 21:16:45
+2023-04-29 21:16:45,981 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:16:45,981 ERROR  NandboxClient:1000 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2023/04/29 21:16:45
+2023-04-29 21:19:56,318 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:19:56,319 ERROR  NandboxClient:1000 - Error due to :  On : 2023/04/29 21:19:56
+2023-04-29 21:19:56,319 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:19:56,319 ERROR  NandboxClient:1000 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2023/04/29 21:19:56
+2023-04-29 21:20:19,126 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:22:33,080 INFO  NandboxClient:232 - INTERNAL: ONCONNECT
+2023-04-29 21:22:33,144 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:33,145 INFO  NandboxClient:889 - 2023/04/29 21:22:33 >>>>>>>>> Update Obj : {"date":1682792553113,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"pylogprod","ID":"90092464106893570","localId":0}
+2023-04-29 21:22:33,145 INFO  NandboxClient:896 - method: TOKEN_AUTH_OK
+2023-04-29 21:22:33,145 INFO  NandboxClient:899 - Authenticated!
+2023-04-29 21:22:33,145 INFO  NandboxClient:903 - ====> Your Bot Id is : 90092464106893570
+2023-04-29 21:22:33,145 INFO  NandboxClient:904 - ====> Your Bot Name is : pylogprod
+2023-04-29 21:22:33,212 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:33,213 INFO  NandboxClient:889 - 2023/04/29 21:22:33 >>>>>>>>> Update Obj : {"method":"PONG"}
+2023-04-29 21:22:33,213 INFO  NandboxClient:896 - method: PONG
+2023-04-29 21:22:36,212 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:36,212 INFO  NandboxClient:889 - 2023/04/29 21:22:36 >>>>>>>>> Update Obj : {"method":"PONG"}
+2023-04-29 21:22:36,212 INFO  NandboxClient:896 - method: PONG
+2023-04-29 21:22:39,216 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:39,217 INFO  NandboxClient:889 - 2023/04/29 21:22:39 >>>>>>>>> Update Obj : {"method":"PONG"}
+2023-04-29 21:22:39,217 INFO  NandboxClient:896 - method: PONG
+2023-04-29 21:22:42,220 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:42,220 INFO  NandboxClient:889 - 2023/04/29 21:22:42 >>>>>>>>> Update Obj : {"method":"PONG"}
+2023-04-29 21:22:42,220 INFO  NandboxClient:896 - method: PONG
+2023-04-29 21:22:44,231 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:22:44,231 ERROR  NandboxClient:1000 - Error due to :  On : 2023/04/29 21:22:44
+2023-04-29 21:22:44,297 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:22:44,297 ERROR  NandboxClient:1000 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2023/04/29 21:22:44
+2023-04-29 21:22:51,715 INFO  NandboxClient:232 - INTERNAL: ONCONNECT
+2023-04-29 21:22:51,781 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:51,781 INFO  NandboxClient:889 - 2023/04/29 21:22:51 >>>>>>>>> Update Obj : {"date":1682792571750,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"pylogprod","ID":"90092464106893570","localId":0}
+2023-04-29 21:22:51,781 INFO  NandboxClient:896 - method: TOKEN_AUTH_OK
+2023-04-29 21:22:51,781 INFO  NandboxClient:899 - Authenticated!
+2023-04-29 21:22:51,782 INFO  NandboxClient:903 - ====> Your Bot Id is : 90092464106893570
+2023-04-29 21:22:51,782 INFO  NandboxClient:904 - ====> Your Bot Name is : pylogprod
+2023-04-29 21:22:51,851 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:51,852 INFO  NandboxClient:889 - 2023/04/29 21:22:51 >>>>>>>>> Update Obj : {"method":"PONG"}
+2023-04-29 21:22:51,852 INFO  NandboxClient:896 - method: PONG
+2023-04-29 21:22:54,849 INFO  NandboxClient:885 - INTERNAL: ONMESSAGE
+2023-04-29 21:22:54,850 INFO  NandboxClient:889 - 2023/04/29 21:22:54 >>>>>>>>> Update Obj : {"method":"PONG"}
+2023-04-29 21:22:54,850 INFO  NandboxClient:896 - method: PONG
+2023-04-29 21:22:55,296 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:22:55,296 ERROR  NandboxClient:1000 - Error due to :  On : 2023/04/29 21:22:55
+2023-04-29 21:22:55,363 ERROR  NandboxClient:998 - INTERNAL: ONERROR
+2023-04-29 21:22:55,363 ERROR  NandboxClient:1000 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2023/04/29 21:22:55

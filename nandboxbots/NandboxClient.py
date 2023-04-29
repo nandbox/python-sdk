@@ -72,11 +72,10 @@ class NandboxClient:
     config = None
     lock = Lock()
     log = Logger().xlog
+
     def __init__(self, config):
         self.config = config
         self._uri = self.config["URI"]
-
-
 
     @staticmethod
     def init(config):
@@ -110,7 +109,6 @@ class NandboxClient:
 
     def set_uri(self, uri):
         self._uri = uri
-
 
     class InternalWebSocket:
         NO_OF_RETRIES_IF_CONN_TO_SERVER_REFUSED = 20
@@ -186,7 +184,7 @@ class NandboxClient:
                     NandboxClient.closingCounter = NandboxClient.closingCounter + 1
                     NandboxClient.log.info(f"Connection Closing counter is  : {str(NandboxClient.closingCounter)}")
                 except Exception as e:
-                    NandboxClient.log.info(e)
+                    NandboxClient.log.error(e)
                     NandboxClient.InternalWebSocket.PingThread.interrupted = True
 
                 self.__stop_websocket_client()
@@ -195,7 +193,7 @@ class NandboxClient:
                     self.__reconnect_websocket_client()
 
                 except Exception as e:
-                    NandboxClient.log.info(e)
+                    NandboxClient.log.error(e)
                     NandboxClient.InternalWebSocket.PingThread.interrupted = True
 
         def __stop_websocket_client(self):
@@ -225,8 +223,8 @@ class NandboxClient:
 
         @staticmethod
         def send(string):
-            print(
-                f'{CGREEN} {Utils.format_date(datetime.datetime.now())} >>>>>>>>> Sent JSON : {string} {CEND}')
+            # print(
+            #     f'{CGREEN} {Utils.format_date(datetime.datetime.now())} >>>>>>>>> Sent JSON : {string} {CEND}')
             NandboxClient.webSocketClient.send(data=string)
 
         def on_open(self, ws):
@@ -888,9 +886,9 @@ class NandboxClient:
 
             dictionary = json.loads(message)
 
-            NandboxClient.log.info(f"{Utils.format_date(datetime.datetime.now())} <<<<<<<<< Update Obj : {message}")
-            print(
-                f'{CRED} {Utils.format_date(datetime.datetime.now())} <<<<<<<<< Update Obj : {message} {CEND}')
+            NandboxClient.log.info(f"{Utils.format_date(datetime.datetime.now())} >>>>>>>>> Update Obj : {message}")
+            # print(
+            #     f'{CRED} {Utils.format_date(datetime.datetime.now())} <<<<<<<<< Update Obj : {message} {CEND}')
 
             method = str(dictionary[NandboxClient.KEY_METHOD])
 
@@ -998,6 +996,6 @@ class NandboxClient:
 
         def on_error(self, ws, error):
             NandboxClient.log.error("INTERNAL: ONERROR")
-            print("INTERNAL: ONERROR")
-            NandboxClient.log.error(f"Error due to : {str(error)} On : {Utils.format_date(datetime.datetime.now())}")
-            print(f"Error due to : {str(error)} On : {Utils.format_date(datetime.datetime.now())}")
+            # print("INTERNAL: ONERROR")
+            NandboxClient.log.error(f"Error due to : {error} On : {Utils.format_date(datetime.datetime.now())}")
+            # print(f"Error due to : {str(error)} On : {Utils.format_date(datetime.datetime.now())}")
