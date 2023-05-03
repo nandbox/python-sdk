@@ -1,3 +1,8 @@
 .idea/
 /dist/
 /build/
+/nandboxbots/__pycache__
+/nandboxbots/data/__pycache__
+/nandboxbots/inmessages/__pycache__
+/nandboxbots/outmessages/__pycache__
+/nandboxbots/util/__pycache__

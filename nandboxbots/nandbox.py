@@ -66,6 +66,9 @@ class Nandbox:
         def on_schedule_message(self, incoming_schedule_msg):
             pass
 
+        def on_workflow_details(self, workflow_details):
+            pass
+
     class Api:
         def send(self, message):
             pass
@@ -77,39 +80,48 @@ class Nandbox:
                       disable_notification=None, chat_settings=None, bg_color=None, tab=None):
             pass
 
-        def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+        def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id=None, to_user_id=None,
+                       web_page_preview=None,
                        disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
-        def send_video(self, chat_id, video_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+        def send_video(self, chat_id, video_file_id, reference, reply_to_message_id=None, to_user_id=None,
+                       web_page_preview=None,
                        disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
-        def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
-                       disable_notification=None, caption=None, performer=None, title=None, chat_settings=None, tab=None):
+        def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id=None, to_user_id=None,
+                       web_page_preview=None,
+                       disable_notification=None, caption=None, performer=None, title=None, chat_settings=None,
+                       tab=None):
             pass
 
         def send_contact(self, chat_id, phone_number, name, reference, reply_to_message_id=None, to_user_id=None,
                          web_page_preview=None, disable_notification=None, chat_settings=None, tab=None):
             pass
 
-        def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+        def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id=None, to_user_id=None,
+                       web_page_preview=None,
                        disable_notification=None, caption=None, size=None, chat_settings=None, tab=None):
             pass
 
-        def send_document(self, chat_id, document_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+        def send_document(self, chat_id, document_file_id, reference, reply_to_message_id=None, to_user_id=None,
+                          web_page_preview=None,
                           disable_notification=None, caption=None, name=None, size=None, chat_settings=None, tab=None):
             pass
 
         def send_location(self, chat_id, latitude, longitude, reference, reply_to_message_id=None, to_user_id=None,
-                          web_page_preview=None, disable_notification=None, name=None, details=None, chat_settings=None, tab=None):
+                          web_page_preview=None, disable_notification=None, name=None, details=None, chat_settings=None,
+                          tab=None):
             pass
 
-        def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+        def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
+                     web_page_preview=None,
                      disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
-        def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
+        def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
+                           web_page_preview=None,
                            disable_notification=None, caption=None, chat_settings=None, tab=None):
             pass
 
@@ -192,4 +204,7 @@ class Nandbox:
             pass
 
         def delete_white_list_patterns(self, chat_id, pattern):
+            pass
+
+        def set_workflow(self, user_id, screen_id, app_id, workflow_cells, reference, disable_notification):
             pass

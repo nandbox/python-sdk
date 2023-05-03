@@ -18,6 +18,7 @@ from nandboxbots.inmessages.InlineSearch import InlineSearch
 from nandboxbots.inmessages.MessageAck import MessageAck
 from nandboxbots.inmessages.WhiteList import WhiteList
 from nandboxbots.inmessages.PermanentUrl import PermanentUrl
+from nandboxbots.inmessages.WorkflowDetails import WorkflowDetails
 from nandboxbots import nandbox
 from nandboxbots.outmessages.AddBlackListOutMessage import AddBlackListOutMessage
 from nandboxbots.outmessages.AddBlacklistPatternsOutMessage import AddBlacklistPatternsOutMessage
@@ -50,6 +51,7 @@ from nandboxbots.outmessages.UnbanChatMember import UnbanChatMember
 from nandboxbots.outmessages.UpdateOutMessage import UpdateOutMessage
 from nandboxbots.outmessages.VideoOutMessage import VideoOutMessage
 from nandboxbots.outmessages.VoiceOutMessage import VoiceOutMessage
+from nandboxbots.outmessages.SetWorkflowOutMessage import SetWorkflowOutMessage
 from nandboxbots.util import Utils
 
 CGREEN = '\033[92m'
@@ -881,6 +883,19 @@ class NandboxClient:
                     obj, _ = getWhiteListOutMessage.to_json_obj()
                     self.send(obj)
 
+                def set_workflow(self, user_id, screen_id, app_id, workflow_cells, reference, disable_notification):
+                    workflowMsg = SetWorkflowOutMessage()
+
+                    workflowMsg.userId = user_id
+                    workflowMsg.screenId = screen_id
+                    workflowMsg.appId = app_id
+                    workflowMsg.workflowCell = workflow_cells
+                    workflowMsg.reference = reference
+                    workflowMsg.disableNotification = disable_notification
+
+                    obj, _ = workflowMsg.to_json_obj()
+                    self.send(obj)
+
             NandboxClient.InternalWebSocket.api = nandboxAPI()
 
             NandboxClient.InternalWebSocket.send(json.dumps(auth_object))
@@ -990,6 +1005,10 @@ class NandboxClient:
                 elif method == "permanentUrl":
                     permanent_url = PermanentUrl(dictionary)
                     self.callback.permanent_url(permanent_url)
+                    return
+                elif method == "workflowDetails":
+                    workflow_details = WorkflowDetails(dictionary)
+                    self.callback.on_workflow_details(workflow_details)
                     return
                 else:
                     self.callback.on_receive_obj(dictionary)

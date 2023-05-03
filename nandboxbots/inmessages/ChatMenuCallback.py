@@ -15,6 +15,7 @@ class ChatMenuCallback:
     __KEY_CHAT = "chat"
     __KEY_FROM = "from"
     __KEY_MENU_REF = "menu_ref"
+    __KEY_APP_ID = "app_id"
 
     date = None
     next_menu = None
@@ -24,6 +25,7 @@ class ChatMenuCallback:
     chat = None
     from_ = None
     menu_ref = None
+    appId = None
 
     def __init__(self, dictionary):
         chat_menu_callback_dict = dictionary[self.__KEY_CHAT_MENU_CALL_BACK] if self.__KEY_CHAT_MENU_CALL_BACK in dictionary.keys() else {}
@@ -36,6 +38,7 @@ class ChatMenuCallback:
 
         self.method = str(chat_menu_callback_dict[self.__KEY_METHOD]) if self.__KEY_METHOD in chat_menu_callback_dict.keys() else None
         self.menu_ref = str(chat_menu_callback_dict[self.__KEY_MENU_REF]) if self.__KEY_MENU_REF in chat_menu_callback_dict.keys() else None
+        self.appId = str(chat_menu_callback_dict[self.__KEY_APP_ID]) if self.__KEY_APP_ID in chat_menu_callback_dict.keys() else None
         self.from_ = from_user
         self.button_query_result = btn_query_result
         self.button_callback = str(chat_menu_callback_dict[self.__KEY_BUTTON_CALLBACK]) if self.__KEY_BUTTON_CALLBACK in chat_menu_callback_dict.keys() else None
@@ -58,6 +61,8 @@ class ChatMenuCallback:
             dictionary[self.__KEY_METHOD] = self.method
         if self.menu_ref is not None:
             dictionary[self.__KEY_MENU_REF] = self.menu_ref
+        if self.appId is not None:
+            dictionary[self.__KEY_APP_ID] = self.appId
         if self.button_callback is not None:
             dictionary[self.__KEY_BUTTON_CALLBACK] = self.button_callback
         if self.button_query_result is not None:
