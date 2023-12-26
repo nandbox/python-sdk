@@ -15,6 +15,7 @@ class User:
     __KEY_PHOTO = "photo"
     __KEY_PROFILE = "profile"
     __KEY_SHORT_NAME = "short_name"
+    __KEY_LOGIN_ID = "login_id"
 
     id = None
     name = None
@@ -27,6 +28,7 @@ class User:
     profile = None
     photo = None
     short_name = None
+    loginId = None
 
     def __init__(self, dictionary):
         # print(str(dictionary))
@@ -39,10 +41,10 @@ class User:
         self.last_seen = str(dictionary[self.__KEY_LAST_SEEN]) if self.__KEY_LAST_SEEN in dictionary.keys() else None
         self.status = str(dictionary[self.__KEY_STATUS]) if self.__KEY_STATUS in dictionary.keys() else None
         self.profile = str(dictionary[self.__KEY_PROFILE]) if self.__KEY_PROFILE in dictionary.keys() else None
-
         self.photo = Photo(dictionary.get(self.__KEY_PHOTO, {}))
-
         self.short_name = str(dictionary[self.__KEY_SHORT_NAME]) if self.__KEY_SHORT_NAME in dictionary.keys() else None
+        self.loginId = int(dictionary[self.__KEY_LOGIN_ID]) if self.__KEY_LOGIN_ID in dictionary.keys() else None
+
 
     def to_json_obj(self):
         dictionary = {}
@@ -70,5 +72,7 @@ class User:
             dictionary[self.__KEY_PHOTO] = photo_dict
         if self.short_name is not None:
             dictionary[self.__KEY_SHORT_NAME] = self.short_name
+        if self.loginId is not None:
+            dictionary[self.__KEY_LOGIN_ID] = self.loginId
 
         return json.dumps(dictionary), dictionary

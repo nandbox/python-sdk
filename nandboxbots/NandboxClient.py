@@ -2,6 +2,11 @@ import datetime
 import json
 import time
 from threading import Thread, Lock
+
+from nandboxbots.outmessages.AddChatAdminMemberOutMessage import AddChatAdminMemberOutMessage
+from nandboxbots.outmessages.AddChatMemberOutMessage import AddChatMemberOutMessage
+from nandboxbots.outmessages.CreateChatOutMessage import CreateChatOutMessage
+from nandboxbots.outmessages.SetWorkflowActionOutMessage import SetWorkflowActionOutMessage
 from nandboxbots.util.Logger import Logger
 import websocket
 
@@ -122,6 +127,7 @@ class NandboxClient:
         KEY_CHAT = "chat"
         KEY_NAME = "name"
         KEY_ID = "ID"
+        KEY_REFERENCE = "reference"
 
         callback = None
         session = None
@@ -743,6 +749,24 @@ class NandboxClient:
                     obj, _ = addBlackListOutMessage.to_json_obj()
                     self.send(obj)
 
+                def add_chat_member(self, chat_id, user_id):
+                    addChatMemberOutMessage = AddChatMemberOutMessage()
+
+                    addChatMemberOutMessage.chat = chat_id
+                    addChatMemberOutMessage.userId = user_id
+
+                    obj, _ = addChatMemberOutMessage.to_json_obj()
+                    self.send(obj)
+
+                def add_chat_admin_member(self, chat_id, user_id):
+                    addChatAdminMemberOutMessage = AddChatAdminMemberOutMessage()
+
+                    addChatAdminMemberOutMessage.chatId = chat_id
+                    addChatAdminMemberOutMessage.userId = user_id
+
+                    obj, _ = addChatAdminMemberOutMessage.to_json_obj()
+                    self.send(obj)
+
                 def add_white_list(self, chat_id, white_list_users):
                     addWhitelistOutMessage = AddWhiteListOutMessage()
 
@@ -894,6 +918,29 @@ class NandboxClient:
                     obj, _ = workflowMsg.to_json_obj()
                     self.send(obj)
 
+                def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference):
+                    setWorkflowActionOutMessage = SetWorkflowActionOutMessage()
+
+                    setWorkflowActionOutMessage.userId = user_id
+                    setWorkflowActionOutMessage.vappId = vapp_id
+                    setWorkflowActionOutMessage.screenId = screen_id
+                    setWorkflowActionOutMessage.nextScreen = next_screen
+                    setWorkflowActionOutMessage.reference = reference
+
+                    obj, _ = setWorkflowActionOutMessage.to_json_obj()
+                    self.send(obj)
+
+                def create_chat(self, chat_type, title, is_public, reference):
+                    createChatOutMessage = CreateChatOutMessage()
+
+                    createChatOutMessage.type = chat_type
+                    createChatOutMessage.title = title
+                    createChatOutMessage.isPublic = is_public
+                    createChatOutMessage.reference = reference
+
+                    obj, _ = createChatOutMessage.to_json_obj()
+                    self.send(obj)
+
             NandboxClient.InternalWebSocket.api = nandboxAPI()
 
             NandboxClient.InternalWebSocket.send(json.dumps(auth_object))
@@ -964,6 +1011,10 @@ class NandboxClient:
                     chat_member = ChatMember(dictionary)
                     self.callback.on_chat_member(chat_member)
                     return
+                elif method == "createChatAck":
+                    chat = Chat(dictionary[NandboxClient.InternalWebSocket.KEY_CHAT])
+                    chat.reference = int (dictionary[NandboxClient.InternalWebSocket.KEY_REFERENCE])
+                    self.callback.on_create_chat(chat)
                 elif method == "myProfile":
                     user = User(dictionary[NandboxClient.InternalWebSocket.KEY_USER])
                     self.callback.on_my_profile(user)
@@ -1004,7 +1055,7 @@ class NandboxClient:
                     permanent_url = PermanentUrl(dictionary)
                     self.callback.permanent_url(permanent_url)
                     return
-                elif method == "workflowDetails":
+                elif method == "workflowCell":
                     workflow_details = WorkflowDetails(dictionary)
                     self.callback.on_workflow_details(workflow_details)
                     return

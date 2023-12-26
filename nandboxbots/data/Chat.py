@@ -17,6 +17,7 @@ class Chat:
     __KEY_MEMBER_COUNT = "member_count"
     __KEY_INVITE_LINK = "invite_link"
     __KEY_TAGS_DEFINITION = "tagsDefinition"
+    __KEY_REFERENCE = "reference"
 
     id = None
     title = None
@@ -31,6 +32,7 @@ class Chat:
     member_count = None
     invite_link = None
     tags_definition = None
+    reference = None
 
     def __init__(self, dictionary):
 
@@ -45,6 +47,7 @@ class Chat:
         self.category = str(dictionary[self.__KEY_CATEGORY]) if self.__KEY_CATEGORY in dictionary.keys() else None
         self.member_count = int(dictionary[self.__KEY_MEMBER_COUNT]) if self.__KEY_MEMBER_COUNT in dictionary.keys() else None
         self.invite_link = str(dictionary[self.__KEY_INVITE_LINK]) if self.__KEY_INVITE_LINK in dictionary.keys() else None
+        self.reference = int(dictionary[self.__KEY_REFERENCE]) if self.__KEY_REFERENCE in dictionary.keys() else None
 
         tags_arr_obj = dictionary.get(self.__KEY_TAGS_DEFINITION, None)
         if tags_arr_obj is not None:
@@ -80,5 +83,7 @@ class Chat:
             dictionary[self.__KEY_INVITE_LINK] = self.invite_link
         if self.photo is not None:
             dictionary[self.__KEY_PHOTO] = self.photo
+        if self.reference is not None:
+            dictionary[self.__KEY_REFERENCE]=self.reference
 
         return json.dumps(dictionary), dictionary

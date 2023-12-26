@@ -13,7 +13,7 @@ class ChatMember:
     __KEY_STATUS = "status"
     __KEY_TAGS = "tags"
     __KEY_ACCOUNT_TYPE = "account_type"
-    __KEY_MSISDN = "msisdn"
+    __KEY_LOGIN_ID = "login_id"
 
     user = None
     chat = None
@@ -22,7 +22,7 @@ class ChatMember:
     status = None
     tags = []
     account_type = None
-    msisdn = None
+    loginId = None
 
     def __init__(self, dictionary):
 
@@ -35,7 +35,7 @@ class ChatMember:
         self.status = str(chat_member_dict[self.__KEY_STATUS]) if self.__KEY_STATUS in chat_member_dict.keys() else None
         self.tags = chat_member_dict[self.__KEY_TAGS] if self.__KEY_TAGS in chat_member_dict.keys() else None
         self.account_type = chat_member_dict[self.__KEY_ACCOUNT_TYPE] if self.__KEY_ACCOUNT_TYPE in chat_member_dict.keys() else None
-        self.msisdn = chat_member_dict[self.__KEY_MSISDN] if self.__KEY_MSISDN in chat_member_dict.keys() else None
+        self.loginId = chat_member_dict[self.__KEY_LOGIN_ID] if self.__KEY_LOGIN_ID in chat_member_dict.keys() else None
 
     def to_json_obj(self):
 
@@ -57,7 +57,7 @@ class ChatMember:
             dictionary[self.__KEY_STATUS] = self.status
         if self.account_type is not None:
             dictionary[self.__KEY_ACCOUNT_TYPE] = self.account_type
-        if self.msisdn is not None:
-            dictionary[self.__KEY_MSISDN] = self.msisdn
+        if self.loginId is not None:
+            dictionary[self.__KEY_LOGIN_ID] = self.loginId
 
         return json.dumps(dictionary), dictionary

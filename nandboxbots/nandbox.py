@@ -69,6 +69,9 @@ class Nandbox:
         def on_workflow_details(self, workflow_details):
             pass
 
+        def on_create_chat(self, chat):
+            pass
+
     class Api:
         def send(self, message):
             pass
@@ -207,4 +210,16 @@ class Nandbox:
             pass
 
         def set_workflow(self, user_id, screen_id, app_id, workflow_cells, reference, disable_notification):
+            pass
+
+        def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference):
+            pass
+
+        def create_chat(self, chat_type, title, is_public, reference):
+            pass
+
+        def add_chat_member(self, chat_id, user_id):
+            pass
+
+        def add_chat_admin_member(self, chat_id, user_id):
             pass
