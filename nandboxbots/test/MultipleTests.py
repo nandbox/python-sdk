@@ -640,7 +640,8 @@ class nCallBack(nandbox.Callback):
 
                 else:
                     napi.send_text(chat_id=chatId, text=incomingText, reference=Utils.get_unique_id())
-
+            if incoming_msg.from_.id == TOKEN.split(":")[0]:
+                return
             elif incoming_msg.is_text_file_msg():
                 handle_incoming_text_file_msg(incoming_msg)
 
