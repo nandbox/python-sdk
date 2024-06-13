@@ -495,13 +495,13 @@ class nCallBack(nandbox.Callback):
                     napi.send_text(chat_id=chatId, text=text, reference=reference, tab=tabId)
                     return
 
-                elif incomingText == "getMyProfile":
+                elif incomingText == "getMyProfile".casefold():
                     napi.get_my_profiles()
 
-                elif incomingText == "getChat":
+                elif incomingText == "getChat".casefold():
                     napi.get_chat(chatId)
 
-                elif incomingText == "getUser":
+                elif incomingText == "getUser".casefold():
                     napi.get_user(incoming_msg.from_.id)
 
                 elif incomingText.casefold() == "1bc".casefold():

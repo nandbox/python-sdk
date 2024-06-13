@@ -157,7 +157,7 @@ class NandboxClient:
 
                     try:
                         time.sleep(
-                            3)  # this blocks the thread not the process: https://stackoverflow.com/questions/92928/time-sleep-sleeps-thread-or-process
+                            30)  # this blocks the thread not the process: https://stackoverflow.com/questions/92928/time-sleep-sleeps-thread-or-process
                     except():
                         self.interrupted = True
                         return
@@ -704,6 +704,7 @@ class NandboxClient:
                     getChatMemberOutMessage.chat_id = chat_id
                     getChatMemberOutMessage.user_id = user_id
 
+
                     obj, _ = getChatMemberOutMessage.to_json_obj()
                     self.send(obj)
 
@@ -1067,6 +1068,7 @@ class NandboxClient:
                 NandboxClient.log.error(f"Error : {error}")
 
         def on_error(self, ws, error):
+            print(ws,error)
             NandboxClient.log.error("INTERNAL: ONERROR")
             print("INTERNAL: ONERROR")
             NandboxClient.log.error(f"Error due to : {str(error)} On : {Utils.format_date(datetime.datetime.now())}")

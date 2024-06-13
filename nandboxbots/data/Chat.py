@@ -36,18 +36,18 @@ class Chat:
 
     def __init__(self, dictionary):
 
-        self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
+        self.id = int(dictionary[self.__KEY_ID]) if (self.__KEY_ID in dictionary.keys() and dictionary[self.__KEY_ID] is not None) else None
         self.title = str(dictionary[self.__KEY_TITLE]) if self.__KEY_TITLE in dictionary.keys() else None
         self.name = str(dictionary[self.__KEY_NAME]) if self.__KEY_NAME in dictionary.keys() else None
         self.type = str(dictionary[self.__KEY_TYPE]) if self.__KEY_TYPE in dictionary.keys() else None
         self.version = str(dictionary[self.__KEY_VERSION]) if self.__KEY_VERSION in dictionary.keys() else None
-        self.language_code = int(dictionary[self.__KEY_LANGUAGE_CODE]) if self.__KEY_LANGUAGE_CODE in dictionary.keys() else None
+        self.language_code = int(dictionary[self.__KEY_LANGUAGE_CODE]) if (self.__KEY_LANGUAGE_CODE in dictionary.keys() and dictionary[self.__KEY_LANGUAGE_CODE] is not None) else None
         self.regions = str(dictionary[self.__KEY_REGIONS]) if self.__KEY_REGIONS in dictionary.keys() else None
         self.description = str(dictionary[self.__KEY_DESCRIPTION]) if self.__KEY_DESCRIPTION in dictionary.keys() else None
         self.category = str(dictionary[self.__KEY_CATEGORY]) if self.__KEY_CATEGORY in dictionary.keys() else None
-        self.member_count = int(dictionary[self.__KEY_MEMBER_COUNT]) if self.__KEY_MEMBER_COUNT in dictionary.keys() else None
+        self.member_count = int(dictionary[self.__KEY_MEMBER_COUNT]) if (self.__KEY_MEMBER_COUNT in dictionary.keys() and dictionary[self.__KEY_MEMBER_COUNT] is not None) else None
         self.invite_link = str(dictionary[self.__KEY_INVITE_LINK]) if self.__KEY_INVITE_LINK in dictionary.keys() else None
-        self.reference = int(dictionary[self.__KEY_REFERENCE]) if self.__KEY_REFERENCE in dictionary.keys() else None
+        self.reference = int(dictionary[self.__KEY_REFERENCE]) if (self.__KEY_REFERENCE in dictionary.keys() and dictionary[self.__KEY_REFERENCE] is not None) else None
 
         tags_arr_obj = dictionary.get(self.__KEY_TAGS_DEFINITION, None)
         if tags_arr_obj is not None:

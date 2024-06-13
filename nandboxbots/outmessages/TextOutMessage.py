@@ -1,7 +1,8 @@
 import json
+import logging
+import traceback
 
 from nandboxbots.outmessages.OutMessage import OutMessage
-
 
 class TextOutMessage(OutMessage):
     __KEY_TEXT = "text"
@@ -22,3 +23,4 @@ class TextOutMessage(OutMessage):
             obj[self.__KEY_BG_COLOR] = self.bg_color
 
         return json.dumps(obj), obj
+
