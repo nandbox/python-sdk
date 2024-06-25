@@ -371,6 +371,9 @@ def handle_incoming_document_msg(incoming_msg):
 
 
 class nCallBack(nandbox.Callback):
+    def on_product_item(self,productItem):
+        print(productItem)
+
     def on_connect(self, api):
         global napi
         napi = api
@@ -463,6 +466,8 @@ class nCallBack(nandbox.Callback):
                     napi.send_text_with_background(chatId, "Hi from bot", "#EE82EE")
 
         else:
+            productId = "5121105821126175"
+            napi.get_product_item(productId)
             print(f"=========>> {incoming_msg.type} Message Received =========>>")
             print(f"incoming_msg.message_id : {str(incoming_msg.message_id)}")
             print(f"incoming_msg.date : {str(incoming_msg.date)}")

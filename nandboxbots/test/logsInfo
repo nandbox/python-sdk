@@ -1,0 +1,34 @@
+2024-06-25 14:39:16,130 INFO  NandboxClient:256 - 2024/06/25 14:39:16 >>>>>> Sending Message : {"method": "getProductItem", "id": 5121105821126175}
+2024-06-25 14:39:16,133 INFO  NandboxClient:256 - 2024/06/25 14:39:16 >>>>>> Sending Message : {"method": "sendMessage", "chat_id": 90089586341121118, "reference": 64320089312939340, "text": "Vvz"}
+2024-06-25 14:39:16,195 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
+2024-06-25 14:39:16,196 INFO  NandboxClient:961 - 2024/06/25 14:39:16 <<<<<<<<< Update Obj : {"error":199999}
+2024-06-25 14:39:16,196 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
+2024-06-25 14:39:16,197 ERROR  NandboxClient:1085 - Error due to : 'method' On : 2024/06/25 14:39:16
+2024-06-25 14:39:16,198 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
+2024-06-25 14:39:16,198 ERROR  NandboxClient:1085 - Error due to : EOF occurred in violation of protocol (_ssl.c:2406) On : 2024/06/25 14:39:16
+2024-06-25 14:39:16,198 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
+2024-06-25 14:39:16,199 ERROR  NandboxClient:1085 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 14:39:16
+2024-06-25 14:40:05,954 INFO  NandboxClient:243 - INTERNAL: ONCONNECT
+2024-06-25 14:40:06,018 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
+2024-06-25 14:40:06,019 INFO  NandboxClient:961 - 2024/06/25 14:40:06 <<<<<<<<< Update Obj : {"date":1719315607206,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"ddddd","ID":"90091785371560007","id":"90091785371560007","localId":32919731041239619,"email":null,"token":"90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9"}
+2024-06-25 14:40:06,019 INFO  NandboxClient:968 - method: TOKEN_AUTH_OK
+2024-06-25 14:40:06,020 INFO  NandboxClient:971 - Authenticated!
+2024-06-25 14:40:06,020 INFO  NandboxClient:975 - ====> Your Bot Id is : 90091785371560007
+2024-06-25 14:40:06,020 INFO  NandboxClient:976 - ====> Your Bot Name is : ddddd
+2024-06-25 14:40:06,086 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
+2024-06-25 14:40:06,087 INFO  NandboxClient:961 - 2024/06/25 14:40:06 <<<<<<<<< Update Obj : {"method":"PONG"}
+2024-06-25 14:40:06,087 INFO  NandboxClient:968 - method: PONG
+2024-06-25 14:40:08,319 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
+2024-06-25 14:40:08,320 INFO  NandboxClient:961 - 2024/06/25 14:40:08 <<<<<<<<< Update Obj : {"method":"message","message":{"date":1719315609507,"reference":1116,"chat":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"sent_to":{"id":"90091785371560007"},"message_id":"api1_gWR3a1mo126240","style":0,"from":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"text":"Mtrjti","type":"text"}}
+2024-06-25 14:40:08,320 INFO  NandboxClient:968 - method: message
+2024-06-25 14:40:08,320 INFO  NandboxClient:256 - 2024/06/25 14:40:08 >>>>>> Sending Message : {"method": "getChatMember", "chat_id": 90089586341121118, "user_id": "90089586341121118"}
+2024-06-25 14:40:08,321 INFO  NandboxClient:256 - 2024/06/25 14:40:08 >>>>>> Sending Message : {"method": "getProductItem", "id": "5121105821126175"}
+2024-06-25 14:40:08,321 INFO  NandboxClient:256 - 2024/06/25 14:40:08 >>>>>> Sending Message : {"method": "sendMessage", "chat_id": 90089586341121118, "reference": 4661083996169025, "text": "Mtrjti"}
+2024-06-25 14:40:08,385 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
+2024-06-25 14:40:08,385 INFO  NandboxClient:961 - 2024/06/25 14:40:08 <<<<<<<<< Update Obj : {"error":199999}
+2024-06-25 14:40:08,385 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
+2024-06-25 14:40:08,386 ERROR  NandboxClient:1085 - Error due to : 'method' On : 2024/06/25 14:40:08
+2024-06-25 14:40:08,386 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
+2024-06-25 14:40:08,387 ERROR  NandboxClient:1085 - Error due to : EOF occurred in violation of protocol (_ssl.c:2406) On : 2024/06/25 14:40:08
+2024-06-25 14:40:08,387 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
+2024-06-25 14:40:08,387 ERROR  NandboxClient:1085 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 14:40:08

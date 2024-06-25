@@ -3,9 +3,11 @@ import json
 import time
 from threading import Thread, Lock
 
+from nandboxbots.data.ProductItem import ProductItem
 from nandboxbots.outmessages.AddChatAdminMemberOutMessage import AddChatAdminMemberOutMessage
 from nandboxbots.outmessages.AddChatMemberOutMessage import AddChatMemberOutMessage
 from nandboxbots.outmessages.CreateChatOutMessage import CreateChatOutMessage
+from nandboxbots.outmessages.GetProductItem import GetProductItemOutMessage
 from nandboxbots.outmessages.SetWorkflowActionOutMessage import SetWorkflowActionOutMessage
 from nandboxbots.util.Logger import Logger
 import websocket
@@ -79,11 +81,10 @@ class NandboxClient:
     config = None
     lock = Lock()
     log = Logger().xlog
+
     def __init__(self, config):
         self.config = config
         self._uri = self.config["URI"]
-
-
 
     @staticmethod
     def init(config):
@@ -118,7 +119,6 @@ class NandboxClient:
     def set_uri(self, uri):
         self._uri = uri
 
-
     class InternalWebSocket:
         NO_OF_RETRIES_IF_CONN_TO_SERVER_REFUSED = 20
         NO_OF_RETRIES_IF_CONN_TIMEDOUT = 10
@@ -147,6 +147,7 @@ class NandboxClient:
                         obj = {
                             NandboxClient.KEY_METHOD: "PING"
                         }
+
 
                         NandboxClient.InternalWebSocket.send(json.dumps(obj))
                     except():
@@ -686,6 +687,13 @@ class NandboxClient:
                     obj, _ = updateMessage.to_json_obj()
                     self.send(obj)
 
+                def get_product_item(self, productId):
+                    getProductItem = GetProductItemOutMessage()
+                    getProductItem.id = productId
+                    obj,_ = getProductItem.to_json_obj()
+                    print(obj)
+                    self.send(obj)
+
                 def update_text_msg(self, message_id, text, to_user_id, tab):
                     self.update_message(message_id=message_id, text=text, to_user_id=to_user_id, tab=tab)
 
@@ -703,7 +711,6 @@ class NandboxClient:
 
                     getChatMemberOutMessage.chat_id = chat_id
                     getChatMemberOutMessage.user_id = user_id
-
 
                     obj, _ = getChatMemberOutMessage.to_json_obj()
                     self.send(obj)
@@ -1000,6 +1007,10 @@ class NandboxClient:
                     inline_search = InlineSearch(dictionary)
                     self.callback.on_inline_search(inline_search)
                     return
+                elif method == "getProductItemResponse":
+                    productItem = ProductItem(dictionary)
+                    self.callback.on_product_item(productItem)
+                    return
                 elif method == "messageAck":
                     msg_ack = MessageAck(dictionary)
                     self.callback.on_message_ack_callback(msg_ack)
@@ -1014,7 +1025,7 @@ class NandboxClient:
                     return
                 elif method == "createChatAck":
                     chat = Chat(dictionary[NandboxClient.InternalWebSocket.KEY_CHAT])
-                    chat.reference = int (dictionary[NandboxClient.InternalWebSocket.KEY_REFERENCE])
+                    chat.reference = int(dictionary[NandboxClient.InternalWebSocket.KEY_REFERENCE])
                     self.callback.on_create_chat(chat)
                 elif method == "myProfile":
                     user = User(dictionary[NandboxClient.InternalWebSocket.KEY_USER])
@@ -1068,7 +1079,7 @@ class NandboxClient:
                 NandboxClient.log.error(f"Error : {error}")
 
         def on_error(self, ws, error):
-            print(ws,error)
+            print(ws, error)
             NandboxClient.log.error("INTERNAL: ONERROR")
             print("INTERNAL: ONERROR")
             NandboxClient.log.error(f"Error due to : {str(error)} On : {Utils.format_date(datetime.datetime.now())}")

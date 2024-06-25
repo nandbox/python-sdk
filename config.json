@@ -2,8 +2,8 @@
     "MaxLogSize": "10kb",
     "NumberOfLogFiles":"5",
     "LogLevel": "Debug",
-    "LogPath": "./logsInfo"
-    "Token": "90091783834098773:0:o8P0KrCJWttBRHsOBTMiNTZQ184Z2l",
+    "LogPath": "./logsInfo",
+    "Token": "90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9",
     "URI": "wss://d1.nandbox.net:5020/nandbox/api/",
     "DownloadServer": "https://d1.nandbox.net:5020/nandbox/download/",
     "UploadServer": "https://d1.nandbox.net:5020/nandbox/upload/"
