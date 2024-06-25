@@ -72,9 +72,13 @@ class Nandbox:
 
         def on_create_chat(self, chat):
             pass
+        def on_collection_product(self,collectionProduct):
+            pass
 
     class Api:
         def send(self, message):
+            pass
+        def get_colelction_product(self,collectionId):
             pass
         def get_product_item(self, productId):
             pass

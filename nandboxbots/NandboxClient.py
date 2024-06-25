@@ -3,10 +3,12 @@ import json
 import time
 from threading import Thread, Lock
 
+from nandboxbots.data.CollectionProduct import CollectionProduct
 from nandboxbots.data.ProductItem import ProductItem
 from nandboxbots.outmessages.AddChatAdminMemberOutMessage import AddChatAdminMemberOutMessage
 from nandboxbots.outmessages.AddChatMemberOutMessage import AddChatMemberOutMessage
 from nandboxbots.outmessages.CreateChatOutMessage import CreateChatOutMessage
+from nandboxbots.outmessages.GetCollectionProductOutMessage import GetCollectionProductOutMessage
 from nandboxbots.outmessages.GetProductItem import GetProductItemOutMessage
 from nandboxbots.outmessages.SetWorkflowActionOutMessage import SetWorkflowActionOutMessage
 from nandboxbots.util.Logger import Logger
@@ -881,7 +883,11 @@ class NandboxClient:
 
                     obj, _ = setChatOutMessage.to_json_obj()
                     self.send(obj)
-
+                def get_colelction_product(self,collectionId):
+                    getColelctionProduct = GetCollectionProductOutMessage()
+                    getColelctionProduct.id = collectionId
+                    obj,_ = getColelctionProduct.to_json_obj()
+                    self.send(obj)
                 def get_my_profiles(self):
                     getMyProfiles = GetMyProfiles()
 
@@ -990,6 +996,10 @@ class NandboxClient:
                 elif method == "message":
                     incoming_message = IncomingMessage(dictionary)
                     self.callback.on_receive(incoming_message)
+                    return
+                elif method == "getCollectionProductResponse":
+                    collection_product = CollectionProduct(dictionary)
+                    self.callback.on_collection_product(collection_product)
                     return
                 elif method == "scheduledMessage":
                     incoming_schedule_message = IncomingMessage(dictionary)

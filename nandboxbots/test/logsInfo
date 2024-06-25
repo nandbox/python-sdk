@@ -32,3 +32,47 @@
 2024-06-25 14:40:08,387 ERROR  NandboxClient:1085 - Error due to : EOF occurred in violation of protocol (_ssl.c:2406) On : 2024/06/25 14:40:08
 2024-06-25 14:40:08,387 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
 2024-06-25 14:40:08,387 ERROR  NandboxClient:1085 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 14:40:08
+2024-06-25 17:12:10,376 INFO  NandboxClient:245 - INTERNAL: ONCONNECT
+2024-06-25 17:12:10,455 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
+2024-06-25 17:12:10,455 INFO  NandboxClient:967 - 2024/06/25 17:12:10 <<<<<<<<< Update Obj : {"date":1719324731702,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"ddddd","ID":"90091785371560007","id":"90091785371560007","localId":48913256797508938,"email":null,"token":"90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9"}
+2024-06-25 17:12:10,456 INFO  NandboxClient:974 - method: TOKEN_AUTH_OK
+2024-06-25 17:12:10,456 INFO  NandboxClient:977 - Authenticated!
+2024-06-25 17:12:10,457 INFO  NandboxClient:981 - ====> Your Bot Id is : 90091785371560007
+2024-06-25 17:12:10,457 INFO  NandboxClient:982 - ====> Your Bot Name is : ddddd
+2024-06-25 17:12:10,529 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
+2024-06-25 17:12:10,530 INFO  NandboxClient:967 - 2024/06/25 17:12:10 <<<<<<<<< Update Obj : {"method":"PONG"}
+2024-06-25 17:12:10,530 INFO  NandboxClient:974 - method: PONG
+2024-06-25 17:12:35,640 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
+2024-06-25 17:12:35,640 INFO  NandboxClient:967 - 2024/06/25 17:12:35 <<<<<<<<< Update Obj : {"method":"message","message":{"date":1719324756886,"reference":1118,"chat":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"sent_to":{"id":"90091785371560007"},"message_id":"api1_27R57HgZ126244","style":0,"from":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"text":"Bsbs","type":"text"}}
+2024-06-25 17:12:35,641 INFO  NandboxClient:974 - method: message
+2024-06-25 17:12:35,641 INFO  NandboxClient:258 - 2024/06/25 17:12:35 >>>>>> Sending Message : {"method": "getChatMember", "chat_id": 90089586341121118, "user_id": "90089586341121118"}
+2024-06-25 17:12:35,644 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
+2024-06-25 17:12:35,645 ERROR  NandboxClient:1095 - Error due to : 'tuple' object does not support item assignment On : 2024/06/25 17:12:35
+2024-06-25 17:12:59,687 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
+2024-06-25 17:12:59,687 ERROR  NandboxClient:1095 - Error due to : Connection to remote host was lost. On : 2024/06/25 17:12:59
+2024-06-25 17:12:59,688 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
+2024-06-25 17:12:59,688 ERROR  NandboxClient:1095 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 17:12:59
+2024-06-25 17:15:33,869 INFO  NandboxClient:245 - INTERNAL: ONCONNECT
+2024-06-25 17:15:33,936 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
+2024-06-25 17:15:33,937 INFO  NandboxClient:967 - 2024/06/25 17:15:33 <<<<<<<<< Update Obj : {"date":1719324935186,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"ddddd","ID":"90091785371560007","id":"90091785371560007","localId":48913256797508938,"email":null,"token":"90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9"}
+2024-06-25 17:15:33,937 INFO  NandboxClient:974 - method: TOKEN_AUTH_OK
+2024-06-25 17:15:33,938 INFO  NandboxClient:977 - Authenticated!
+2024-06-25 17:15:33,938 INFO  NandboxClient:981 - ====> Your Bot Id is : 90091785371560007
+2024-06-25 17:15:33,938 INFO  NandboxClient:982 - ====> Your Bot Name is : ddddd
+2024-06-25 17:15:34,064 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
+2024-06-25 17:15:34,065 INFO  NandboxClient:967 - 2024/06/25 17:15:34 <<<<<<<<< Update Obj : {"method":"PONG"}
+2024-06-25 17:15:34,065 INFO  NandboxClient:974 - method: PONG
+2024-06-25 17:15:37,428 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
+2024-06-25 17:15:37,428 INFO  NandboxClient:967 - 2024/06/25 17:15:37 <<<<<<<<< Update Obj : {"method":"message","message":{"date":1719324938677,"reference":1120,"chat":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"sent_to":{"id":"90091785371560007"},"message_id":"api1_uX1JaypK126248","style":0,"from":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"text":"Vdbd","type":"text"}}
+2024-06-25 17:15:37,428 INFO  NandboxClient:974 - method: message
+2024-06-25 17:15:37,429 INFO  NandboxClient:258 - 2024/06/25 17:15:37 >>>>>> Sending Message : {"method": "getChatMember", "chat_id": 90089586341121118, "user_id": "90089586341121118"}
+2024-06-25 17:15:37,429 INFO  NandboxClient:258 - 2024/06/25 17:15:37 >>>>>> Sending Message : {"method": "getCollectionProduct", "id": "5121207326126172"}
+2024-06-25 17:15:37,430 INFO  NandboxClient:258 - 2024/06/25 17:15:37 >>>>>> Sending Message : {"method": "sendMessage", "chat_id": 90089586341121118, "reference": 67056310563525704, "text": "Vdbd"}
+2024-06-25 17:15:37,493 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
+2024-06-25 17:15:37,494 INFO  NandboxClient:967 - 2024/06/25 17:15:37 <<<<<<<<< Update Obj : {"error":199999}
+2024-06-25 17:15:37,495 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
+2024-06-25 17:15:37,495 ERROR  NandboxClient:1095 - Error due to : 'method' On : 2024/06/25 17:15:37
+2024-06-25 17:15:37,495 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
+2024-06-25 17:15:37,496 ERROR  NandboxClient:1095 - Error due to : EOF occurred in violation of protocol (_ssl.c:2406) On : 2024/06/25 17:15:37
+2024-06-25 17:15:37,496 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
+2024-06-25 17:15:37,496 ERROR  NandboxClient:1095 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 17:15:37
