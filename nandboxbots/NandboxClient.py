@@ -130,6 +130,7 @@ class NandboxClient:
         KEY_NAME = "name"
         KEY_ID = "ID"
         KEY_REFERENCE = "reference"
+        KEY_DATA = "data"
 
         callback = None
         session = None
@@ -1018,7 +1019,7 @@ class NandboxClient:
                     self.callback.on_inline_search(inline_search)
                     return
                 elif method == "getProductItemResponse":
-                    productItem = ProductItem(dictionary)
+                    productItem = ProductItem(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
                     self.callback.on_product_item(productItem)
                     return
                 elif method == "messageAck":
