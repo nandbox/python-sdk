@@ -3,7 +3,7 @@
     "NumberOfLogFiles":"5",
     "LogLevel": "Debug",
     "LogPath": "./logsInfo",
-    "Token": "90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9",
+    "Token": "90091783776537554:90090684291377082:NiaGViIdXHfRVZBAHViUfmUqt4fo6Q",
     "URI": "wss://d1.nandbox.net:5020/nandbox/api/",
     "DownloadServer": "https://d1.nandbox.net:5020/nandbox/download/",
     "UploadServer": "https://d1.nandbox.net:5020/nandbox/upload/"

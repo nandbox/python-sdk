@@ -1,78 +1,12 @@
-2024-06-25 14:39:16,130 INFO  NandboxClient:256 - 2024/06/25 14:39:16 >>>>>> Sending Message : {"method": "getProductItem", "id": 5121105821126175}
-2024-06-25 14:39:16,133 INFO  NandboxClient:256 - 2024/06/25 14:39:16 >>>>>> Sending Message : {"method": "sendMessage", "chat_id": 90089586341121118, "reference": 64320089312939340, "text": "Vvz"}
-2024-06-25 14:39:16,195 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
-2024-06-25 14:39:16,196 INFO  NandboxClient:961 - 2024/06/25 14:39:16 <<<<<<<<< Update Obj : {"error":199999}
-2024-06-25 14:39:16,196 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
-2024-06-25 14:39:16,197 ERROR  NandboxClient:1085 - Error due to : 'method' On : 2024/06/25 14:39:16
-2024-06-25 14:39:16,198 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
-2024-06-25 14:39:16,198 ERROR  NandboxClient:1085 - Error due to : EOF occurred in violation of protocol (_ssl.c:2406) On : 2024/06/25 14:39:16
-2024-06-25 14:39:16,198 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
-2024-06-25 14:39:16,199 ERROR  NandboxClient:1085 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 14:39:16
-2024-06-25 14:40:05,954 INFO  NandboxClient:243 - INTERNAL: ONCONNECT
-2024-06-25 14:40:06,018 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
-2024-06-25 14:40:06,019 INFO  NandboxClient:961 - 2024/06/25 14:40:06 <<<<<<<<< Update Obj : {"date":1719315607206,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"ddddd","ID":"90091785371560007","id":"90091785371560007","localId":32919731041239619,"email":null,"token":"90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9"}
-2024-06-25 14:40:06,019 INFO  NandboxClient:968 - method: TOKEN_AUTH_OK
-2024-06-25 14:40:06,020 INFO  NandboxClient:971 - Authenticated!
-2024-06-25 14:40:06,020 INFO  NandboxClient:975 - ====> Your Bot Id is : 90091785371560007
-2024-06-25 14:40:06,020 INFO  NandboxClient:976 - ====> Your Bot Name is : ddddd
-2024-06-25 14:40:06,086 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
-2024-06-25 14:40:06,087 INFO  NandboxClient:961 - 2024/06/25 14:40:06 <<<<<<<<< Update Obj : {"method":"PONG"}
-2024-06-25 14:40:06,087 INFO  NandboxClient:968 - method: PONG
-2024-06-25 14:40:08,319 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
-2024-06-25 14:40:08,320 INFO  NandboxClient:961 - 2024/06/25 14:40:08 <<<<<<<<< Update Obj : {"method":"message","message":{"date":1719315609507,"reference":1116,"chat":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"sent_to":{"id":"90091785371560007"},"message_id":"api1_gWR3a1mo126240","style":0,"from":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"text":"Mtrjti","type":"text"}}
-2024-06-25 14:40:08,320 INFO  NandboxClient:968 - method: message
-2024-06-25 14:40:08,320 INFO  NandboxClient:256 - 2024/06/25 14:40:08 >>>>>> Sending Message : {"method": "getChatMember", "chat_id": 90089586341121118, "user_id": "90089586341121118"}
-2024-06-25 14:40:08,321 INFO  NandboxClient:256 - 2024/06/25 14:40:08 >>>>>> Sending Message : {"method": "getProductItem", "id": "5121105821126175"}
-2024-06-25 14:40:08,321 INFO  NandboxClient:256 - 2024/06/25 14:40:08 >>>>>> Sending Message : {"method": "sendMessage", "chat_id": 90089586341121118, "reference": 4661083996169025, "text": "Mtrjti"}
-2024-06-25 14:40:08,385 INFO  NandboxClient:957 - INTERNAL: ONMESSAGE
-2024-06-25 14:40:08,385 INFO  NandboxClient:961 - 2024/06/25 14:40:08 <<<<<<<<< Update Obj : {"error":199999}
-2024-06-25 14:40:08,385 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
-2024-06-25 14:40:08,386 ERROR  NandboxClient:1085 - Error due to : 'method' On : 2024/06/25 14:40:08
-2024-06-25 14:40:08,386 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
-2024-06-25 14:40:08,387 ERROR  NandboxClient:1085 - Error due to : EOF occurred in violation of protocol (_ssl.c:2406) On : 2024/06/25 14:40:08
-2024-06-25 14:40:08,387 ERROR  NandboxClient:1083 - INTERNAL: ONERROR
-2024-06-25 14:40:08,387 ERROR  NandboxClient:1085 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 14:40:08
-2024-06-25 17:12:10,376 INFO  NandboxClient:245 - INTERNAL: ONCONNECT
-2024-06-25 17:12:10,455 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
-2024-06-25 17:12:10,455 INFO  NandboxClient:967 - 2024/06/25 17:12:10 <<<<<<<<< Update Obj : {"date":1719324731702,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"ddddd","ID":"90091785371560007","id":"90091785371560007","localId":48913256797508938,"email":null,"token":"90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9"}
-2024-06-25 17:12:10,456 INFO  NandboxClient:974 - method: TOKEN_AUTH_OK
-2024-06-25 17:12:10,456 INFO  NandboxClient:977 - Authenticated!
-2024-06-25 17:12:10,457 INFO  NandboxClient:981 - ====> Your Bot Id is : 90091785371560007
-2024-06-25 17:12:10,457 INFO  NandboxClient:982 - ====> Your Bot Name is : ddddd
-2024-06-25 17:12:10,529 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
-2024-06-25 17:12:10,530 INFO  NandboxClient:967 - 2024/06/25 17:12:10 <<<<<<<<< Update Obj : {"method":"PONG"}
-2024-06-25 17:12:10,530 INFO  NandboxClient:974 - method: PONG
-2024-06-25 17:12:35,640 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
-2024-06-25 17:12:35,640 INFO  NandboxClient:967 - 2024/06/25 17:12:35 <<<<<<<<< Update Obj : {"method":"message","message":{"date":1719324756886,"reference":1118,"chat":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"sent_to":{"id":"90091785371560007"},"message_id":"api1_27R57HgZ126244","style":0,"from":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"text":"Bsbs","type":"text"}}
-2024-06-25 17:12:35,641 INFO  NandboxClient:974 - method: message
-2024-06-25 17:12:35,641 INFO  NandboxClient:258 - 2024/06/25 17:12:35 >>>>>> Sending Message : {"method": "getChatMember", "chat_id": 90089586341121118, "user_id": "90089586341121118"}
-2024-06-25 17:12:35,644 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
-2024-06-25 17:12:35,645 ERROR  NandboxClient:1095 - Error due to : 'tuple' object does not support item assignment On : 2024/06/25 17:12:35
-2024-06-25 17:12:59,687 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
-2024-06-25 17:12:59,687 ERROR  NandboxClient:1095 - Error due to : Connection to remote host was lost. On : 2024/06/25 17:12:59
-2024-06-25 17:12:59,688 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
-2024-06-25 17:12:59,688 ERROR  NandboxClient:1095 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 17:12:59
-2024-06-25 17:15:33,869 INFO  NandboxClient:245 - INTERNAL: ONCONNECT
-2024-06-25 17:15:33,936 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
-2024-06-25 17:15:33,937 INFO  NandboxClient:967 - 2024/06/25 17:15:33 <<<<<<<<< Update Obj : {"date":1719324935186,"is_nandbox":1,"method":"TOKEN_AUTH_OK","name":"ddddd","ID":"90091785371560007","id":"90091785371560007","localId":48913256797508938,"email":null,"token":"90091785371560007:0:jHNdTUtysSickXth5IjsBASAJaTlZ9"}
-2024-06-25 17:15:33,937 INFO  NandboxClient:974 - method: TOKEN_AUTH_OK
-2024-06-25 17:15:33,938 INFO  NandboxClient:977 - Authenticated!
-2024-06-25 17:15:33,938 INFO  NandboxClient:981 - ====> Your Bot Id is : 90091785371560007
-2024-06-25 17:15:33,938 INFO  NandboxClient:982 - ====> Your Bot Name is : ddddd
-2024-06-25 17:15:34,064 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
-2024-06-25 17:15:34,065 INFO  NandboxClient:967 - 2024/06/25 17:15:34 <<<<<<<<< Update Obj : {"method":"PONG"}
-2024-06-25 17:15:34,065 INFO  NandboxClient:974 - method: PONG
-2024-06-25 17:15:37,428 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
-2024-06-25 17:15:37,428 INFO  NandboxClient:967 - 2024/06/25 17:15:37 <<<<<<<<< Update Obj : {"method":"message","message":{"date":1719324938677,"reference":1120,"chat":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"sent_to":{"id":"90091785371560007"},"message_id":"api1_uX1JaypK126248","style":0,"from":{"name":"mahmoud","id":"90089586341121118","terminal":"Mobile","type":"Contact","version":"('0n1a','1lVh','2KX8','3Qwf')"},"text":"Vdbd","type":"text"}}
-2024-06-25 17:15:37,428 INFO  NandboxClient:974 - method: message
-2024-06-25 17:15:37,429 INFO  NandboxClient:258 - 2024/06/25 17:15:37 >>>>>> Sending Message : {"method": "getChatMember", "chat_id": 90089586341121118, "user_id": "90089586341121118"}
-2024-06-25 17:15:37,429 INFO  NandboxClient:258 - 2024/06/25 17:15:37 >>>>>> Sending Message : {"method": "getCollectionProduct", "id": "5121207326126172"}
-2024-06-25 17:15:37,430 INFO  NandboxClient:258 - 2024/06/25 17:15:37 >>>>>> Sending Message : {"method": "sendMessage", "chat_id": 90089586341121118, "reference": 67056310563525704, "text": "Vdbd"}
-2024-06-25 17:15:37,493 INFO  NandboxClient:963 - INTERNAL: ONMESSAGE
-2024-06-25 17:15:37,494 INFO  NandboxClient:967 - 2024/06/25 17:15:37 <<<<<<<<< Update Obj : {"error":199999}
-2024-06-25 17:15:37,495 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
-2024-06-25 17:15:37,495 ERROR  NandboxClient:1095 - Error due to : 'method' On : 2024/06/25 17:15:37
-2024-06-25 17:15:37,495 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
-2024-06-25 17:15:37,496 ERROR  NandboxClient:1095 - Error due to : EOF occurred in violation of protocol (_ssl.c:2406) On : 2024/06/25 17:15:37
-2024-06-25 17:15:37,496 ERROR  NandboxClient:1093 - INTERNAL: ONERROR
-2024-06-25 17:15:37,496 ERROR  NandboxClient:1095 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/06/25 17:15:37
+2024-08-01 12:11:09,340 INFO  NandboxClient:983 - 2024/08/01 12:11:09 <<<<<<<<< Update Obj : {"ref":null,"data":{"addons":null,"description":null,"type":"0","p_code":5121,"price":1000.0,"vendor":"0","variant":null,"id":5121406605126307,"attribute":{"cost":99,"quantity":true,"hasSkuOrBarcode":0,"tax":0,"message":"messi","barcode":""},"tag":null,"sku":"","keyword":null,"bundle":null,"image":[{"width":193,"url":"https:\/\/m3.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684291377082_063519d7fb97f7aad166b9dbfa7db563ec4ca3266fb1261384e4000bf7feaaac.png?temp_url_sig=1cb281cfdab172a1280fb1478f2587f2207d7a8b&temp_url_expires=2037785350","height":262},{"width":193,"url":"https:\/\/m3.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684291377082_063519d7fb97f7aad166b9dbfa7db563ec4ca3266fb1261384e4000bf7feaaac.png?temp_url_sig=1cb281cfdab172a1280fb1478f2587f2207d7a8b&temp_url_expires=2037785350","height":262}],"assign_collection":[],"compare_at_price":100.00000,"main_group_id":90090684291377082,"params":null,"server_id":"b1","version":"mO0aCi","group_id":90090684291377082,"name":"Messi","service_profile_id":"9","created_date":"2024-07-21","updated_date":"2024-07-21","category":null,"status":"N","option":null},"method":"getProductItemResponse"}
+2024-08-01 12:11:09,346 INFO  NandboxClient:990 - method: getProductItemResponse
+2024-08-01 12:11:09,358 INFO  NandboxClient:979 - INTERNAL: ONMESSAGE
+2024-08-01 12:11:09,360 INFO  NandboxClient:983 - 2024/08/01 12:11:09 <<<<<<<<< Update Obj : {"data":[{"image":[{"width":512,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684436097558_463570cc8ca6d75fcc4a0b6f0af557c9c2f0e175e1a5364b4181effa251f16e8.png?temp_url_sig=f7211f4763416cb047b2b2706099c93e0d3beb41&temp_url_expires=2018424622","height":512}],"price":31.86,"name":"Old Spice Sweat Defense ","id":5121093039126298,"status":"A"},{"image":[{"width":512,"url":"https:\/\/m2.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684436097558_9e06e8e16d464f6133f7a81ab30d016d753d5f3f72e2f1ab11cb0029bd2839a5.png?temp_url_sig=c3dee0e86a6750336928d5fda80daad716df5e49&temp_url_expires=2018424528","height":512}],"price":18.99,"name":"ELF Boys Sneakers Leather","id":5121272520126289,"status":"A"},{"image":[{"width":193,"url":"https:\/\/m3.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684291377082_063519d7fb97f7aad166b9dbfa7db563ec4ca3266fb1261384e4000bf7feaaac.png?temp_url_sig=1cb281cfdab172a1280fb1478f2587f2207d7a8b&temp_url_expires=2037785350","height":262},{"width":193,"url":"https:\/\/m3.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684291377082_063519d7fb97f7aad166b9dbfa7db563ec4ca3266fb1261384e4000bf7feaaac.png?temp_url_sig=1cb281cfdab172a1280fb1478f2587f2207d7a8b&temp_url_expires=2037785350","height":262}],"price":1000.0,"name":"Messi","id":5121406605126307,"status":"N"},{"image":[{"width":466,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684436097558_8f12230aa33ea4a9c83048c0e41f478c5c41900b63c5f79b9e60ae896f0fa7b5.png?temp_url_sig=9afa0f0ca4a78176d080d080aa4f365ada678048&temp_url_expires=2018424578","height":504}],"price":83.83,"name":"Remington Balder Boss Cordless","id":5121482152126305,"status":"A"},{"image":[{"width":512,"url":"https:\/\/m2.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684436097558_0b2c62b8dd5fb29dcbee0ad38b684c6e457b1607947fe43a231acc7436bc42dc.png?temp_url_sig=79d12db69293aed9873e53b790a3380d312f8ad5&temp_url_expires=2018424658","height":512}],"price":99.99,"name":"Ninja Professional Blender","id":5121741941126297,"status":"A"},{"image":[{"width":512,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684436097558_474f1f05adf0da6f9b895112d0c34217ca2c80f4eb144574f238b4245a215c1d.png?temp_url_sig=796aa4fe217b187f9013a96c36bcdb9895fffc57&temp_url_expires=2018424679","height":512}],"price":19.89,"name":"Head & Shoulders Volume Boost","id":5121877369126296,"status":"A"}],"method":"getCollectionProductResponse"}
+2024-08-01 12:11:09,361 INFO  NandboxClient:990 - method: getCollectionProductResponse
+2024-08-01 12:11:09,362 INFO  NandboxClient:979 - INTERNAL: ONMESSAGE
+2024-08-01 12:11:09,363 INFO  NandboxClient:983 - 2024/08/01 12:11:09 <<<<<<<<< Update Obj : {"ref":null,"page_number":1,"data":[{"image":[{"width":291,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684436097558_b3ee9d77dc399f40541ac3c077c6d5a5d2d43cf2137090eaa28051ccbd75aeca.png?temp_url_sig=a5240428ead3b2d0e710c3bd7c792a0205483317&temp_url_expires=2018424354","height":238}],"name":"Heath, Beauty & Household","description":"","soft_id":"healthbeauty","id":"5121605136126295","created_date":"2024-07-18 09:35:17","version":"FPGlXQ","status":"A"},{"image":[{"width":284,"url":"https:\/\/m2.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684436097558_a5a5757abdf0d884c4437746264e4b6d743c0cd0ecc53a03d1644963d88fc54d.png?temp_url_sig=f1e2a6df6a0f9b282a6e824673abc61fdba2af65&temp_url_expires=2018424336","height":241}],"name":"Shoes","description":"Fashion trends in Shoes","soft_id":"shoes","id":"5121843973126288","created_date":"2024-07-18 09:35:17","version":"qhFcIC","status":"A"}],"method":"listCollectionItemResponse","group_id":"90090684291377082","eop":true,"main_group_id":"0"}
+2024-08-01 12:11:09,364 INFO  NandboxClient:990 - method: listCollectionItemResponse
+2024-08-01 12:11:19,334 ERROR  NandboxClient:1113 - INTERNAL: ONERROR
+2024-08-01 12:11:19,334 ERROR  NandboxClient:1115 - Error due to :  On : 2024/08/01 12:11:19
+2024-08-01 12:11:19,782 ERROR  NandboxClient:1113 - INTERNAL: ONERROR
+2024-08-01 12:11:19,782 ERROR  NandboxClient:1115 - Error due to : NandboxClient.InternalWebSocket.on_close() takes 3 positional arguments but 4 were given On : 2024/08/01 12:11:19

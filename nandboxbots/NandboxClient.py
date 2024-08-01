@@ -1,15 +1,19 @@
 import datetime
 import json
+import ssl
 import time
 from threading import Thread, Lock
 
 from nandboxbots.data.CollectionProduct import CollectionProduct
 from nandboxbots.data.ProductItem import ProductItem
+from nandboxbots.inmessages.GetCollectionProductResponse import GetCollectionProductResponse
+from nandboxbots.inmessages.ListCollectionItemResponse import ListCollectionItemResponse
 from nandboxbots.outmessages.AddChatAdminMemberOutMessage import AddChatAdminMemberOutMessage
 from nandboxbots.outmessages.AddChatMemberOutMessage import AddChatMemberOutMessage
 from nandboxbots.outmessages.CreateChatOutMessage import CreateChatOutMessage
 from nandboxbots.outmessages.GetCollectionProductOutMessage import GetCollectionProductOutMessage
 from nandboxbots.outmessages.GetProductItem import GetProductItemOutMessage
+from nandboxbots.outmessages.ListCollectionItemOutMessage import ListCollectionItemOutMessage
 from nandboxbots.outmessages.SetWorkflowActionOutMessage import SetWorkflowActionOutMessage
 from nandboxbots.util.Logger import Logger
 import websocket
@@ -113,7 +117,11 @@ class NandboxClient:
                                                                on_close=internalWebSocket.on_close,
                                                                on_message=internalWebSocket.on_message,
                                                                on_open=internalWebSocket.on_open)
-        NandboxClient.webSocketClient.run_forever()
+        ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+        NandboxClient.webSocketClient.run_forever(
+            sslopt={"cert_reqs": ssl.CERT_NONE, "check_hostname": False, "ssl_context": ssl_context})
 
     def get_uri(self):
         return self._uri
@@ -150,7 +158,6 @@ class NandboxClient:
                         obj = {
                             NandboxClient.KEY_METHOD: "PING"
                         }
-
 
                         NandboxClient.InternalWebSocket.send(json.dumps(obj))
                     except():
@@ -693,7 +700,13 @@ class NandboxClient:
                 def get_product_item(self, productId):
                     getProductItem = GetProductItemOutMessage()
                     getProductItem.id = productId
-                    obj,_ = getProductItem.to_json_obj()
+                    obj, _ = getProductItem.to_json_obj()
+                    print(obj)
+                    self.send(obj)
+
+                def list_collection_item(self,):
+                    getCollectionItem = ListCollectionItemOutMessage()
+                    obj, _ = getCollectionItem.to_json_obj()
                     print(obj)
                     self.send(obj)
 
@@ -884,11 +897,13 @@ class NandboxClient:
 
                     obj, _ = setChatOutMessage.to_json_obj()
                     self.send(obj)
-                def get_colelction_product(self,collectionId):
-                    getColelctionProduct = GetCollectionProductOutMessage()
-                    getColelctionProduct.id = collectionId
-                    obj,_ = getColelctionProduct.to_json_obj()
+
+                def get_collection_product(self, collectionId):
+                    getCollectionProduct = GetCollectionProductOutMessage()
+                    getCollectionProduct.id = collectionId
+                    obj, _ = getCollectionProduct.to_json_obj()
                     self.send(obj)
+
                 def get_my_profiles(self):
                     getMyProfiles = GetMyProfiles()
 
@@ -999,8 +1014,9 @@ class NandboxClient:
                     self.callback.on_receive(incoming_message)
                     return
                 elif method == "getCollectionProductResponse":
-                    collection_product = CollectionProduct(dictionary)
-                    self.callback.on_collection_product(collection_product)
+                    collection_products = GetCollectionProductResponse(
+                        dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
+                    self.callback.on_collection_product(collection_products)
                     return
                 elif method == "scheduledMessage":
                     incoming_schedule_message = IncomingMessage(dictionary)
@@ -1022,6 +1038,9 @@ class NandboxClient:
                     productItem = ProductItem(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
                     self.callback.on_product_item(productItem)
                     return
+                elif method == "listCollectionItemResponse":
+                    collectionItem = ListCollectionItemResponse(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
+                    self.callback.on_collection_item(collectionItem.categories)
                 elif method == "messageAck":
                     msg_ack = MessageAck(dictionary)
                     self.callback.on_message_ack_callback(msg_ack)
