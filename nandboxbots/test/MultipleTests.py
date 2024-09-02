@@ -469,10 +469,7 @@ class nCallBack(nandbox.Callback):
                     napi.send_text_with_background(chatId, "Hi from bot", "#EE82EE")
 
         else:
-            productId = "5121406605126307"
-            napi.get_product_item(productId)
-            napi.get_collection_product("5121605136126295")
-            napi.list_collection_item()
+
             print(f"=========>> {incoming_msg.type} Message Received =========>>")
             print(f"incoming_msg.message_id : {str(incoming_msg.message_id)}")
             print(f"incoming_msg.date : {str(incoming_msg.date)}")
