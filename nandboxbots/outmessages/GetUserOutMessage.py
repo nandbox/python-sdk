@@ -9,7 +9,7 @@ class GetUserOutMessage(OutMessage):
     user_id = None
 
     def __init__(self):
-        self.method = "getUser"
+        self.method = "getUserDetail"
 
     def to_json_obj(self):
         _, dictionary = super(GetUserOutMessage, self).to_json_obj()

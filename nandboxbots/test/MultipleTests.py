@@ -1,3 +1,4 @@
+#90091783781508815:90090684288020977:O5xSu8TMl2kM2SutEl1T6YezXAEGDO
 import json
 import os
 
@@ -371,8 +372,8 @@ def handle_incoming_document_msg(incoming_msg):
 
 
 class nCallBack(nandbox.Callback):
-    def on_product_item(self,productItem):
-        print(productItem)
+    def on_product_detail(self,productItem):
+        print(productItem.to_json_obj())
     def on_collection_product(self,collectionProducts):
         print(collectionProducts)
     def on_collection_item(self,collectionItem):
@@ -381,6 +382,9 @@ class nCallBack(nandbox.Callback):
         global napi
         napi = api
         # napi.get_chat_member(chat_id=90089893511487086, user_id=90089893511487086)
+        # napi.get_product_detail("5121691410126519")
+        # napi.get_chat("90090684261974255")
+        # napi.get_user("90089584752198136")
         print("Connected")
 
     def on_close(self):
@@ -391,7 +395,6 @@ class nCallBack(nandbox.Callback):
 
     def on_receive(self, incoming_msg):
         chatId = incoming_msg.chat.id
-
         napi.get_chat_member(chatId, incoming_msg.from_.id)
 
         if incoming_msg.reply_to_message_id is not None:

@@ -6,7 +6,7 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 class GetChatOutMessage(OutMessage):
     __KEY_CHAT_ID = "chat_id"
     def __init__(self):
-        self.method = "getChat"
+        self.method = "getChatDetail"
 
     def to_json_obj(self):
         _, dictionary = super(GetChatOutMessage, self).to_json_obj()

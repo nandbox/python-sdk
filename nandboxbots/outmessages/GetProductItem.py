@@ -5,7 +5,7 @@ import json
 class GetProductItemOutMessage(OutMessage):
     def __init__(self):
         super().__init__()
-        self.method = "getProductItem"
+        self.method = "getProductDetail"
         self.id = None
 
     def to_json_obj(self):

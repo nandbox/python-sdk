@@ -697,7 +697,7 @@ class NandboxClient:
                     obj, _ = updateMessage.to_json_obj()
                     self.send(obj)
 
-                def get_product_item(self, productId):
+                def get_product_detail(self, productId):
                     getProductItem = GetProductItemOutMessage()
                     getProductItem.id = productId
                     obj, _ = getProductItem.to_json_obj()
@@ -1034,9 +1034,9 @@ class NandboxClient:
                     inline_search = InlineSearch(dictionary)
                     self.callback.on_inline_search(inline_search)
                     return
-                elif method == "getProductItemResponse":
+                elif method == "getProductDetailResponse":
                     productItem = ProductItem(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
-                    self.callback.on_product_item(productItem)
+                    self.callback.on_product_detail(productItem)
                     return
                 elif method == "listCollectionItemResponse":
                     collectionItem = ListCollectionItemResponse(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])

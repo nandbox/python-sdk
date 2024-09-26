@@ -8,7 +8,7 @@ class Nandbox:
 
         def on_receive_obj(self, obj):
             pass
-        def on_product_item(self,obj):
+        def on_product_detail(self,obj):
             pass
         def on_close(self):
             pass
@@ -84,7 +84,7 @@ class Nandbox:
             pass
         def get_collection_product(self,collectionId):
             pass
-        def get_product_item(self, productId):
+        def get_product_detail(self, productId):
             pass
         def send_text_with_background(self, chat_id, text, bg_color):
             pass
