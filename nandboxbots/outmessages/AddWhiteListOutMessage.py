@@ -4,12 +4,12 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 
 class AddWhiteListOutMessage(OutMessage):
-    __KEY_USERS = "users"
+    __KEY_USERS = "signups"
 
     white_list_users = []
 
     def __init__(self):
-        self.method = "addWhitelist"
+        self.method = "addToWhitelist"
 
     def to_json_obj(self):
         _, dictionary = super(AddWhiteListOutMessage, self).to_json_obj()

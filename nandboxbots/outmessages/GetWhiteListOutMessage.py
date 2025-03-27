@@ -9,7 +9,7 @@ class GetWhiteListOutMessage(OutMessage):
     page_size = None
 
     def __init__(self):
-        self.method = "getWhitelist"
+        self.method = "getWhitelistUsers"
 
     def to_json_obj(self):
         _, dictionary = super(GetWhiteListOutMessage, self).to_json_obj()

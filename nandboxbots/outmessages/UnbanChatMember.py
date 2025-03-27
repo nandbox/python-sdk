@@ -5,7 +5,7 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 class UnbanChatMember(OutMessage):
     __KEY_USER_ID = "user_id"
-
+    __KEY_CHAT_ID = "chat_id"
     user_id = None
 
     def __init__(self):

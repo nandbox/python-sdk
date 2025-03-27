@@ -4,12 +4,12 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 
 class DeleteWhiteListPatternsOutMessage(OutMessage):
-    __KEY_PATTERN = "pattern"
+    __KEY_PATTERN = "patterns"
 
     pattern = []
 
     def __init__(self):
-        self.method = "deleteWhitelistPatterns"
+        self.method = "removeWhitelistPatterns"
 
     def to_json_obj(self):
         _, dictionary = super(DeleteWhiteListPatternsOutMessage, self).to_json_obj()

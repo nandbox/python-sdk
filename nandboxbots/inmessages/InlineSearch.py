@@ -13,6 +13,7 @@ class InlineSearch:
     __KEY_SEARCH_ID = "search_id"
     __KEY_OFFSET = "offset"
     __KEY_KEYWORDS = "keywords"
+    __KEY_APP_ID = "app_id"
 
     date = None
     method = None
@@ -21,6 +22,7 @@ class InlineSearch:
     search_id = None
     offset = None
     keywords = None
+    app_id = None
 
     def __init__(self, dictionary):
 
@@ -35,6 +37,7 @@ class InlineSearch:
         self.search_id = int(inline_search_dict[self.__KEY_SEARCH_ID]) if self.__KEY_SEARCH_ID in inline_search_dict.keys() else None
         self.offset = str(inline_search_dict[self.__KEY_OFFSET]) if self.__KEY_OFFSET in inline_search_dict.keys() else None
         self.keywords = str(inline_search_dict[self.__KEY_KEYWORDS]) if self.__KEY_KEYWORDS in inline_search_dict.keys() else None
+        self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
     def to_json_obj(self):
 
@@ -56,5 +59,7 @@ class InlineSearch:
             dictionary[self.__KEY_OFFSET] = self.offset
         if self.keywords is not None:
             dictionary[self.__KEY_KEYWORDS] = self.keywords
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
 
         return json.dumps(dictionary), dictionary

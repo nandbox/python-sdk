@@ -57,11 +57,19 @@ class Nandbox:
 
         def on_inline_search(self, inline_search):
             pass
+        def on_black_list_pattern(self, black_list_pattern):
+            pass
+        def on_white_list_pattern(self, white_list_pattern):
+            pass
 
         def on_black_list(self, black_list):
             pass
 
         def on_white_list(self, white_list):
+            pass
+        def on_remove_white_list(self,white_list):
+            pass
+        def on_remove_black_list(self,black_list):
             pass
 
         def on_schedule_message(self, incoming_schedule_msg):
@@ -72,164 +80,164 @@ class Nandbox:
 
         def on_create_chat(self, chat):
             pass
-        def on_collection_product(self,collectionProducts):
+        def on_collection_product(self,collectionProducts,app_id):
             pass
-        def on_collection_item(self,collectionItem):
+        def on_collection_item(self,collectionItem,app_id):
             pass
 
     class Api:
         def send(self, message):
             pass
-        def list_collection_item(self):
+        def list_collection_item(self,app_id):
             pass
-        def get_collection_product(self,collectionId):
+        def get_collection_product(self,collectionId,app_id):
             pass
-        def get_product_detail(self, productId):
+        def get_product_detail(self, productId,app_id,reference):
             pass
-        def send_text_with_background(self, chat_id, text, bg_color):
+        def send_text_with_background(self, chat_id, text, bg_color,app_id):
             pass
 
         def send_text(self, chat_id, text, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
-                      disable_notification=None, chat_settings=None, bg_color=None, tab=None):
+                      disable_notification=None, chat_settings=None, bg_color=None, tab=None,app_id=None):
             pass
 
         def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
-                       disable_notification=None, caption=None, chat_settings=None, tab=None):
+                       disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
             pass
 
         def send_video(self, chat_id, video_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
-                       disable_notification=None, caption=None, chat_settings=None, tab=None):
+                       disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
             pass
 
         def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
                        disable_notification=None, caption=None, performer=None, title=None, chat_settings=None,
-                       tab=None):
+                       tab=None,app_id=None):
             pass
 
         def send_contact(self, chat_id, phone_number, name, reference, reply_to_message_id=None, to_user_id=None,
-                         web_page_preview=None, disable_notification=None, chat_settings=None, tab=None):
+                         web_page_preview=None, disable_notification=None, chat_settings=None, tab=None,app_id=None):
             pass
 
         def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
-                       disable_notification=None, caption=None, size=None, chat_settings=None, tab=None):
+                       disable_notification=None, caption=None, size=None, chat_settings=None, tab=None,app_id=None):
             pass
 
         def send_document(self, chat_id, document_file_id, reference, reply_to_message_id=None, to_user_id=None,
                           web_page_preview=None,
-                          disable_notification=None, caption=None, name=None, size=None, chat_settings=None, tab=None):
+                          disable_notification=None, caption=None, name=None, size=None, chat_settings=None, tab=None,app_id=None):
             pass
 
         def send_location(self, chat_id, latitude, longitude, reference, reply_to_message_id=None, to_user_id=None,
                           web_page_preview=None, disable_notification=None, name=None, details=None, chat_settings=None,
-                          tab=None):
+                          tab=None,app_id=None):
             pass
 
         def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                      web_page_preview=None,
-                     disable_notification=None, caption=None, chat_settings=None, tab=None):
+                     disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
             pass
 
         def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                            web_page_preview=None,
-                           disable_notification=None, caption=None, chat_settings=None, tab=None):
+                           disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
             pass
 
-        def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None, tab=None):
+        def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None, tab=None,app_id=None):
             pass
 
-        def update_text_msg(self, message_id, text, to_user_id, tab):
+        def update_text_msg(self, message_id, text, to_user_id, tab,app_id):
             pass
 
-        def update_media_caption(self, message_id, caption, to_user_id, tab):
+        def update_media_caption(self, message_id, caption, to_user_id, tab,app_id):
             pass
 
-        def update_chat_msg(self, message_id, text, chat_id, tab):
+        def update_chat_msg(self, message_id, text, chat_id, tab,app_id):
             pass
 
-        def update_chat_media_caption(self, message_id, caption, chat_id, tab):
+        def update_chat_media_caption(self, message_id, caption, chat_id, tab,app_id):
             pass
 
-        def get_user(self, user_id):
+        def get_user(self, user_id,app_id,reference):
             pass
 
-        def get_chat(self, chat_id):
+        def get_chat(self, chat_id,app_id,reference):
             pass
 
-        def get_chat_member(self, chat_id, user_id):
+        def get_chat_member(self, chat_id, user_id,app_id,reference):
             pass
 
-        def get_chat_administrators(self, chat_id):
+        def get_chat_administrators(self, chat_id,app_id,reference):
             pass
 
-        def ban_chat_member(self, chat_id, user_id):
+        def ban_chat_member(self, chat_id, user_id,app_id,reference):
             pass
 
-        def unban_chat_member(self, chat_id, user_id):
+        def unban_chat_member(self, chat_id, user_id,app_id,reference):
             pass
 
-        def remove_chat_member(self, chat_id, user_id):
+        def remove_chat_member(self, chat_id, user_id,app_id,reference):
             pass
 
-        def recall_message(self, chat_id, message_id, to_user_id, reference):
+        def recall_message(self, chat_id, message_id, to_user_id, reference,app_id):
             pass
 
-        def set_my_profile(self, user):
+        def set_my_profile(self, user,reference):
             pass
 
-        def set_chat(self, chat):
+        def set_chat(self, chat,app_id,reference):
             pass
 
-        def get_my_profiles(self):
+        def get_my_profiles(self,reference):
             pass
 
         def generate_permanent_url(self, file, param1):
             pass
 
-        def get_black_list(self, chat_id):
+        def get_black_list(self,app_id,reference):
             pass
 
-        def get_white_list(self, chat_id):
+        def get_white_list(self,app_id,reference):
             pass
 
-        def add_black_list(self, chat_id, users):
+        def add_black_list(self, users,app_id,reference):
             pass
 
-        def add_white_list(self, chat_id, white_list_users):
+        def add_white_list(self,  users,app_id,reference):
             pass
 
-        def delete_black_list(self, chat_id, users):
+        def delete_black_list(self, users,app_id,reference):
             pass
 
-        def delete_white_list(self, chat_id, users):
+        def delete_white_list(self,  users,app_id,reference):
             pass
 
-        def add_black_list_patterns(self, chat_id, data):
+        def add_black_list_patterns(self, chat_id, data,app_id):
             pass
 
-        def add_white_list_patterns(self, chat_id, data):
+        def add_white_list_patterns(self, chat_id, data,app_id,reference):
             pass
 
-        def delete_black_list_patterns(self, chat_id, pattern):
+        def delete_black_list_patterns(self, chat_id, pattern,app_id,reference):
             pass
 
-        def delete_white_list_patterns(self, chat_id, pattern):
+        def delete_white_list_patterns(self, chat_id, pattern,app_id,reference):
             pass
 
         def set_workflow(self, user_id, screen_id, app_id, workflow_cells, reference, disable_notification):
             pass
 
-        def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference):
+        def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference,app_id):
             pass
 
-        def create_chat(self, chat_type, title, is_public, reference):
+        def create_chat(self, chat_type, title, is_public, reference,app_id):
             pass
 
-        def add_chat_member(self, chat_id, user_id):
+        def add_chat_member(self, chat_id, user_id,app_id):
             pass
 
-        def add_chat_admin_member(self, chat_id, user_id):
+        def add_chat_admin_member(self, chat_id, user_id,app_id):
             pass

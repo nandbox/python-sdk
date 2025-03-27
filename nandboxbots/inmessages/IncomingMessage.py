@@ -47,6 +47,7 @@ class IncomingMessage:
     __KEY_ARTICLE = "article"
     __KEY_URL = "url"
     __KEY_SCHEDULE_DATE = "schedule_date"
+    __KEY_APP_ID = "app_id"
 
     message_id = None
     type = None
@@ -77,6 +78,7 @@ class IncomingMessage:
     white_list_user = None
     tag = None
     schedule_date = None
+    app_id = None
 
     def __init__(self, dictionary):
         msg_dict = dictionary[self.__KEY_MESSAGE]
@@ -112,6 +114,7 @@ class IncomingMessage:
         self.bg_color = str(msg_dict[self.__KEY_BG_COLOR]) if self.__KEY_BG_COLOR in msg_dict.keys() else None
         self.white_list_user = WhiteListUser(msg_dict.get(self.__KEY_WHITELIST_USER, {}))
         self.schedule_date = int(str(msg_dict[self.__KEY_SCHEDULE_DATE]))if self.__KEY_SCHEDULE_DATE in msg_dict.keys() else None
+        self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
     def to_json_obj(self):
 
@@ -186,7 +189,8 @@ class IncomingMessage:
             dictionary[self.__KEY_WHITELIST_USER] = white_list_user_dict
         if self.schedule_date is not None:
             dictionary[self.__KEY_SCHEDULE_DATE] = self.schedule_date
-
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
         logging.info("to " + str(dictionary))
 
         return json.dumps(dictionary), dictionary

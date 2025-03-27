@@ -15,7 +15,7 @@ class SetMyProfileOutMessage(OutMessage):
         _, dictionary = super(SetMyProfileOutMessage, self).to_json_obj()
 
         if self.user is not None:
-            dictionary[self.__KEY_USER] = self.user
+            dictionary[self.__KEY_USER] = self.user.to_dict()
 
         return json.dumps(dictionary), dictionary
     

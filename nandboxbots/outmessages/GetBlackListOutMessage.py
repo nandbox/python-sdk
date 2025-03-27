@@ -9,7 +9,7 @@ class GetBlackListOutMessage(OutMessage):
     page_size = None
 
     def __init__(self):
-        self.method = "getBlacklist"
+        self.method = "getBlacklistUsers"
 
     def to_json_obj(self):
         _, dictionary = super(GetBlackListOutMessage, self).to_json_obj()

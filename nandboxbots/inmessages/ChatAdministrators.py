@@ -8,11 +8,14 @@ class ChatAdministrators:
     __KEY_CHAT_ADMINISTRATORS = "chatAdministrators"
     __KEY_ADMINISTRATORS = "administrators"
     __KEY_CHAT = "chat"
+    __KEY_APP_ID = "app_id"
 
     administrators = []
     chat = None
+    app_id = None
 
     def __init__(self, dictionary):
+        self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
         chat_administrators_dict = dictionary[self.__KEY_CHAT_ADMINISTRATORS] if self.__KEY_CHAT_ADMINISTRATORS in dictionary.keys() else {}
 
@@ -41,5 +44,6 @@ class ChatAdministrators:
         if self.chat is not None:
             _, chat_dict = self.chat.to_json_obj()
             dictionary[self.__KEY_CHAT] = chat_dict
-
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
         return json.dumps(dictionary), dictionary

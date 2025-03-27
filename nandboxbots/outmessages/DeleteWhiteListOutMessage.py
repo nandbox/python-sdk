@@ -4,12 +4,12 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 
 class DeleteWhiteListOutMessage(OutMessage):
-    __KEY_USERS = "users"
+    __KEY_USERS = "signups"
 
     users = []
 
     def __init__(self):
-        self.method = "deleteWhitelist"
+        self.method = "removeFromWhitelist"
 
     def to_json_obj(self):
         _, dictionary = super(DeleteWhiteListOutMessage, self).to_json_obj()

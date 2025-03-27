@@ -39,3 +39,12 @@ class Photo:
             dictionary[self.__KEY_THUMBNAIL] = thumbnail_dict
 
         return json.dumps(dictionary), dictionary
+
+    def to_dict(self):
+        return {
+            self.__KEY_ID: self.id,
+            self.__KEY_WIDTH: self.width,
+            self.__KEY_HEIGHT: self.height,
+            self.__KEY_SIZE: self.size,
+            self.__KEY_THUMBNAIL: self.thumbnail.to_dict() if self.thumbnail else None
+        }

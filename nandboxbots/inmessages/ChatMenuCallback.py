@@ -17,6 +17,7 @@ class ChatMenuCallback:
     __KEY_MENU_REF = "menu_ref"
     __KEY_APP_ID = "app_id"
 
+
     date = None
     next_menu = None
     method = None
@@ -26,8 +27,10 @@ class ChatMenuCallback:
     from_ = None
     menu_ref = None
     appId = None
+    app_id = None
 
     def __init__(self, dictionary):
+        self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
         chat_menu_callback_dict = dictionary[self.__KEY_CHAT_MENU_CALL_BACK] if self.__KEY_CHAT_MENU_CALL_BACK in dictionary.keys() else {}
 
         from_user = User(chat_menu_callback_dict.get(self.__KEY_FROM, {}))
@@ -70,5 +73,6 @@ class ChatMenuCallback:
             dictionary[self.__KEY_BUTTON_QUERY_RESULTS] = btn_query_result_dict
         if self.next_menu is not None:
             dictionary[self.__KEY_NEXT_MENU] = self.next_menu
-
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
         return json.dumps(dictionary), dictionary

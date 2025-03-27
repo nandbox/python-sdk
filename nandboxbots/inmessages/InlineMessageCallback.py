@@ -15,6 +15,7 @@ class InlineMessageCallback:
     __KEY_REFERENCE = "reference"
     __KEY_BUTTON_CALLBACK = "button_callback"
     __KEY_BUTTON_QUERY_RESULTS = "button_query_result"
+    __KEY_APP_ID = "app_id"
 
     message_id = None
     menu_ref = None
@@ -24,6 +25,7 @@ class InlineMessageCallback:
     chat = None
     button_callback = None
     button_query_result = None
+    app_id = None
 
     def __init__(self, dictionary):
         inline_message_dict = dictionary[self.__KEY_INLINE_MESSAGE_CALLBACK] if self.__KEY_INLINE_MESSAGE_CALLBACK in dictionary.keys() else {}
@@ -40,6 +42,7 @@ class InlineMessageCallback:
         self.button_query_result = btn_query_result
         self.button_callback = str(inline_message_dict[self.__KEY_BUTTON_CALLBACK]) if self.__KEY_BUTTON_CALLBACK in inline_message_dict.keys() else None
         self.date = int(inline_message_dict[self.__KEY_DATE]) if self.__KEY_DATE in inline_message_dict.keys() else None
+        self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
     def to_json_obj(self):
 
@@ -64,6 +67,7 @@ class InlineMessageCallback:
         if self.button_query_result is not None:
             _, btn_query_result_dict = self.button_query_result.to_json_obj()
             dictionary[self.__KEY_BUTTON_QUERY_RESULTS] = btn_query_result_dict
-
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
         return json.dumps(dictionary), dictionary
 

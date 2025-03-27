@@ -6,11 +6,9 @@ class MessageAck:
     __KEY_MESSAGE_ID = "message_id"
     __KEY_DATE = "date"
     __KEY_REFERENCE = "reference"
-
     message_id = None
     date = None
     reference = None
-
     def __init__(self, dictionary):
 
         ack_dict = dictionary[self.__KEY_ACK] if self.__KEY_ACK in dictionary.keys() else {}

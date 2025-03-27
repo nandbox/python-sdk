@@ -1,4 +1,5 @@
 import json
+from xmlrpc.client import Boolean
 
 from nandboxbots.data.Chat import Chat
 from nandboxbots.data.SignupUser import SignupUser
@@ -7,21 +8,23 @@ from nandboxbots.data.SignupUser import SignupUser
 class BlackList:
     __KEY_BLACKLIST = "blacklist"
     __KEY_EOP = "eop"
-    __KEY_USERS = "users"
-    __KEY_CHAT = "chat"
+    __KEY_USERS = "signups"
+    __KEY_APP_ID = "app_id"
+    __KEY_REFERENCE = "reference"
 
     eop = None
     chat = None
     users = []
+    app_id = None
+    reference = None
+    def __init__(self, blacklist_dict):
+        self.app_id = blacklist_dict[self.__KEY_APP_ID] if self.__KEY_APP_ID in blacklist_dict.keys() else None
 
-    def __init__(self, dictionary):
-        blacklist_dict = dictionary[self.__KEY_BLACKLIST] if self.__KEY_BLACKLIST in dictionary.keys() else {}
-
-        self.eop = str(blacklist_dict[self.__KEY_EOP]) if self.__KEY_EOP in blacklist_dict.keys() else None
-        self.chat = Chat(blacklist_dict.get(self.__KEY_CHAT, {}))
+        self.eop = blacklist_dict[self.__KEY_EOP] if self.__KEY_EOP in blacklist_dict.keys() else None
 
         users_arr_obj = blacklist_dict[self.__KEY_USERS] if self.__KEY_USERS in blacklist_dict.keys() else []
         self.users = [SignupUser({})] * len(users_arr_obj)
+        self.reference = blacklist_dict[self.__KEY_REFERENCE] if self.__KEY_REFERENCE in blacklist_dict.keys() else None
         for i in range(len(users_arr_obj)):
             self.users[i] = SignupUser(users_arr_obj[i])
 
@@ -36,11 +39,11 @@ class BlackList:
 
             dictionary[self.__KEY_USERS] = users_arr
 
-        if self.chat is not None:
-            _, chat_dict = self.chat.to_json_obj()
-            dictionary[self.__KEY_CHAT] = chat_dict
 
         if self.eop is not None:
             dictionary[self.__KEY_EOP] = self.eop
-
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
+        if self.reference is not None:
+            dictionary[self.__KEY_REFERENCE] = self.reference
         return json.dumps(dictionary), dictionary

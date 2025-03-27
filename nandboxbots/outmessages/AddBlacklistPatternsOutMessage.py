@@ -4,7 +4,7 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 
 class AddBlacklistPatternsOutMessage(OutMessage):
-    __KEY_DATA = "data"
+    __KEY_DATA = "patterns"
 
     data = []
 

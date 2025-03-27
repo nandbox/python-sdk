@@ -34,14 +34,15 @@ class Chat:
     tags_definition = None
     reference = None
 
-    def __init__(self, dictionary):
-
+    def __init__(self, dictionary=None):
+        if dictionary is None:
+            dictionary = {}
         self.id = int(dictionary[self.__KEY_ID]) if (self.__KEY_ID in dictionary.keys() and dictionary[self.__KEY_ID] is not None) else None
         self.title = str(dictionary[self.__KEY_TITLE]) if self.__KEY_TITLE in dictionary.keys() else None
         self.name = str(dictionary[self.__KEY_NAME]) if self.__KEY_NAME in dictionary.keys() else None
         self.type = str(dictionary[self.__KEY_TYPE]) if self.__KEY_TYPE in dictionary.keys() else None
         self.version = str(dictionary[self.__KEY_VERSION]) if self.__KEY_VERSION in dictionary.keys() else None
-        self.language_code = int(dictionary[self.__KEY_LANGUAGE_CODE]) if (self.__KEY_LANGUAGE_CODE in dictionary.keys() and dictionary[self.__KEY_LANGUAGE_CODE] is not None) else None
+        self.language_code = str(dictionary[self.__KEY_LANGUAGE_CODE]) if (self.__KEY_LANGUAGE_CODE in dictionary.keys() and dictionary[self.__KEY_LANGUAGE_CODE] is not None) else None
         self.regions = str(dictionary[self.__KEY_REGIONS]) if self.__KEY_REGIONS in dictionary.keys() else None
         self.description = str(dictionary[self.__KEY_DESCRIPTION]) if self.__KEY_DESCRIPTION in dictionary.keys() else None
         self.category = str(dictionary[self.__KEY_CATEGORY]) if self.__KEY_CATEGORY in dictionary.keys() else None
@@ -87,3 +88,20 @@ class Chat:
             dictionary[self.__KEY_REFERENCE]=self.reference
 
         return json.dumps(dictionary), dictionary
+
+    def to_dict(self):
+        return {
+            self.__KEY_ID: self.id,
+            self.__KEY_TITLE: self.title,
+            self.__KEY_NAME: self.name,
+            self.__KEY_TYPE: self.type,
+            self.__KEY_VERSION: self.version,
+            self.__KEY_LANGUAGE_CODE: self.language_code,
+            self.__KEY_REGIONS: self.regions,
+            self.__KEY_DESCRIPTION: self.description,
+            self.__KEY_CATEGORY: self.category,
+            self.__KEY_MEMBER_COUNT: self.member_count,
+            self.__KEY_INVITE_LINK: self.invite_link,
+            self.__KEY_PHOTO: self.photo,
+            self.__KEY_REFERENCE: self.reference
+        }

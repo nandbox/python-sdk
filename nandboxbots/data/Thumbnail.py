@@ -26,3 +26,10 @@ class Thumbnail:
             dictionary[self.__KEY_HEIGHT] = self.height
 
         return json.dumps(dictionary), dictionary
+
+    def to_dict(self):
+        return {
+            self.__KEY_ID: self.id,
+            self.__KEY_WIDTH: self.width,
+            self.__KEY_HEIGHT: self.height
+        }

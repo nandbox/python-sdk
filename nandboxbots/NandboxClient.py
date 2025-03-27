@@ -8,6 +8,8 @@ from nandboxbots.data.CollectionProduct import CollectionProduct
 from nandboxbots.data.ProductItem import ProductItem
 from nandboxbots.inmessages.GetCollectionProductResponse import GetCollectionProductResponse
 from nandboxbots.inmessages.ListCollectionItemResponse import ListCollectionItemResponse
+from nandboxbots.inmessages.Pattern import Pattern
+from nandboxbots.inmessages.WhiteList_ak import WhiteList_ak
 from nandboxbots.outmessages.AddChatAdminMemberOutMessage import AddChatAdminMemberOutMessage
 from nandboxbots.outmessages.AddChatMemberOutMessage import AddChatMemberOutMessage
 from nandboxbots.outmessages.CreateChatOutMessage import CreateChatOutMessage
@@ -268,7 +270,7 @@ class NandboxClient:
 
                 @staticmethod
                 def prepare_out_message(message, chat_id, reference, reply_to_message_id, to_user_id,
-                                        web_page_preview, disable_notification, caption, chat_settings, tab):
+                                        web_page_preview, disable_notification, caption, chat_settings, tab,app_id=None):
                     message.chat_id = chat_id
                     message.reference = reference
 
@@ -286,12 +288,14 @@ class NandboxClient:
                         message.chat_settings = chat_settings
                     if tab is not None:
                         message.tab = tab
+                    if app_id is not None:
+                        message.app_id = app_id
 
                     return message
 
                 def send_text(self, chat_id, text, reference, reply_to_message_id=None, to_user_id=None,
                               web_page_preview=None, disable_notification=None, chat_settings=None, bg_color=None,
-                              tab=None):
+                              tab=None,app_id=None):
 
                     if (chat_id is not None and
                             text is not None and
@@ -305,7 +309,7 @@ class NandboxClient:
                             tab is None):
                         reference = Utils.get_unique_id()
 
-                        self.send_text(chat_id=chat_id, text=text, reference=reference)
+                        self.send_text(chat_id=chat_id, text=text, reference=reference,app_id=app_id)
                     else:
                         message = TextOutMessage()
 
@@ -318,7 +322,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=None,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab)
+                                                                 tab=tab,app_id=app_id)
 
                         message.method = "sendMessage"
                         message.text = text
@@ -327,13 +331,13 @@ class NandboxClient:
                         obj, _ = message.to_json_obj()
                         self.send(obj)
 
-                def send_text_with_background(self, chat_id, text, bg_color):
+                def send_text_with_background(self, chat_id, text, bg_color,app_id=None):
                     reference = Utils.get_unique_id()
-                    self.send_text(chat_id=chat_id, text=text, reference=reference, bg_color=bg_color)
+                    self.send_text(chat_id=chat_id, text=text, reference=reference, bg_color=bg_color,app_id=app_id)
 
                 def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                               tab=None):
+                               tab=None,app_id=None):
                     if (chat_id is not None and
                             photo_file_id is not None and
                             caption is not None and
@@ -348,7 +352,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_photo(chat_id=chat_id, photo_file_id=photo_file_id, reference=reference,
-                                        caption=caption)
+                                        caption=caption,app_id=app_id)
                     else:
                         message = PhotoOutMessage()
                         message = nandboxAPI.prepare_out_message(message=message,
@@ -360,7 +364,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab)
+                                                                 tab=tab,app_id=app_id)
                         message.method = "sendPhoto"
                         message.photo = photo_file_id
 
@@ -369,7 +373,7 @@ class NandboxClient:
 
                 def send_contact(self, chat_id, phone_number, name, reference, reply_to_message_id=None,
                                  to_user_id=None, web_page_preview=None, disable_notification=None, chat_settings=None,
-                                 tab=None):
+                                 tab=None,app_id=None):
                     if (chat_id is not None and
                             phone_number is not None and
                             name is not None and
@@ -382,7 +386,7 @@ class NandboxClient:
                             tab is None):
                         reference = Utils.get_unique_id()
 
-                        self.send_contact(chat_id=chat_id, phone_number=phone_number, name=name, reference=reference)
+                        self.send_contact(chat_id=chat_id, phone_number=phone_number, name=name, reference=reference,app_id=app_id)
                     else:
                         contactOutMessage = ContactOutMessage()
                         contactOutMessage = nandboxAPI.prepare_out_message(message=contactOutMessage,
@@ -394,7 +398,7 @@ class NandboxClient:
                                                                            disable_notification=disable_notification,
                                                                            chat_settings=chat_settings,
                                                                            tab=tab,
-                                                                           caption=None)
+                                                                           caption=None,app_id=app_id)
                         contactOutMessage.method = "sendContact"
                         contactOutMessage.phone_number = phone_number
                         contactOutMessage.name = name
@@ -404,7 +408,7 @@ class NandboxClient:
 
                 def send_video(self, chat_id, video_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                               tab=None):
+                               tab=None,app_id=None):
                     if (chat_id is not None and
                             video_file_id is not None and
                             caption is not None and
@@ -419,7 +423,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_video(chat_id=chat_id, video_file_id=video_file_id, reference=reference,
-                                        caption=caption)
+                                        caption=caption,app_id=app_id)
 
                     else:
                         message = VideoOutMessage()
@@ -433,7 +437,7 @@ class NandboxClient:
                                                            disable_notification=disable_notification,
                                                            caption=caption,
                                                            chat_settings=chat_settings,
-                                                           tab=tab)
+                                                           tab=tab,app_id=app_id)
                         message.method = "sendVideo"
                         message.video = video_file_id
 
@@ -442,7 +446,7 @@ class NandboxClient:
 
                 def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, performer=None,
-                               title=None, chat_settings=None, tab=None):
+                               title=None, chat_settings=None, tab=None,app_id=None):
                     if (chat_id is not None and
                             audio_file_id is not None and
                             caption is not None and
@@ -459,7 +463,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_audio(chat_id=chat_id, audio_file_id=audio_file_id, reference=reference,
-                                        caption=caption)
+                                        caption=caption,app_id=app_id)
 
                     else:
                         message = AudioOutMessage()
@@ -473,7 +477,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab)
+                                                                 tab=tab,app_id=app_id)
 
                         message.method = "sendAudio"
                         message.performer = performer
@@ -485,7 +489,7 @@ class NandboxClient:
 
                 def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, size=None,
-                               chat_settings=None, tab=None):
+                               chat_settings=None, tab=None,app_id=None):
                     if (chat_id is not None and
                             voice_file_id is not None and
                             caption is not None and
@@ -501,7 +505,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_voice(chat_id=chat_id, voice_file_id=voice_file_id, reference=reference,
-                                        caption=caption)
+                                        caption=caption,app_id=app_id)
 
                     else:
                         message = VoiceOutMessage()
@@ -515,7 +519,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab)
+                                                                 tab=tab,app_id=app_id)
 
                         message.method = "sendVoice"
                         message.size = size
@@ -526,7 +530,7 @@ class NandboxClient:
 
                 def send_document(self, chat_id, document_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                   web_page_preview=None, disable_notification=None, caption=None, name=None, size=None,
-                                  chat_settings=None, tab=None):
+                                  chat_settings=None, tab=None,app_id=None):
                     if (chat_id is not None and
                             document_file_id is not None and
                             caption is not None and
@@ -543,7 +547,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_document(chat_id=chat_id, document_file_id=document_file_id, reference=reference,
-                                           caption=caption)
+                                           caption=caption,app_id=app_id)
 
                     else:
                         message = DocumentOutMessage()
@@ -557,7 +561,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab)
+                                                                 tab=tab,app_id=app_id)
 
                         message.method = "sendDocument"
                         message.document = document_file_id
@@ -569,7 +573,7 @@ class NandboxClient:
 
                 def send_location(self, chat_id, latitude, longitude, reference, reply_to_message_id=None,
                                   to_user_id=None, web_page_preview=None, disable_notification=None, name=None,
-                                  details=None, chat_settings=None, tab=None):
+                                  details=None, chat_settings=None, tab=None,app_id=None):
                     if (chat_id is not None and
                             latitude is not None and
                             longitude is not None and
@@ -585,7 +589,7 @@ class NandboxClient:
 
                         reference = Utils.get_unique_id()
 
-                        self.send_location(chat_id=chat_id, latitude=latitude, longitude=longitude, reference=reference)
+                        self.send_location(chat_id=chat_id, latitude=latitude, longitude=longitude, reference=reference,app_id=app_id)
 
                     else:
                         message = LocationOutMessage()
@@ -599,7 +603,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  chat_settings=chat_settings,
                                                                  tab=tab,
-                                                                 caption=None)
+                                                                 caption=None,app_id=app_id)
 
                         message.method = "sendLocation"
                         message.name = name
@@ -610,7 +614,7 @@ class NandboxClient:
 
                 def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                              web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                             tab=None):
+                             tab=None,app_id=None):
                     if (chat_id is not None and
                             gif_file_id is not None and
                             caption is not None and
@@ -625,7 +629,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_photo(chat_id=chat_id, photo_file_id=gif_file_id, reference=reference,
-                                        caption=caption)
+                                        caption=caption,app_id=app_id)
 
                     else:
                         message = PhotoOutMessage()
@@ -639,7 +643,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab)
+                                                                 tab=tab,app_id=app_id)
 
                         message.method = "sendPhoto"
                         message.photo = gif_file_id
@@ -649,7 +653,7 @@ class NandboxClient:
 
                 def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                    web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                                   tab=None):
+                                   tab=None,app_id=None):
                     if (chat_id is not None and
                             gif_file_id is not None and
                             caption is not None and
@@ -664,7 +668,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_video(chat_id=chat_id, video_file_id=gif_file_id, reference=reference,
-                                        caption=caption)
+                                        caption=caption,app_id=app_id)
                     else:
                         message = VideoOutMessage()
 
@@ -677,14 +681,14 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab)
+                                                                 tab=tab,app_id=app_id)
                         message.method = "sendVideo"
                         message.video = gif_file_id
 
                         obj, _ = message.to_json_obj()
                         self.send(obj)
 
-                def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None, tab=None):
+                def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None, tab=None,app_id=None):
                     updateMessage = UpdateOutMessage()
 
                     updateMessage.message_id = message_id
@@ -693,187 +697,202 @@ class NandboxClient:
                     updateMessage.to_user_id = to_user_id
                     updateMessage.chat_id = chat_id
                     updateMessage.tab = tab
+                    updateMessage.app_id=app_id
 
                     obj, _ = updateMessage.to_json_obj()
                     self.send(obj)
 
-                def get_product_detail(self, productId):
+                def get_product_detail(self, productId,app_id=None,reference=None):
                     getProductItem = GetProductItemOutMessage()
                     getProductItem.id = productId
+                    getProductItem.app_id=app_id
+                    getProductItem.reference = reference
                     obj, _ = getProductItem.to_json_obj()
                     print(obj)
                     self.send(obj)
 
-                def list_collection_item(self,):
+                def list_collection_item(self,app_id=None):
                     getCollectionItem = ListCollectionItemOutMessage()
+                    getCollectionItem.app_id=app_id
                     obj, _ = getCollectionItem.to_json_obj()
                     print(obj)
                     self.send(obj)
 
-                def update_text_msg(self, message_id, text, to_user_id, tab):
-                    self.update_message(message_id=message_id, text=text, to_user_id=to_user_id, tab=tab)
+                def update_text_msg(self, message_id, text, to_user_id, tab,app_id=None):
+                    self.update_message(message_id=message_id, text=text, to_user_id=to_user_id, tab=tab,app_id=app_id)
 
-                def update_media_caption(self, message_id, caption, to_user_id, tab):
-                    self.update_message(message_id=message_id, caption=caption, to_user_id=to_user_id, tab=tab)
+                def update_media_caption(self, message_id, caption, to_user_id, tab,app_id=None):
+                    self.update_message(message_id=message_id, caption=caption, to_user_id=to_user_id, tab=tab,app_id=app_id)
 
-                def update_chat_msg(self, message_id, text, chat_id, tab):
-                    self.update_message(message_id=message_id, text=text, chat_id=chat_id, tab=tab)
+                def update_chat_msg(self, message_id, text, chat_id, tab,app_id=None):
+                    self.update_message(message_id=message_id, text=text, chat_id=chat_id, tab=tab,app_id=app_id)
 
-                def update_chat_media_caption(self, message_id, caption, chat_id, tab):
-                    self.update_message(message_id=message_id, caption=caption, chat_id=chat_id, tab=tab)
+                def update_chat_media_caption(self, message_id, caption, chat_id, tab,app_id=None):
+                    self.update_message(message_id=message_id, caption=caption, chat_id=chat_id, tab=tab,app_id=app_id)
 
-                def get_chat_member(self, chat_id, user_id):
+                def get_chat_member(self, chat_id, user_id,app_id=None,reference=None):
                     getChatMemberOutMessage = GetChatMemberOutMessage()
 
                     getChatMemberOutMessage.chat_id = chat_id
                     getChatMemberOutMessage.user_id = user_id
-
+                    getChatMemberOutMessage.app_id=app_id
+                    getChatMemberOutMessage.reference=reference
                     obj, _ = getChatMemberOutMessage.to_json_obj()
                     self.send(obj)
 
-                def get_user(self, user_id):
+                def get_user(self, user_id,app_id=None,reference=None):
                     getUserOutMessage = GetUserOutMessage()
 
                     getUserOutMessage.user_id = user_id
-
+                    getUserOutMessage.app_id=app_id
+                    getUserOutMessage.reference=reference
                     obj, _ = getUserOutMessage.to_json_obj()
                     self.send(obj)
 
-                def get_chat(self, chat_id):
+                def get_chat(self, chat_id,app_id=None,reference=None):
                     chatOutMessage = GetChatOutMessage()
 
                     chatOutMessage.chat_id = chat_id
-
+                    chatOutMessage.app_id=app_id
+                    chatOutMessage.reference=reference
                     obj, _ = chatOutMessage.to_json_obj()
                     self.send(obj)
 
-                def get_chat_administrators(self, chat_id):
+                def get_chat_administrators(self, chat_id,app_id=None,reference=None):
                     getChatAdministratorsOutMessage = GetChatAdministratorsOutMessage()
 
                     getChatAdministratorsOutMessage.chat_id = chat_id
-
+                    getChatAdministratorsOutMessage.app_id = app_id
+                    getChatAdministratorsOutMessage.reference=reference
                     obj, _ = getChatAdministratorsOutMessage.to_json_obj()
                     self.send(obj)
 
-                def ban_chat_member(self, chat_id, user_id):
+                def ban_chat_member(self, chat_id, user_id,app_id=None,reference=None):
                     banChatMemberOutMessage = BanChatMemberOutMessage()
 
                     banChatMemberOutMessage.chat_id = chat_id
                     banChatMemberOutMessage.user_id = user_id
+                    banChatMemberOutMessage.app_id = app_id
+                    banChatMemberOutMessage.reference=reference
 
                     obj, _ = banChatMemberOutMessage.to_json_obj()
                     self.send(obj)
 
-                def add_black_list(self, chat_id, users):
+                def add_black_list(self, users,app_id=None,reference=None):
                     addBlackListOutMessage = AddBlackListOutMessage()
 
-                    addBlackListOutMessage.chat_id = chat_id
+                    addBlackListOutMessage.reference = reference
                     addBlackListOutMessage.users = users
-
+                    addBlackListOutMessage.app_id=app_id
                     obj, _ = addBlackListOutMessage.to_json_obj()
                     self.send(obj)
 
-                def add_chat_member(self, chat_id, user_id):
+                def add_chat_member(self, chat_id, user_id,app_id=None):
                     addChatMemberOutMessage = AddChatMemberOutMessage()
-
+                    addChatMemberOutMessage.app_id=app_id
                     addChatMemberOutMessage.chat = chat_id
                     addChatMemberOutMessage.userId = user_id
 
                     obj, _ = addChatMemberOutMessage.to_json_obj()
                     self.send(obj)
 
-                def add_chat_admin_member(self, chat_id, user_id):
+                def add_chat_admin_member(self, chat_id, user_id,app_id=None):
                     addChatAdminMemberOutMessage = AddChatAdminMemberOutMessage()
-
+                    addChatAdminMemberOutMessage.app_id=app_id
                     addChatAdminMemberOutMessage.chatId = chat_id
                     addChatAdminMemberOutMessage.userId = user_id
 
                     obj, _ = addChatAdminMemberOutMessage.to_json_obj()
                     self.send(obj)
 
-                def add_white_list(self, chat_id, white_list_users):
+                def add_white_list(self, users,app_id=None,reference=None):
                     addWhitelistOutMessage = AddWhiteListOutMessage()
-
-                    addWhitelistOutMessage.chat_id = chat_id
-                    addWhitelistOutMessage.white_list_users = white_list_users
+                    addWhitelistOutMessage.app_id=app_id
+                    addWhitelistOutMessage.reference = reference
+                    addWhitelistOutMessage.white_list_users = users
 
                     obj, _ = addWhitelistOutMessage.to_json_obj()
                     self.send(obj)
 
-                def delete_black_list(self, chat_id, users):
+                def delete_black_list(self, users,app_id=None,reference=None):
                     deleteBlackListOutMessage = DeleteBlackListOutMessage()
-
-                    deleteBlackListOutMessage.chat_id = chat_id
+                    deleteBlackListOutMessage.app_id=app_id
+                    deleteBlackListOutMessage.reference = reference
                     deleteBlackListOutMessage.users = users
 
                     obj, _ = deleteBlackListOutMessage.to_json_obj()
                     self.send(obj)
 
-                def delete_white_list(self, chat_id, users):
+                def delete_white_list(self, users,app_id=None,reference=None):
                     deleteWhiteListOutMessage = DeleteWhiteListOutMessage()
-
-                    deleteWhiteListOutMessage.chat_id = chat_id
+                    deleteWhiteListOutMessage.app_id=app_id
+                    deleteWhiteListOutMessage.reference = reference
                     deleteWhiteListOutMessage.users = users
 
                     obj, _ = deleteWhiteListOutMessage.to_json_obj()
                     self.send(obj)
 
-                def delete_black_list_patterns(self, chat_id, pattern):
+                def delete_black_list_patterns(self, chat_id, pattern,app_id=None,reference=None):
                     deleteBlackListPatterns = DeleteBlackListPatternsOutMessage()
-
+                    deleteBlackListPatterns.app_id=app_id
                     deleteBlackListPatterns.chat_id = chat_id
                     deleteBlackListPatterns.pattern = pattern
-
+                    deleteBlackListPatterns.reference=reference
                     obj, _ = deleteBlackListPatterns.to_json_obj()
                     self.send(obj)
 
-                def delete_white_list_patterns(self, chat_id, pattern):
+                def delete_white_list_patterns(self, chat_id, pattern,app_id=None,reference=None):
                     deleteWhiteListPatterns = DeleteWhiteListPatternsOutMessage()
-
+                    deleteWhiteListPatterns.app_id=app_id
+                    deleteWhiteListPatterns.reference=reference
                     deleteWhiteListPatterns.chat_id = chat_id
                     deleteWhiteListPatterns.pattern = pattern
 
                     obj, _ = deleteWhiteListPatterns.to_json_obj()
                     self.send(obj)
 
-                def add_black_list_patterns(self, chat_id, data):
+                def add_black_list_patterns(self, chat_id, data,app_id=None,reference=None):
                     addBlacklistPatternsOutMessage = AddBlacklistPatternsOutMessage()
-
+                    addBlacklistPatternsOutMessage.app_id=app_id
+                    addBlacklistPatternsOutMessage.reference=reference
                     addBlacklistPatternsOutMessage.chat_id = chat_id
                     addBlacklistPatternsOutMessage.data = data
 
                     obj, _ = addBlacklistPatternsOutMessage.to_json_obj()
                     self.send(obj)
 
-                def add_white_list_patterns(self, chat_id, data):
+                def add_white_list_patterns(self, chat_id, data,app_id=None,reference=None):
                     addWhitelistPatternsOutMessage = AddWhitelistPatternsOutMessage()
-
+                    addWhitelistPatternsOutMessage.app_id=app_id
+                    addWhitelistPatternsOutMessage.reference = reference
                     addWhitelistPatternsOutMessage.chat_id = chat_id
                     addWhitelistPatternsOutMessage.data = data
-
                     obj, _ = addWhitelistPatternsOutMessage.to_json_obj()
                     self.send(obj)
 
-                def unban_chat_member(self, chat_id, user_id):
+                def unban_chat_member(self, chat_id, user_id,app_id=None,reference=None):
                     unbanChatMember = UnbanChatMember()
+                    unbanChatMember.app_id=app_id
 
                     unbanChatMember.chat_id = chat_id
                     unbanChatMember.user_id = user_id
-
+                    unbanChatMember.reference=reference
                     obj, _ = unbanChatMember.to_json_obj()
                     self.send(obj)
 
-                def remove_chat_member(self, chat_id, user_id):
+                def remove_chat_member(self, chat_id, user_id,app_id=None,reference=None):
                     removeChatMemberOutMessage = RemoveChatMemberOutMessage()
+                    removeChatMemberOutMessage.app_id=app_id
 
                     removeChatMemberOutMessage.chat_id = chat_id
                     removeChatMemberOutMessage.user_id = user_id
-
+                    removeChatMemberOutMessage.reference=reference
                     obj, _ = removeChatMemberOutMessage.to_json_obj()
                     self.send(obj)
 
-                def recall_message(self, chat_id, message_id, to_user_id, reference):
+                def recall_message(self, chat_id, message_id, to_user_id, reference,app_id=None):
                     recallOutMessage = RecallOutMessage()
+                    recallOutMessage.app_id=app_id
 
                     recallOutMessage.chat_id = chat_id
                     recallOutMessage.message_id = message_id
@@ -882,31 +901,33 @@ class NandboxClient:
                     obj, _ = recallOutMessage.to_json_obj()
                     self.send(obj)
 
-                def set_my_profile(self, user):
+                def set_my_profile(self, user,reference):
                     setMyProfileOutMessage = SetMyProfileOutMessage()
-
+                    setMyProfileOutMessage.reference=reference
                     setMyProfileOutMessage.user = user
 
                     obj, _ = setMyProfileOutMessage.to_json_obj()
                     self.send(obj)
 
-                def set_chat(self, chat):
+                def set_chat(self, chat,app_id=None,reference=None):
                     setChatOutMessage = SetChatOutMessage()
+                    setChatOutMessage.app_id=app_id
 
                     setChatOutMessage.chat = chat
 
                     obj, _ = setChatOutMessage.to_json_obj()
                     self.send(obj)
 
-                def get_collection_product(self, collectionId):
+                def get_collection_product(self, collectionId,app_id=None):
                     getCollectionProduct = GetCollectionProductOutMessage()
                     getCollectionProduct.id = collectionId
+                    getCollectionProduct.app_id=app_id
                     obj, _ = getCollectionProduct.to_json_obj()
                     self.send(obj)
 
-                def get_my_profiles(self):
+                def get_my_profiles(self,reference):
                     getMyProfiles = GetMyProfiles()
-
+                    getMyProfiles.reference=reference
                     obj, _ = getMyProfiles.to_json_obj()
                     self.send(obj)
 
@@ -919,18 +940,18 @@ class NandboxClient:
                     obj, _ = generatePermanentUrl.to_json_obj()
                     self.send(obj)
 
-                def get_black_list(self, chat_id):
+                def get_black_list(self, app_id=None,reference=None):
                     getBlackListOutMessage = GetBlackListOutMessage()
-
-                    getBlackListOutMessage.chat_id = chat_id
+                    getBlackListOutMessage.app_id=app_id
+                    getBlackListOutMessage.reference=reference
 
                     obj, _ = getBlackListOutMessage.to_json_obj()
                     self.send(obj)
 
-                def get_white_list(self, chat_id):
+                def get_white_list(self, app_id=None,reference=None):
                     getWhiteListOutMessage = GetWhiteListOutMessage()
-
-                    getWhiteListOutMessage.chat_id = chat_id
+                    getWhiteListOutMessage.app_id=app_id
+                    getWhiteListOutMessage.reference=reference
 
                     obj, _ = getWhiteListOutMessage.to_json_obj()
                     self.send(obj)
@@ -948,11 +969,12 @@ class NandboxClient:
                     obj, _ = workflowMsg.to_json_obj()
                     self.send(obj)
 
-                def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference):
+                def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference,app_id=None):
                     setWorkflowActionOutMessage = SetWorkflowActionOutMessage()
 
                     setWorkflowActionOutMessage.userId = user_id
                     setWorkflowActionOutMessage.vappId = vapp_id
+                    setWorkflowActionOutMessage.app_id=app_id
                     setWorkflowActionOutMessage.screenId = screen_id
                     setWorkflowActionOutMessage.nextScreen = next_screen
                     setWorkflowActionOutMessage.reference = reference
@@ -960,13 +982,14 @@ class NandboxClient:
                     obj, _ = setWorkflowActionOutMessage.to_json_obj()
                     self.send(obj)
 
-                def create_chat(self, chat_type, title, is_public, reference):
+                def create_chat(self, chat_type, title, is_public, reference,app_id=None):
                     createChatOutMessage = CreateChatOutMessage()
 
                     createChatOutMessage.type = chat_type
                     createChatOutMessage.title = title
                     createChatOutMessage.isPublic = is_public
                     createChatOutMessage.reference = reference
+                    createChatOutMessage.app_id=app_id
 
                     obj, _ = createChatOutMessage.to_json_obj()
                     self.send(obj)
@@ -1016,7 +1039,9 @@ class NandboxClient:
                 elif method == "getCollectionProductResponse":
                     collection_products = GetCollectionProductResponse(
                         dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
-                    self.callback.on_collection_product(collection_products)
+                    app_id = dictionary["app_id"]
+
+                    self.callback.on_collection_product(collection_products,app_id)
                     return
                 elif method == "scheduledMessage":
                     incoming_schedule_message = IncomingMessage(dictionary)
@@ -1034,13 +1059,14 @@ class NandboxClient:
                     inline_search = InlineSearch(dictionary)
                     self.callback.on_inline_search(inline_search)
                     return
-                elif method == "getProductDetailResponse":
-                    productItem = ProductItem(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
+                elif method == "getProductItemResponse":
+                    productItem = ProductItem(dictionary)
                     self.callback.on_product_detail(productItem)
                     return
                 elif method == "listCollectionItemResponse":
                     collectionItem = ListCollectionItemResponse(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
-                    self.callback.on_collection_item(collectionItem.categories)
+                    app_id = dictionary["app_id"]
+                    self.callback.on_collection_item(collectionItem.categories,app_id)
                 elif method == "messageAck":
                     msg_ack = MessageAck(dictionary)
                     self.callback.on_message_ack_callback(msg_ack)
@@ -1085,11 +1111,27 @@ class NandboxClient:
                     user = User(dictionary[NandboxClient.InternalWebSocket.KEY_USER])
                     self.callback.user_left_bot(user)
                     return
-                elif method == "blacklist":
+                elif method == "addWhitelistPatterns_ack":
+                    whitelistPattern = Pattern(dictionary)
+                    self.callback.on_white_list_pattern(whitelistPattern)
+                    return
+                elif method == "addBlacklistPatterns_ack":
+                    blacklistPattern = Pattern(dictionary)
+                    self.callback.on_black_list_pattern(blacklistPattern)
+                    return
+                elif method == "removeFromBlacklist_ack":
+                    blacklist = WhiteList_ak(dictionary)
+                    self.callback.on_remove_black_list(blacklist)
+                    return
+                elif method == "blacklist" or method == "getBlacklistUsersResponse" or method == "addToBlacklist_ack":
                     blacklist = BlackList(dictionary)
                     self.callback.on_black_list(blacklist)
                     return
-                elif method == "whitelist":
+                elif  method == "removeFromWhitelist_ack":
+                    whitelist = WhiteList_ak(dictionary)
+                    self.callback.on_remove_white_list(whitelist)
+                    return
+                elif method == "whitelist" or method =="getWhitelistUsersResponse" or method == "addToWhitelist_ack" :
                     whitelist = WhiteList(dictionary)
                     self.callback.on_white_list(whitelist)
                     return
@@ -1107,6 +1149,7 @@ class NandboxClient:
             else:
                 error = str(dictionary[NandboxClient.KEY_ERROR])
                 NandboxClient.log.error(f"Error : {error}")
+                print(f"Error : {error}")
 
         def on_error(self, ws, error):
             print(ws, error)

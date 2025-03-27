@@ -3,7 +3,7 @@ import json
 
 class SignupUser:
     __KEY_ID = "id"
-    __KEY_SIGNUP_USER = "signup_user"
+    __KEY_SIGNUP_USER = "signup_id"
 
     id = None
     signup_user = None

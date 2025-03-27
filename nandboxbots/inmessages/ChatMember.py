@@ -14,7 +14,7 @@ class ChatMember:
     __KEY_TAGS = "tags"
     __KEY_ACCOUNT_TYPE = "account_type"
     __KEY_LOGIN_ID = "login_id"
-
+    __KEY_APP_ID = "app_id"
     user = None
     chat = None
     type = None
@@ -23,9 +23,9 @@ class ChatMember:
     tags = []
     account_type = None
     loginId = None
-
+    app_id = None
     def __init__(self, dictionary):
-
+        self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
         chat_member_dict = dictionary[self.__KEY_CHAT_MEMBER] if self.__KEY_CHAT_MEMBER in dictionary.keys() else {}
 
         self.user = User(chat_member_dict.get(self.__KEY_USER, None))
@@ -59,5 +59,6 @@ class ChatMember:
             dictionary[self.__KEY_ACCOUNT_TYPE] = self.account_type
         if self.loginId is not None:
             dictionary[self.__KEY_LOGIN_ID] = self.loginId
-
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
         return json.dumps(dictionary), dictionary

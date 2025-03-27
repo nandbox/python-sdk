@@ -30,7 +30,9 @@ class User:
     short_name = None
     loginId = None
 
-    def __init__(self, dictionary):
+    def __init__(self, dictionary=None):
+        if dictionary is None:
+            dictionary = {}
         # print(str(dictionary))
         self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
         self.name = str(dictionary[self.__KEY_NAME]) if self.__KEY_NAME in dictionary.keys() else None
@@ -40,8 +42,8 @@ class User:
         self.is_bot = bool(dictionary[self.__KEY_IS_BOT]) if self.__KEY_IS_BOT in dictionary.keys() else None
         self.last_seen = str(dictionary[self.__KEY_LAST_SEEN]) if self.__KEY_LAST_SEEN in dictionary.keys() else None
         self.status = str(dictionary[self.__KEY_STATUS]) if self.__KEY_STATUS in dictionary.keys() else None
-        self.profile = str(dictionary[self.__KEY_PROFILE]) if self.__KEY_PROFILE in dictionary.keys() else None
-        self.photo = Photo(dictionary.get(self.__KEY_PHOTO, {}))
+        self.profile = str(dictionary[self.__KEY_PROFILE]) if self.__KEY_PROFILE in dictionary.keys() else "other"
+        self.photo = Photo(dictionary.get(self.__KEY_PHOTO))if self.__KEY_PROFILE in dictionary.keys() else None
         self.short_name = str(dictionary[self.__KEY_SHORT_NAME]) if self.__KEY_SHORT_NAME in dictionary.keys() else None
         self.loginId = int(dictionary[self.__KEY_LOGIN_ID]) if self.__KEY_LOGIN_ID in dictionary.keys() else None
 
@@ -76,3 +78,18 @@ class User:
             dictionary[self.__KEY_LOGIN_ID] = self.loginId
 
         return json.dumps(dictionary), dictionary
+    def to_dict(self):
+        return {
+            self.__KEY_ID: self.id,
+            self.__KEY_NAME: self.name,
+            self.__KEY_VERSION: self.version,
+            self.__KEY_TERMINAL: self.terminal,
+            self.__KEY_TYPE: self.type,
+            self.__KEY_IS_BOT: self.is_bot,
+            self.__KEY_LAST_SEEN: self.last_seen,
+            self.__KEY_STATUS: self.status,
+            self.__KEY_PROFILE: self.profile,
+            self.__KEY_PHOTO: self.photo.to_dict() if self.photo else None,
+            self.__KEY_SHORT_NAME: self.short_name,
+            self.__KEY_LOGIN_ID: self.loginId
+        }

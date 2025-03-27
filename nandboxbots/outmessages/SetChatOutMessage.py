@@ -15,7 +15,7 @@ class SetChatOutMessage(OutMessage):
         _, dictionary = super(SetChatOutMessage, self).to_json_obj()
 
         if self.chat is not None:
-            dictionary[self.__KEY_CHAT] = self.chat
+            dictionary[self.__KEY_CHAT] = self.chat.to_dict()
 
         return json.dumps(dictionary), dictionary
 

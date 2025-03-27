@@ -11,12 +11,14 @@ class WorkflowDetails:
     __KEY_SCREEN_ID = "screen_id"
     __KEY_USER_ID = "user_id"
     __KEY_VAPP_ID = "vapp_id"
+    __KEY_APP_ID = "app_id"
 
     workflowCell = []
     screenId = None
     userId = None
     vappId = None
     reference = None
+    app_id = None
 
     def __init__(self, dictionary):
         workflow_details_dict = dictionary[
@@ -34,6 +36,7 @@ class WorkflowDetails:
         self.screenId = dictionary[self.__KEY_SCREEN_ID] if self.__KEY_SCREEN_ID in dictionary.keys() else None
         self.vappId = dictionary[self.__KEY_VAPP_ID] if self.__KEY_VAPP_ID in dictionary.keys() else None
         self.reference = dictionary[self.__KEY_REFERENCE] if self.__KEY_REFERENCE in dictionary.keys() else None
+        self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
     def to_json_obj(self):
         dictionary = {}
@@ -52,5 +55,6 @@ class WorkflowDetails:
             dictionary[self.__KEY_VAPP_ID] = self.vappId
         if self.reference is not None:
             dictionary[self.__KEY_REFERENCE] = self.reference
-
+        if self.app_id is not None:
+            dictionary[self.__KEY_APP_ID] = self.app_id
         return json.dumps(dictionary), dictionary

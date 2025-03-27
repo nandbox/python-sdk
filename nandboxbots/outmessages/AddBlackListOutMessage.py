@@ -4,12 +4,12 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 
 class AddBlackListOutMessage(OutMessage):
-    __KEY_USERS = "users"
+    __KEY_USERS = "signups"
 
     users = []
 
     def __init__(self):
-        self.method = "addBlacklist"
+        self.method = "addToBlacklist"
 
     def to_json_obj(self):
         _, dictionary = super(AddBlackListOutMessage, self).to_json_obj()
