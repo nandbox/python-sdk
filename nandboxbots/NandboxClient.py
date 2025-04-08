@@ -7,6 +7,7 @@ from threading import Thread, Lock
 from nandboxbots.data.CollectionProduct import CollectionProduct
 from nandboxbots.data.ProductItem import ProductItem
 from nandboxbots.inmessages.GetCollectionProductResponse import GetCollectionProductResponse
+from nandboxbots.inmessages.GetProductItemResponse import GetProductItemResponse
 from nandboxbots.inmessages.ListCollectionItemResponse import ListCollectionItemResponse
 from nandboxbots.inmessages.Pattern import Pattern
 from nandboxbots.inmessages.WhiteList_ak import WhiteList_ak
@@ -688,7 +689,7 @@ class NandboxClient:
                         obj, _ = message.to_json_obj()
                         self.send(obj)
 
-                def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None, tab=None,app_id=None):
+                def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None,app_id=None):
                     updateMessage = UpdateOutMessage()
 
                     updateMessage.message_id = message_id
@@ -696,39 +697,39 @@ class NandboxClient:
                     updateMessage.caption = caption
                     updateMessage.to_user_id = to_user_id
                     updateMessage.chat_id = chat_id
-                    updateMessage.tab = tab
                     updateMessage.app_id=app_id
 
                     obj, _ = updateMessage.to_json_obj()
                     self.send(obj)
 
-                def get_product_detail(self, productId,app_id=None,reference=None):
+                def get_product_detail(self, product_id,app_id=None,reference=None):
                     getProductItem = GetProductItemOutMessage()
-                    getProductItem.id = productId
+                    getProductItem.id = product_id
                     getProductItem.app_id=app_id
                     getProductItem.reference = reference
                     obj, _ = getProductItem.to_json_obj()
                     print(obj)
                     self.send(obj)
 
-                def list_collection_item(self,app_id=None):
+                def list_collection_item(self,app_id=None,reference=None):
                     getCollectionItem = ListCollectionItemOutMessage()
                     getCollectionItem.app_id=app_id
+                    getCollectionItem.reference=reference
                     obj, _ = getCollectionItem.to_json_obj()
                     print(obj)
                     self.send(obj)
 
-                def update_text_msg(self, message_id, text, to_user_id, tab,app_id=None):
-                    self.update_message(message_id=message_id, text=text, to_user_id=to_user_id, tab=tab,app_id=app_id)
+                def update_text_msg(self, message_id, text, to_user_id,app_id=None):
+                    self.update_message(message_id=message_id, text=text, to_user_id=to_user_id, app_id=app_id)
 
-                def update_media_caption(self, message_id, caption, to_user_id, tab,app_id=None):
-                    self.update_message(message_id=message_id, caption=caption, to_user_id=to_user_id, tab=tab,app_id=app_id)
+                def update_media_caption(self, message_id, caption, to_user_id,app_id=None):
+                    self.update_message(message_id=message_id, caption=caption, to_user_id=to_user_id, app_id=app_id)
 
-                def update_chat_msg(self, message_id, text, chat_id, tab,app_id=None):
-                    self.update_message(message_id=message_id, text=text, chat_id=chat_id, tab=tab,app_id=app_id)
+                def update_chat_msg(self, message_id, text, chat_id,app_id=None):
+                    self.update_message(message_id=message_id, text=text, chat_id=chat_id, app_id=app_id)
 
-                def update_chat_media_caption(self, message_id, caption, chat_id, tab,app_id=None):
-                    self.update_message(message_id=message_id, caption=caption, chat_id=chat_id, tab=tab,app_id=app_id)
+                def update_chat_media_caption(self, message_id, caption, chat_id,app_id=None):
+                    self.update_message(message_id=message_id, caption=caption, chat_id=chat_id, app_id=app_id)
 
                 def get_chat_member(self, chat_id, user_id,app_id=None,reference=None):
                     getChatMemberOutMessage = GetChatMemberOutMessage()
@@ -918,10 +919,11 @@ class NandboxClient:
                     obj, _ = setChatOutMessage.to_json_obj()
                     self.send(obj)
 
-                def get_collection_product(self, collectionId,app_id=None):
+                def get_collection_product(self, collection_id,app_id=None,reference=None):
                     getCollectionProduct = GetCollectionProductOutMessage()
-                    getCollectionProduct.id = collectionId
+                    getCollectionProduct.id = collection_id
                     getCollectionProduct.app_id=app_id
+                    getCollectionProduct.reference=reference
                     obj, _ = getCollectionProduct.to_json_obj()
                     self.send(obj)
 
@@ -1037,11 +1039,8 @@ class NandboxClient:
                     self.callback.on_receive(incoming_message)
                     return
                 elif method == "getCollectionProductResponse":
-                    collection_products = GetCollectionProductResponse(
-                        dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
-                    app_id = dictionary["app_id"]
-
-                    self.callback.on_collection_product(collection_products,app_id)
+                    collection_products = GetCollectionProductResponse(dictionary)
+                    self.callback.on_collection_product(collection_products)
                     return
                 elif method == "scheduledMessage":
                     incoming_schedule_message = IncomingMessage(dictionary)
@@ -1060,13 +1059,13 @@ class NandboxClient:
                     self.callback.on_inline_search(inline_search)
                     return
                 elif method == "getProductItemResponse":
-                    productItem = ProductItem(dictionary)
+                    productItem = GetProductItemResponse(dictionary)
                     self.callback.on_product_detail(productItem)
                     return
-                elif method == "listCollectionItemResponse":
-                    collectionItem = ListCollectionItemResponse(dictionary[NandboxClient.InternalWebSocket.KEY_DATA])
+                elif method == "listCollectionsResponse":
+                    collectionItem = ListCollectionItemResponse(dictionary)
                     app_id = dictionary["app_id"]
-                    self.callback.on_collection_item(collectionItem.categories,app_id)
+                    self.callback.on_collection_item(collectionItem,app_id)
                 elif method == "messageAck":
                     msg_ack = MessageAck(dictionary)
                     self.callback.on_message_ack_callback(msg_ack)
@@ -1089,11 +1088,14 @@ class NandboxClient:
                     return
                 elif method == "userDetails":
                     user = User(dictionary[NandboxClient.InternalWebSocket.KEY_USER])
-                    self.callback.on_user_details(user)
+                    app_id = dictionary["app_id"]
+
+                    self.callback.on_user_details(user,app_id)
                     return
                 elif method == "chatDetails":
                     chat = Chat(dictionary[NandboxClient.InternalWebSocket.KEY_CHAT])
-                    self.callback.on_chat_details(chat)
+                    app_id = dictionary["app_id"]
+                    self.callback.on_chat_details(chat,app_id)
                     return
                 elif method == "chatAdministrators":
                     chat_administrators = ChatAdministrators(dictionary)

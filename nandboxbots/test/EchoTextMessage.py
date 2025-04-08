@@ -31,7 +31,8 @@ class nCallBack(nandbox.Callback):
         global napi
         napi = api
         print("Authenticated")
-        napi.delete_white_list_patterns( productId="5121228327126172",app_id="90090684293000559",reference="23423423")
+        napi.get_product_detail(collectionId=900906842989654534,app_id=90090684298937728,reference=None)
+
 
     def on_receive(self, incoming_msg):
         print(CYELLOW + "Message Received" + CEND)
@@ -40,7 +41,8 @@ class nCallBack(nandbox.Callback):
             text = incoming_msg.text
             global napi
             reference = Utils.get_unique_id()
-            napi.send_text(chat_id=chatId, text=text, reference=reference)
+            napi.send_text(chat_id=chatId, text=text, reference=reference,app_id=incoming_msg.app_id)
+
     def on_white_list_pattern(self, white_list_pattern):
         print(white_list_pattern.to_json_obj())
     def on_my_profile(self, user):
@@ -54,7 +56,8 @@ class nCallBack(nandbox.Callback):
     def on_remove_white_list(self,white_list):
         print("here")
         print(white_list.to_json_obj())
-
+    def on_chat_member(self, chat_member):
+        print(chat_member.to_json_onj())
     def on_remove_black_list(self, black_list):
         print("here")
         print(black_list.to_json_obj())
@@ -62,5 +65,6 @@ class nCallBack(nandbox.Callback):
         print(black_list_pattern.to_json_obj())
     def on_product_detail(self,obj):
         print(obj.to_json_obj())
+
 callBack = nCallBack()
 client.connect(config['Token'], callBack)

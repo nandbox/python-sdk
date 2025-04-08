@@ -40,7 +40,7 @@ class Nandbox:
         def on_my_profile(self, user):
             pass
 
-        def on_user_details(self, user):
+        def on_user_details(self, user,app_id):
             pass
 
         def user_stopped_bot(self, user):
@@ -52,7 +52,7 @@ class Nandbox:
         def permanent_url(self, url):
             pass
 
-        def on_chat_details(self, chat):
+        def on_chat_details(self, chat,app_id):
             pass
 
         def on_inline_search(self, inline_search):
@@ -80,7 +80,7 @@ class Nandbox:
 
         def on_create_chat(self, chat):
             pass
-        def on_collection_product(self,collectionProducts,app_id):
+        def on_collection_product(self,collectionProduct):
             pass
         def on_collection_item(self,collectionItem,app_id):
             pass
@@ -88,11 +88,11 @@ class Nandbox:
     class Api:
         def send(self, message):
             pass
-        def list_collection_item(self,app_id):
+        def list_collection_item(self,app_id,reference):
             pass
-        def get_collection_product(self,collectionId,app_id):
+        def get_collection_product(self,collection_id,app_id,reference):
             pass
-        def get_product_detail(self, productId,app_id,reference):
+        def get_product_detail(self, product_id,app_id,reference):
             pass
         def send_text_with_background(self, chat_id, text, bg_color,app_id):
             pass
@@ -146,19 +146,19 @@ class Nandbox:
                            disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
             pass
 
-        def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None, tab=None,app_id=None):
+        def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None,app_id=None):
             pass
 
-        def update_text_msg(self, message_id, text, to_user_id, tab,app_id):
+        def update_text_msg(self, message_id, text, to_user_id, app_id):
             pass
 
-        def update_media_caption(self, message_id, caption, to_user_id, tab,app_id):
+        def update_media_caption(self, message_id, caption, to_user_id, app_id):
             pass
 
-        def update_chat_msg(self, message_id, text, chat_id, tab,app_id):
+        def update_chat_msg(self, message_id, text, chat_id,app_id):
             pass
 
-        def update_chat_media_caption(self, message_id, caption, chat_id, tab,app_id):
+        def update_chat_media_caption(self, message_id, caption, chat_id, app_id):
             pass
 
         def get_user(self, user_id,app_id,reference):

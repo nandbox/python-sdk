@@ -44,8 +44,10 @@ nandboxbots/inmessages/InlineMessageCallback.py
 nandboxbots/inmessages/InlineSearch.py
 nandboxbots/inmessages/ListCollectionItemResponse.py
 nandboxbots/inmessages/MessageAck.py
+nandboxbots/inmessages/Pattern.py
 nandboxbots/inmessages/PermanentUrl.py
 nandboxbots/inmessages/WhiteList.py
+nandboxbots/inmessages/WhiteList_ak.py
 nandboxbots/inmessages/WorkflowDetails.py
 nandboxbots/inmessages/__init__.py
 nandboxbots/outmessages/AddBlackListOutMessage.py

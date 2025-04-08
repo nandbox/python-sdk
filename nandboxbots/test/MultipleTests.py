@@ -540,7 +540,7 @@ class nCallBack(nandbox.Callback):
 
                     outMsg.menu_ref = menuRef
                     outMsg.inline_menus = [inlineMenu]
-
+                    outMsg.app_id=incoming_msg.app_id
                     napi.send(outMsg)
 
                 elif incomingText.casefold() == "3bc".casefold():
@@ -645,7 +645,7 @@ class nCallBack(nandbox.Callback):
 
                     outMsg.chat_id = chatId
                     outMsg.menus = [chatMenu]
-
+                    outMsg.app_id=incoming_msg.app_id
                     napi.send(outMsg)
 
                 else:

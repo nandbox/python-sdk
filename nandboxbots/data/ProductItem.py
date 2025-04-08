@@ -75,14 +75,13 @@ class ProductItem:
     __KEY_STATUS = "status"
     __KEY_OPTION = "option"
     __KEY_APP_ID = "app_id"
-    __KEY_REFERENCE = "ref"
+    __KEY_REFERENCE = "reference"
     __KEY_DATA="data"
 
 
-    def __init__(self, diction):
-        dictionary = diction.get(self.__KEY_DATA,{})
-        self.app_id = diction.get(self.__KEY_APP_ID,dictionary.get(self.__KEY_MAIN_GROUP_ID, None))
-        self.reference = diction.get(self.__KEY_REFERENCE,None)
+    def __init__(self, dictionary):
+        self.app_id = dictionary.get(self.__KEY_APP_ID,dictionary.get(self.__KEY_MAIN_GROUP_ID, None))
+        self.reference = dictionary.get(self.__KEY_REFERENCE,None)
         self.addons = dictionary.get(self.__KEY_ADDONS, None)
         self.description = dictionary.get(self.__KEY_DESCRIPTION, None)
         self.type = dictionary.get(self.__KEY_TYPE, None)

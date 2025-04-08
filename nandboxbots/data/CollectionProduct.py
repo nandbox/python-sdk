@@ -22,6 +22,10 @@ class CollectionProduct:
         self.name = obj.get('name', None)
         self.price = obj.get('price', None)
         self.status = obj.get('status', None)
+        self.app_id = obj.get('app_id', None)
+        self.business_channel_id = obj.get('business_channel_id', None)
+        self.category = obj.get('category', None)
+
         self.image = [Image(img) for img in obj.get('image', [])]
 
     def to_json_obj(self):
@@ -34,6 +38,14 @@ class CollectionProduct:
             obj['price'] = self.price
         if self.status is not None:
             obj['status'] = self.status
+
+        if self.app_id is not None:
+            obj['app_id'] = self.app_id
+        if self.business_channel_id is not None:
+            obj['business_channel_id'] = self.business_channel_id
+        if self.category is not None:
+            obj['category'] = self.category
+
         if self.image is not None:
             obj['image'] = [img.to_json_obj() for img in self.image]
         return obj
