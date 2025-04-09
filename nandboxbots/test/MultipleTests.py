@@ -3,10 +3,8 @@ import json
 import os
 
 from nandboxbots.NandboxClient import NandboxClient
-from nandboxbots.data.Button import Button
 from nandboxbots.data.Data import Data
-from nandboxbots.data.Menu import Menu
-from nandboxbots.data.Row import Row
+
 from nandboxbots.data.WhiteListUser import WhiteListUser
 from nandboxbots.nandbox import Nandbox
 from nandboxbots.outmessages.ArticleOutMessage import ArticleOutMessage
@@ -40,19 +38,6 @@ napi = nandbox.Api()
 CYELLOW = '\033[93m'
 CEND = '\033[0m'
 
-
-def create_button(label, callback, order, bg_color, txt_color, btn_query=None, next_menu_ref=None):
-    btn = Button({})
-
-    btn.button_label = label
-    btn.button_callback = callback
-    btn.button_order = order
-    btn.button_bgcolor = bg_color
-    btn.button_textcolor = txt_color
-    btn.button_query = btn_query
-    btn.next_menu = next_menu_ref
-
-    return btn
 
 
 def handle_incoming_photo_msg(incoming_msg):
@@ -513,141 +498,6 @@ class nCallBack(nandbox.Callback):
 
                 elif incomingText == "getUser".casefold():
                     napi.get_user(incoming_msg.from_.id)
-
-                elif incomingText.casefold() == "1bc".casefold():
-                    outMsg = TextOutMessage()
-                    reference = Utils.get_unique_id()
-                    outMsg.chat_id = chatId
-                    outMsg.reference = reference
-                    outMsg.text = "https://edition.cnn.com/"
-                    outMsg.web_page_preview = OutMessage.WEB_PREVIEW_INSTANCE_VIEW
-                    outMsg.echo = 1
-
-                    oneBtn = create_button(label="Visit a Milestone", callback="oneBtnCBInWebView", order=1,
-                                           bg_color="RED", txt_color="White")
-                    oneBtn.button_icon = "ic_ball_ic_24dp"
-                    oneBtn.button_icon_bgcolor = "#FFFF44"
-
-                    firstRow = Row()
-                    firstRow.row_order = 1
-                    firstRow.buttons = [oneBtn]
-
-                    menuRef = "MAIN_MENU_001"
-
-                    inlineMenu = Menu()
-                    inlineMenu.menu_ref = menuRef
-                    inlineMenu.rows = [firstRow]
-
-                    outMsg.menu_ref = menuRef
-                    outMsg.inline_menus = [inlineMenu]
-                    outMsg.app_id=incoming_msg.app_id
-                    napi.send(outMsg)
-
-                elif incomingText.casefold() == "3bc".casefold():
-                    outMsg = TextOutMessage()
-                    reference = Utils.get_unique_id()
-                    outMsg.chat_id = chatId
-                    outMsg.reference = reference
-                    outMsg.text = "https://edition.cnn.com/"
-                    outMsg.web_page_preview = OutMessage.WEB_PREVIEW_INSTANCE_VIEW
-                    outMsg.echo = 1
-
-                    oneBtn = create_button(label="Visit a Milestone", callback="oneBtnCBInWebView", order=1,
-                                           bg_color="RED", txt_color="White")
-                    secondBtn = create_button(label="Cairo Porto Mall", callback="secondBtn", order=1, bg_color="RED",
-                                              txt_color="White")
-                    thirdBtn = create_button(label="Seven Stars Mall", callback="thirdBtn", order=1, bg_color="RED",
-                                             txt_color="White")
-
-                    oneBtn.button_url = "https://edition.cnn.com/"
-
-                    firstRow = Row()
-                    firstRow.row_order = 1
-                    firstRow.buttons = [oneBtn, secondBtn, thirdBtn]
-
-                    menuRef = "MAIN_MENU_001"
-
-                    inlineMenu = Menu()
-                    inlineMenu.menu_ref = menuRef
-                    inlineMenu.rows = [firstRow]
-
-                    outMsg.menu_ref = menuRef
-                    outMsg.inline_menus = [inlineMenu]
-
-                    napi.send(outMsg)
-
-                elif incomingText.casefold() == "buttonIcon".casefold():
-                    outMsg = TextOutMessage()
-                    outMsg.reference = Utils.get_unique_id()
-                    outMsg.text = "https://edition.cnn.com/"
-                    outMsg.web_page_preview = OutMessage.WEB_PREVIEW_INSTANCE_VIEW
-                    outMsg.echo = 1
-
-                    oneBtn = create_button(label="RSS", callback="oneBtnCBInWebView", order=1, bg_color="RED",
-                                           txt_color="White")
-                    oneBtn.button_icon = "ic_mood_bad_24dp"
-                    oneBtn.button_icon_bgcolor = "#FFFF44"
-
-                    secondBtn = create_button(label="Calendar", callback="secondBtn", order=1, bg_color="RED",
-                                              txt_color="White")
-                    secondBtn.button_icon = "ic_hourglass_full_24dp"
-                    secondBtn.button_icon_bgcolor = "White"
-
-                    thirdBtn = create_button(label="Feed", callback="thirdBtn", order=1, bg_color="RED",
-                                             txt_color="White")
-                    thirdBtn.button_icon = "ic_credit_card_24dp"
-                    thirdBtn.button_icon_bgcolor = "Yellow"
-                    thirdBtn.button_url = "https://edition.cnn.com/"
-
-                    firstRow = Row()
-                    firstRow.row_order = 1
-                    firstRow.buttons = [oneBtn, secondBtn, thirdBtn]
-
-                    menuRef = "MAIN_MENU_001"
-
-                    inlineMenu = Menu()
-                    inlineMenu.menu_ref = menuRef
-                    inlineMenu.rows = [firstRow]
-
-                    outMsg.menu_ref = menuRef
-                    outMsg.inline_menus = [inlineMenu]
-
-                    napi.send(outMsg)
-
-                elif incomingText.casefold() == "3m".casefold():
-                    Utils.set_navigation_button(chatId, "mainMenu", napi)
-
-                    menuBtn1 = create_button(label="مصراوي", callback="mainCB", order=1, bg_color="Gray",
-                                             txt_color="Red")
-                    menuBtn1.button_icon = "ic_smoke_free_24dp"
-                    menuBtn1.button_icon_bgcolor = "#00FFFF"
-
-                    menuBtn2 = create_button(label="Funny", callback="funnyCB", order=1, bg_color="Gray",
-                                             txt_color="Red")
-                    menuBtn2.button_icon = "ic_timeline_24dp"
-
-                    menuBtn3 = create_button(label="Option", callback="optionCB", order=1, bg_color="Gray",
-                                             txt_color="Red")
-                    menuBtn3.button_icon = "ic_pregnant_woman_24dp"
-                    menuBtn3.button_icon_bgcolor = "orange"
-
-                    outMsg = SetChatMenuOutMessage()
-
-                    firstRow = Row()
-                    firstRow.row_order = 1
-                    firstRow.buttons = [menuBtn1, menuBtn2, menuBtn3]
-
-                    menuRef = "mainMenu"
-
-                    chatMenu = Menu()
-                    chatMenu.menu_ref = menuRef
-                    chatMenu.rows = [firstRow]
-
-                    outMsg.chat_id = chatId
-                    outMsg.menus = [chatMenu]
-                    outMsg.app_id=incoming_msg.app_id
-                    napi.send(outMsg)
-
                 else:
                     napi.send_text(chat_id=chatId, text=incomingText, reference=Utils.get_unique_id())
             if incoming_msg.from_.id == TOKEN.split(":")[0]:

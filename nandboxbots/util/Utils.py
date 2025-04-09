@@ -1,6 +1,5 @@
 import uuid
 
-from nandboxbots.data.Button import Button
 from nandboxbots.outmessages.SetNavigationButtonOutMessage import SetNavigationButtonOutMessage
 
 
@@ -14,14 +13,14 @@ def format_date(now):
 
 
 def set_navigation_button(chat_id, next_menu, api):
-    btn = Button({})
+    btn = {}
 
     btn.next_menu = next_menu
 
     nav_msg = SetNavigationButtonOutMessage()
     nav_msg.chat_id = chat_id
     nav_msg.navigation_buttons = []
-    _, btn_dict = btn.to_json_obj()
+    _, btn_dict = btn
     nav_msg.navigation_buttons.append(btn_dict)
     msg, _ = nav_msg.to_json_obj()
 
