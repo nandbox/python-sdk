@@ -8,6 +8,7 @@ from nandboxbots.data.Chat import Chat
 from nandboxbots.data.Data import Data
 from nandboxbots.data.User import User
 from nandboxbots.nandbox import Nandbox
+from nandboxbots.outmessages.SetNavigationButtonOutMessage import SetNavigationButtonOutMessage
 from nandboxbots.util import Utils
 
 CONFIG_FILE = "../../config.json"
@@ -31,7 +32,8 @@ class nCallBack(nandbox.Callback):
         global napi
         napi = api
         print("Authenticated")
-        napi.get_product_detail(collectionId=900906842989654534,app_id=90090684298937728,reference=None)
+        nv = SetNavigationButtonOutMessage()
+        nv.navigation_button = "Menu ID"
 
 
     def on_receive(self, incoming_msg):

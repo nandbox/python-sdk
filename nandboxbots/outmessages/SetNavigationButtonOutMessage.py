@@ -4,9 +4,9 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 
 class SetNavigationButtonOutMessage(OutMessage):
-    __KEY_NAVIGATION_BUTTONS = "navigation_buttons"
+    __KEY_NAVIGATION_BUTTONS = "navigation_button"
 
-    navigation_buttons = []
+    navigation_button = ""
 
     def __init__(self):
         self.method = "setNavigationButton"
@@ -14,8 +14,8 @@ class SetNavigationButtonOutMessage(OutMessage):
     def to_json_obj(self):
         _, dictionary = super(SetNavigationButtonOutMessage, self).to_json_obj()
 
-        if self.navigation_buttons is not None:
-            dictionary[self.__KEY_NAVIGATION_BUTTONS] = self.navigation_buttons
+        if self.navigation_button is not None:
+            dictionary[self.__KEY_NAVIGATION_BUTTONS] = self.navigation_button
 
         return json.dumps(dictionary), dictionary
     
