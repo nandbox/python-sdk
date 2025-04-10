@@ -50,7 +50,7 @@ class nCallBack(nandbox.Callback):
 
         global napi
         reference = Utils.get_unique_id()
-        napi.set_workflow(userId, screenId, appId, workflow_cells, reference, False)
+        napi.update_menu_cell(userId, screenId, appId, workflow_cells, reference, False)
 
 
 callBack = nCallBack()

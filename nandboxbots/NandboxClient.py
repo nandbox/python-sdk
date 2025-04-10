@@ -66,7 +66,7 @@ from nandboxbots.outmessages.UnbanChatMember import UnbanChatMember
 from nandboxbots.outmessages.UpdateOutMessage import UpdateOutMessage
 from nandboxbots.outmessages.VideoOutMessage import VideoOutMessage
 from nandboxbots.outmessages.VoiceOutMessage import VoiceOutMessage
-from nandboxbots.outmessages.SetWorkflowOutMessage import SetWorkflowOutMessage
+from nandboxbots.outmessages.UpdateMenuCell import UpdateMenuCell
 from nandboxbots.util import Utils
 
 CGREEN = '\033[92m'
@@ -958,17 +958,17 @@ class NandboxClient:
                     obj, _ = getWhiteListOutMessage.to_json_obj()
                     self.send(obj)
 
-                def set_workflow(self, user_id, screen_id, app_id, workflow_cells, reference, disable_notification):
-                    workflowMsg = SetWorkflowOutMessage()
+                def update_menu_cell(self, user_id, menu_id, app_id, cells, reference, disable_notification):
+                    updateMenuCell = UpdateMenuCell()
 
-                    workflowMsg.userId = user_id
-                    workflowMsg.screenId = screen_id
-                    workflowMsg.appId = app_id
-                    workflowMsg.workflowCell = workflow_cells
-                    workflowMsg.reference = reference
-                    workflowMsg.disableNotification = disable_notification
+                    updateMenuCell.userId = user_id
+                    updateMenuCell.menuId = menu_id
+                    updateMenuCell.appId = app_id
+                    updateMenuCell.cells = cells
+                    updateMenuCell.reference = reference
+                    updateMenuCell.disableNotification = disable_notification
 
-                    obj, _ = workflowMsg.to_json_obj()
+                    obj, _ = updateMenuCell.to_json_obj()
                     self.send(obj)
 
                 def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference,app_id=None):

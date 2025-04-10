@@ -90,7 +90,7 @@ nandboxbots/outmessages/SetChatOutMessage.py
 nandboxbots/outmessages/SetMyProfileOutMessage.py
 nandboxbots/outmessages/SetNavigationButtonOutMessage.py
 nandboxbots/outmessages/SetWorkflowActionOutMessage.py
-nandboxbots/outmessages/SetWorkflowOutMessage.py
+nandboxbots/outmessages/UpdateMenuCell.py
 nandboxbots/outmessages/TextOutMessage.py
 nandboxbots/outmessages/UnbanChatMember.py
 nandboxbots/outmessages/UpdateOutMessage.py

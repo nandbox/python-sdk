@@ -227,7 +227,7 @@ class Nandbox:
         def delete_white_list_patterns(self, chat_id, pattern,app_id,reference):
             pass
 
-        def set_workflow(self, user_id, screen_id, app_id, workflow_cells, reference, disable_notification):
+        def update_menu_cell(self, user_id, menu_id, app_id, cells, reference, disable_notification):
             pass
 
         def set_workflow_action(self, user_id, vapp_id, screen_id, next_screen, reference,app_id):
