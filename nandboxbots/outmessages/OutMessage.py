@@ -21,6 +21,7 @@ class OutMessage:
     __KEY_CHAT_SETTINGS = "chat_settings"
     __KEY_STYLE = "style"
     __KEY_SCHEDULE_DATE = "schedule_date"
+    __KEY_TAGS ="tags"
     __KEY_APP_ID = "app_id"
 
 
@@ -37,6 +38,7 @@ class OutMessage:
     inline_menus = None
     chat_settings = None
     schedule_date = None
+    tags=None
     app_id = None
 
 
@@ -69,6 +71,8 @@ class OutMessage:
             obj[self.__KEY_CHAT_SETTINGS] = self.chat_settings
         if self.schedule_date is not None:
             obj[self.__KEY_SCHEDULE_DATE] = self.schedule_date
+        if self.tags is not None:
+            obj[self.__KEY_TAGS] = self.tags
         if self.app_id is not None:
             obj[self.__KEY_APP_ID] = self.app_id
 

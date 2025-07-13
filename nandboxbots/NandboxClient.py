@@ -271,7 +271,7 @@ class NandboxClient:
 
                 @staticmethod
                 def prepare_out_message(message, chat_id, reference, reply_to_message_id, to_user_id,
-                                        web_page_preview, disable_notification, caption, chat_settings, tab,app_id=None):
+                                        web_page_preview, disable_notification, caption, chat_settings, tab,tags=None,app_id=None):
                     message.chat_id = chat_id
                     message.reference = reference
 
@@ -291,12 +291,14 @@ class NandboxClient:
                         message.tab = tab
                     if app_id is not None:
                         message.app_id = app_id
+                    if tags is not None:
+                        message.tags = tags
 
                     return message
 
                 def send_text(self, chat_id, text, reference, reply_to_message_id=None, to_user_id=None,
                               web_page_preview=None, disable_notification=None, chat_settings=None, bg_color=None,
-                              tab=None,app_id=None):
+                              tab=None,tags=None,app_id=None):
 
                     if (chat_id is not None and
                             text is not None and
@@ -310,7 +312,7 @@ class NandboxClient:
                             tab is None):
                         reference = Utils.get_unique_id()
 
-                        self.send_text(chat_id=chat_id, text=text, reference=reference,app_id=app_id)
+                        self.send_text(chat_id=chat_id, text=text, reference=reference,tags=tags,app_id=app_id)
                     else:
                         message = TextOutMessage()
 
@@ -323,7 +325,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=None,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab,app_id=app_id)
+                                                                 tab=tab,tags=tags,app_id=app_id)
 
                         message.method = "sendMessage"
                         message.text = text
@@ -332,13 +334,13 @@ class NandboxClient:
                         obj, _ = message.to_json_obj()
                         self.send(obj)
 
-                def send_text_with_background(self, chat_id, text, bg_color,app_id=None):
+                def send_text_with_background(self, chat_id, text, bg_color,tags=None,app_id=None):
                     reference = Utils.get_unique_id()
-                    self.send_text(chat_id=chat_id, text=text, reference=reference, bg_color=bg_color,app_id=app_id)
+                    self.send_text(chat_id=chat_id, text=text, reference=reference, bg_color=bg_color,tags=tags,app_id=app_id)
 
                 def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                               tab=None,app_id=None):
+                               tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             photo_file_id is not None and
                             caption is not None and
@@ -353,7 +355,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_photo(chat_id=chat_id, photo_file_id=photo_file_id, reference=reference,
-                                        caption=caption,app_id=app_id)
+                                        caption=caption,tags=tags,app_id=app_id)
                     else:
                         message = PhotoOutMessage()
                         message = nandboxAPI.prepare_out_message(message=message,
@@ -365,7 +367,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab,app_id=app_id)
+                                                                 tab=tab,tags=tags,app_id=app_id)
                         message.method = "sendPhoto"
                         message.photo = photo_file_id
 
@@ -374,7 +376,7 @@ class NandboxClient:
 
                 def send_contact(self, chat_id, phone_number, name, reference, reply_to_message_id=None,
                                  to_user_id=None, web_page_preview=None, disable_notification=None, chat_settings=None,
-                                 tab=None,app_id=None):
+                                 tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             phone_number is not None and
                             name is not None and
@@ -387,7 +389,7 @@ class NandboxClient:
                             tab is None):
                         reference = Utils.get_unique_id()
 
-                        self.send_contact(chat_id=chat_id, phone_number=phone_number, name=name, reference=reference,app_id=app_id)
+                        self.send_contact(chat_id=chat_id, phone_number=phone_number, name=name, reference=reference,tags=tags,app_id=app_id)
                     else:
                         contactOutMessage = ContactOutMessage()
                         contactOutMessage = nandboxAPI.prepare_out_message(message=contactOutMessage,
@@ -399,7 +401,7 @@ class NandboxClient:
                                                                            disable_notification=disable_notification,
                                                                            chat_settings=chat_settings,
                                                                            tab=tab,
-                                                                           caption=None,app_id=app_id)
+                                                                           caption=None,tags=tags,app_id=app_id)
                         contactOutMessage.method = "sendContact"
                         contactOutMessage.phone_number = phone_number
                         contactOutMessage.name = name
@@ -409,7 +411,7 @@ class NandboxClient:
 
                 def send_video(self, chat_id, video_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                               tab=None,app_id=None):
+                               tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             video_file_id is not None and
                             caption is not None and
@@ -424,7 +426,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_video(chat_id=chat_id, video_file_id=video_file_id, reference=reference,
-                                        caption=caption,app_id=app_id)
+                                        caption=caption,tags=tags,app_id=app_id)
 
                     else:
                         message = VideoOutMessage()
@@ -438,7 +440,7 @@ class NandboxClient:
                                                            disable_notification=disable_notification,
                                                            caption=caption,
                                                            chat_settings=chat_settings,
-                                                           tab=tab,app_id=app_id)
+                                                           tab=tab,tags=tags,app_id=app_id)
                         message.method = "sendVideo"
                         message.video = video_file_id
 
@@ -447,7 +449,7 @@ class NandboxClient:
 
                 def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, performer=None,
-                               title=None, chat_settings=None, tab=None,app_id=None):
+                               title=None, chat_settings=None, tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             audio_file_id is not None and
                             caption is not None and
@@ -464,7 +466,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_audio(chat_id=chat_id, audio_file_id=audio_file_id, reference=reference,
-                                        caption=caption,app_id=app_id)
+                                        caption=caption,tags=tags,app_id=app_id)
 
                     else:
                         message = AudioOutMessage()
@@ -478,7 +480,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab,app_id=app_id)
+                                                                 tab=tab,tags=tags,app_id=app_id)
 
                         message.method = "sendAudio"
                         message.performer = performer
@@ -490,7 +492,7 @@ class NandboxClient:
 
                 def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                web_page_preview=None, disable_notification=None, caption=None, size=None,
-                               chat_settings=None, tab=None,app_id=None):
+                               chat_settings=None, tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             voice_file_id is not None and
                             caption is not None and
@@ -506,7 +508,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_voice(chat_id=chat_id, voice_file_id=voice_file_id, reference=reference,
-                                        caption=caption,app_id=app_id)
+                                        caption=caption,tags=tags,app_id=app_id)
 
                     else:
                         message = VoiceOutMessage()
@@ -520,7 +522,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab,app_id=app_id)
+                                                                 tab=tab,tags=tags,app_id=app_id)
 
                         message.method = "sendVoice"
                         message.size = size
@@ -531,7 +533,7 @@ class NandboxClient:
 
                 def send_document(self, chat_id, document_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                   web_page_preview=None, disable_notification=None, caption=None, name=None, size=None,
-                                  chat_settings=None, tab=None,app_id=None):
+                                  chat_settings=None, tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             document_file_id is not None and
                             caption is not None and
@@ -548,7 +550,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_document(chat_id=chat_id, document_file_id=document_file_id, reference=reference,
-                                           caption=caption,app_id=app_id)
+                                           caption=caption,tags=tags,app_id=app_id)
 
                     else:
                         message = DocumentOutMessage()
@@ -562,7 +564,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab,app_id=app_id)
+                                                                 tab=tab,tags=tags,app_id=app_id)
 
                         message.method = "sendDocument"
                         message.document = document_file_id
@@ -574,7 +576,7 @@ class NandboxClient:
 
                 def send_location(self, chat_id, latitude, longitude, reference, reply_to_message_id=None,
                                   to_user_id=None, web_page_preview=None, disable_notification=None, name=None,
-                                  details=None, chat_settings=None, tab=None,app_id=None):
+                                  details=None, chat_settings=None, tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             latitude is not None and
                             longitude is not None and
@@ -590,7 +592,7 @@ class NandboxClient:
 
                         reference = Utils.get_unique_id()
 
-                        self.send_location(chat_id=chat_id, latitude=latitude, longitude=longitude, reference=reference,app_id=app_id)
+                        self.send_location(chat_id=chat_id, latitude=latitude, longitude=longitude, reference=reference,tags=tags,app_id=app_id)
 
                     else:
                         message = LocationOutMessage()
@@ -604,7 +606,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  chat_settings=chat_settings,
                                                                  tab=tab,
-                                                                 caption=None,app_id=app_id)
+                                                                 caption=None,tags=tags,app_id=app_id)
 
                         message.method = "sendLocation"
                         message.name = name
@@ -615,7 +617,7 @@ class NandboxClient:
 
                 def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                              web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                             tab=None,app_id=None):
+                             tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             gif_file_id is not None and
                             caption is not None and
@@ -630,7 +632,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_photo(chat_id=chat_id, photo_file_id=gif_file_id, reference=reference,
-                                        caption=caption,app_id=app_id)
+                                        caption=caption,tags=tags,app_id=app_id)
 
                     else:
                         message = PhotoOutMessage()
@@ -644,7 +646,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab,app_id=app_id)
+                                                                 tab=tab,tags=tags,app_id=app_id)
 
                         message.method = "sendPhoto"
                         message.photo = gif_file_id
@@ -654,7 +656,7 @@ class NandboxClient:
 
                 def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                                    web_page_preview=None, disable_notification=None, caption=None, chat_settings=None,
-                                   tab=None,app_id=None):
+                                   tab=None,tags=None,app_id=None):
                     if (chat_id is not None and
                             gif_file_id is not None and
                             caption is not None and
@@ -669,7 +671,7 @@ class NandboxClient:
                         reference = Utils.get_unique_id()
 
                         self.send_video(chat_id=chat_id, video_file_id=gif_file_id, reference=reference,
-                                        caption=caption,app_id=app_id)
+                                        caption=caption,tags=tags,app_id=app_id)
                     else:
                         message = VideoOutMessage()
 
@@ -682,7 +684,7 @@ class NandboxClient:
                                                                  disable_notification=disable_notification,
                                                                  caption=caption,
                                                                  chat_settings=chat_settings,
-                                                                 tab=tab,app_id=app_id)
+                                                                 tab=tab,tags=tags,app_id=app_id)
                         message.method = "sendVideo"
                         message.video = gif_file_id
 

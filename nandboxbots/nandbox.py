@@ -94,56 +94,56 @@ class Nandbox:
             pass
         def get_product_detail(self, product_id,app_id,reference):
             pass
-        def send_text_with_background(self, chat_id, text, bg_color,app_id):
+        def send_text_with_background(self, chat_id, text, bg_color,tags,app_id):
             pass
 
         def send_text(self, chat_id, text, reference, reply_to_message_id=None, to_user_id=None, web_page_preview=None,
-                      disable_notification=None, chat_settings=None, bg_color=None, tab=None,app_id=None):
+                      disable_notification=None, chat_settings=None, bg_color=None, tab=None,tags=None,app_id=None):
             pass
 
         def send_photo(self, chat_id, photo_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
-                       disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
+                       disable_notification=None, caption=None, chat_settings=None, tab=None,tags=None,app_id=None):
             pass
 
         def send_video(self, chat_id, video_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
-                       disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
+                       disable_notification=None, caption=None, chat_settings=None, tab=None,tags=None,app_id=None):
             pass
 
         def send_audio(self, chat_id, audio_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
                        disable_notification=None, caption=None, performer=None, title=None, chat_settings=None,
-                       tab=None,app_id=None):
+                       tab=None,tags=None,app_id=None):
             pass
 
         def send_contact(self, chat_id, phone_number, name, reference, reply_to_message_id=None, to_user_id=None,
-                         web_page_preview=None, disable_notification=None, chat_settings=None, tab=None,app_id=None):
+                         web_page_preview=None, disable_notification=None, chat_settings=None, tab=None,tags=None,app_id=None):
             pass
 
         def send_voice(self, chat_id, voice_file_id, reference, reply_to_message_id=None, to_user_id=None,
                        web_page_preview=None,
-                       disable_notification=None, caption=None, size=None, chat_settings=None, tab=None,app_id=None):
+                       disable_notification=None, caption=None, size=None, chat_settings=None, tab=None,tags=None,app_id=None):
             pass
 
         def send_document(self, chat_id, document_file_id, reference, reply_to_message_id=None, to_user_id=None,
                           web_page_preview=None,
-                          disable_notification=None, caption=None, name=None, size=None, chat_settings=None, tab=None,app_id=None):
+                          disable_notification=None, caption=None, name=None, size=None, chat_settings=None, tab=None,tags=None,app_id=None):
             pass
 
         def send_location(self, chat_id, latitude, longitude, reference, reply_to_message_id=None, to_user_id=None,
                           web_page_preview=None, disable_notification=None, name=None, details=None, chat_settings=None,
-                          tab=None,app_id=None):
+                          tab=None,tags=None,app_id=None):
             pass
 
         def send_gif(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                      web_page_preview=None,
-                     disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
+                     disable_notification=None, caption=None, chat_settings=None, tab=None,tags=None,app_id=None):
             pass
 
         def send_gif_video(self, chat_id, gif_file_id, reference, reply_to_message_id=None, to_user_id=None,
                            web_page_preview=None,
-                           disable_notification=None, caption=None, chat_settings=None, tab=None,app_id=None):
+                           disable_notification=None, caption=None, chat_settings=None, tab=None,tags=None,app_id=None):
             pass
 
         def update_message(self, message_id, text=None, caption=None, to_user_id=None, chat_id=None,app_id=None):
