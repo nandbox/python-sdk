@@ -10,6 +10,7 @@ from nandboxbots.data.User import User
 from nandboxbots.nandbox import Nandbox
 from nandboxbots.outmessages.SetNavigationButtonOutMessage import SetNavigationButtonOutMessage
 from nandboxbots.util import Utils
+import threading
 
 CONFIG_FILE = "../../config.json"
 
@@ -43,6 +44,7 @@ class nCallBack(nandbox.Callback):
             text = incoming_msg.text
             global napi
             reference = Utils.get_unique_id()
+            print("Current thread:", threading.current_thread())
             napi.send_text(chat_id=chatId, text=text, reference=reference,app_id=incoming_msg.app_id)
 
     def on_white_list_pattern(self, white_list_pattern):

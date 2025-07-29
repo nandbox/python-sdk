@@ -68,6 +68,8 @@ from nandboxbots.outmessages.VideoOutMessage import VideoOutMessage
 from nandboxbots.outmessages.VoiceOutMessage import VoiceOutMessage
 from nandboxbots.outmessages.UpdateMenuCell import UpdateMenuCell
 from nandboxbots.util import Utils
+import concurrent.futures
+
 
 CGREEN = '\033[92m'
 CRED = '\033[91m'
@@ -75,6 +77,8 @@ CEND = '\033[0m'
 
 
 class NandboxClient:
+
+
     BOT_ID = None
     nandboxClient = None
     webSocketClient = None
@@ -86,6 +90,8 @@ class NandboxClient:
     _uri = None
     KEY_METHOD = "method"
     KEY_ERROR = "error"
+    MAX_POOL_SIZE = None
+    message_thread_pool = None
 
     config = None
     lock = Lock()
@@ -94,6 +100,8 @@ class NandboxClient:
     def __init__(self, config):
         self.config = config
         self._uri = self.config["URI"]
+        self.MAX_POOL_SIZE = self.config["MAX_POOL_SIZE"] if "MAX_POOL_SIZE" in self.config else 10
+        self.message_thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_POOL_SIZE)
 
     @staticmethod
     def init(config):
@@ -114,7 +122,7 @@ class NandboxClient:
         return NandboxClient.nandboxClient
 
     def connect(self, token, callback):
-        internalWebSocket = self.InternalWebSocket(token=token, callback=callback)
+        internalWebSocket = self.InternalWebSocket(token=token, callback=callback,message_thread_pool=self.message_thread_pool)
         # websocket.enableTrace(True)
         NandboxClient.webSocketClient = websocket.WebSocketApp(self._uri, on_error=internalWebSocket.on_error,
                                                                on_close=internalWebSocket.on_close,
@@ -142,7 +150,7 @@ class NandboxClient:
         KEY_ID = "ID"
         KEY_REFERENCE = "reference"
         KEY_DATA = "data"
-
+        message_thread_pool = None
         callback = None
         session = None
         token = None
@@ -178,9 +186,10 @@ class NandboxClient:
 
         pingThread = None
 
-        def __init__(self, token, callback):
+        def __init__(self, token, callback,message_thread_pool):
             self.token = token
             self.callback = callback
+            self.message_thread_pool=message_thread_pool
 
         def on_close(self, close_status_code, close_msg):
             NandboxClient.log.info("INTERNAL: ONCLOSE")
@@ -1003,6 +1012,13 @@ class NandboxClient:
             NandboxClient.InternalWebSocket.send(json.dumps(auth_object))
 
         def on_message(self, ws, message):
+            try:
+                self.message_thread_pool.submit(self._handle_message, ws, message)
+            except Exception as e:
+                NandboxClient.log.error(f"Error handling message: {e}")
+                print(f"{CRED}Error handling message: {e}{CEND}")
+        def _handle_message(self, ws, message):
+
             NandboxClient.log.info("INTERNAL: ONMESSAGE")
 
             dictionary = json.loads(message)
@@ -1154,6 +1170,7 @@ class NandboxClient:
                 error = str(dictionary[NandboxClient.KEY_ERROR])
                 NandboxClient.log.error(f"Error : {error}")
                 print(f"Error : {error}")
+
 
         def on_error(self, ws, error):
             print(ws, error)

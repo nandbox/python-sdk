@@ -1,56 +1,26 @@
-2025-03-26 10:57:34,258 INFO  NandboxClient:1006 - 2025/03/26 10:57:34 <<<<<<<<< Update Obj : {"date":1742979454340,"is_nandbox":0,"method":"TOKEN_AUTH_OK","name":"changed name","ID":"90091783822039252","id":"90091783822039252","localId":111111171,"email":null,"token":"90091783822039252:0:DMDzxIveNFaGbI48D4I14NqGdx5WcH"}
-2025-03-26 10:57:34,264 INFO  NandboxClient:1013 - method: TOKEN_AUTH_OK
-2025-03-26 10:57:34,265 INFO  NandboxClient:1016 - Authenticated!
-2025-03-26 10:57:34,266 INFO  NandboxClient:1020 - ====> Your Bot Id is : 90091783822039252
-2025-03-26 10:57:34,267 INFO  NandboxClient:1021 - ====> Your Bot Name is : changed name
-2025-03-26 10:57:34,272 INFO  NandboxClient:268 - 2025/03/26 10:57:34 >>>>>> Sending Message : {"method": "getProductItem", "reference": "23423423", "app_id": "90090684293000559", "id": "5121228327126172", "ref": "23423423"}
-2025-03-26 10:57:34,348 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:57:34,349 INFO  NandboxClient:1006 - 2025/03/26 10:57:34 <<<<<<<<< Update Obj : {"method":"PONG"}
-2025-03-26 10:57:34,349 INFO  NandboxClient:1013 - method: PONG
-2025-03-26 10:57:34,366 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:57:34,368 INFO  NandboxClient:1006 - 2025/03/26 10:57:34 <<<<<<<<< Update Obj : {"ref":"23423423","data":{"exception":null,"addons":null,"description":null,"slot":null,"type":"0","p_code":5121,"price":100.0,"vendor":"0","variant":null,"calendar_type":null,"id":"5121228327126172","attribute":{"cost":0,"quantity":0,"tax":0,"message":"gfsdgds","barcode":""},"tag":null,"sku":"","keyword":null,"bundle":null,"calendar":null,"image":[{"width":512,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684293000559_c2218206dc6367864891a6e975ac8452d92192f8b6a56d9e9a4bfe87feec436a.png?temp_url_sig=1367430eb325b96341c5c1494a8f6087d8ea9f68&temp_url_expires=2044796799","height":340}],"compare_at_price":0.00000,"main_group_id":90090684293000559,"collection":[],"params":null,"server_id":"b1","version":"12iA5n","group_id":90090684293000559,"parent_id":"0","name":"gfds","service_profile_id":"9","style":"01","location":null,"created_date":"2024-10-10 00:00:00","updated_date":{},"category":"product","status":"N","option":null},"method":"getProductItemResponse"}
-2025-03-26 10:57:34,369 INFO  NandboxClient:1013 - method: getProductItemResponse
-2025-03-26 10:57:57,513 INFO  NandboxClient:255 - INTERNAL: ONCONNECT
-2025-03-26 10:57:57,582 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:57:57,583 INFO  NandboxClient:1006 - 2025/03/26 10:57:57 <<<<<<<<< Update Obj : {"date":1742979477667,"is_nandbox":0,"method":"TOKEN_AUTH_OK","name":"changed name","ID":"90091783822039252","id":"90091783822039252","localId":111111171,"email":null,"token":"90091783822039252:0:DMDzxIveNFaGbI48D4I14NqGdx5WcH"}
-2025-03-26 10:57:57,584 INFO  NandboxClient:1013 - method: TOKEN_AUTH_OK
-2025-03-26 10:57:57,584 INFO  NandboxClient:1016 - Authenticated!
-2025-03-26 10:57:57,584 INFO  NandboxClient:1020 - ====> Your Bot Id is : 90091783822039252
-2025-03-26 10:57:57,585 INFO  NandboxClient:1021 - ====> Your Bot Name is : changed name
-2025-03-26 10:57:57,586 INFO  NandboxClient:268 - 2025/03/26 10:57:57 >>>>>> Sending Message : {"method": "getProductItem", "reference": "23423423", "app_id": "90090684293000559", "id": "5121228327126172", "ref": "23423423"}
-2025-03-26 10:57:57,658 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:57:57,658 INFO  NandboxClient:1006 - 2025/03/26 10:57:57 <<<<<<<<< Update Obj : {"method":"PONG"}
-2025-03-26 10:57:57,659 INFO  NandboxClient:1013 - method: PONG
-2025-03-26 10:57:57,668 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:57:57,669 INFO  NandboxClient:1006 - 2025/03/26 10:57:57 <<<<<<<<< Update Obj : {"ref":"23423423","data":{"exception":null,"addons":null,"description":null,"slot":null,"type":"0","p_code":5121,"price":100.0,"vendor":"0","variant":null,"calendar_type":null,"id":"5121228327126172","attribute":{"cost":0,"quantity":0,"tax":0,"message":"gfsdgds","barcode":""},"tag":null,"sku":"","keyword":null,"bundle":null,"calendar":null,"image":[{"width":512,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684293000559_c2218206dc6367864891a6e975ac8452d92192f8b6a56d9e9a4bfe87feec436a.png?temp_url_sig=1367430eb325b96341c5c1494a8f6087d8ea9f68&temp_url_expires=2044796799","height":340}],"compare_at_price":0.00000,"main_group_id":90090684293000559,"collection":[],"params":null,"server_id":"b1","version":"12iA5n","group_id":90090684293000559,"parent_id":"0","name":"gfds","service_profile_id":"9","style":"01","location":null,"created_date":"2024-10-10 00:00:00","updated_date":{},"category":"product","status":"N","option":null},"method":"getProductItemResponse"}
-2025-03-26 10:57:57,670 INFO  NandboxClient:1013 - method: getProductItemResponse
-2025-03-26 10:58:27,029 ERROR  NandboxClient:1156 - INTERNAL: ONERROR
-2025-03-26 10:58:27,031 ERROR  NandboxClient:1158 - Error due to :  On : 2025/03/26 10:58:27
-2025-03-26 10:58:32,437 INFO  NandboxClient:255 - INTERNAL: ONCONNECT
-2025-03-26 10:58:32,508 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:58:32,508 INFO  NandboxClient:1006 - 2025/03/26 10:58:32 <<<<<<<<< Update Obj : {"date":1742979512593,"is_nandbox":0,"method":"TOKEN_AUTH_OK","name":"changed name","ID":"90091783822039252","id":"90091783822039252","localId":111111171,"email":null,"token":"90091783822039252:0:DMDzxIveNFaGbI48D4I14NqGdx5WcH"}
-2025-03-26 10:58:32,509 INFO  NandboxClient:1013 - method: TOKEN_AUTH_OK
-2025-03-26 10:58:32,509 INFO  NandboxClient:1016 - Authenticated!
-2025-03-26 10:58:32,509 INFO  NandboxClient:1020 - ====> Your Bot Id is : 90091783822039252
-2025-03-26 10:58:32,510 INFO  NandboxClient:1021 - ====> Your Bot Name is : changed name
-2025-03-26 10:58:32,511 INFO  NandboxClient:268 - 2025/03/26 10:58:32 >>>>>> Sending Message : {"method": "getProductItem", "reference": "23423423", "app_id": "90090684293000559", "id": "5121228327126172", "ref": "23423423"}
-2025-03-26 10:58:32,588 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:58:32,590 INFO  NandboxClient:1006 - 2025/03/26 10:58:32 <<<<<<<<< Update Obj : {"method":"PONG"}
-2025-03-26 10:58:32,591 INFO  NandboxClient:1013 - method: PONG
-2025-03-26 10:58:32,596 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:58:32,598 INFO  NandboxClient:1006 - 2025/03/26 10:58:32 <<<<<<<<< Update Obj : {"ref":"23423423","data":{"exception":null,"addons":null,"description":null,"slot":null,"type":"0","p_code":5121,"price":100.0,"vendor":"0","variant":null,"calendar_type":null,"id":"5121228327126172","attribute":{"cost":0,"quantity":0,"tax":0,"message":"gfsdgds","barcode":""},"tag":null,"sku":"","keyword":null,"bundle":null,"calendar":null,"image":[{"width":512,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684293000559_c2218206dc6367864891a6e975ac8452d92192f8b6a56d9e9a4bfe87feec436a.png?temp_url_sig=1367430eb325b96341c5c1494a8f6087d8ea9f68&temp_url_expires=2044796799","height":340}],"compare_at_price":0.00000,"main_group_id":90090684293000559,"collection":[],"params":null,"server_id":"b1","version":"12iA5n","group_id":90090684293000559,"parent_id":"0","name":"gfds","service_profile_id":"9","style":"01","location":null,"created_date":"2024-10-10 00:00:00","updated_date":{},"category":"product","status":"N","option":null},"method":"getProductItemResponse"}
-2025-03-26 10:58:32,599 INFO  NandboxClient:1013 - method: getProductItemResponse
-2025-03-26 10:59:14,352 INFO  NandboxClient:255 - INTERNAL: ONCONNECT
-2025-03-26 10:59:14,420 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:59:14,421 INFO  NandboxClient:1006 - 2025/03/26 10:59:14 <<<<<<<<< Update Obj : {"date":1742979554505,"is_nandbox":0,"method":"TOKEN_AUTH_OK","name":"changed name","ID":"90091783822039252","id":"90091783822039252","localId":111111171,"email":null,"token":"90091783822039252:0:DMDzxIveNFaGbI48D4I14NqGdx5WcH"}
-2025-03-26 10:59:14,421 INFO  NandboxClient:1013 - method: TOKEN_AUTH_OK
-2025-03-26 10:59:14,421 INFO  NandboxClient:1016 - Authenticated!
-2025-03-26 10:59:14,421 INFO  NandboxClient:1020 - ====> Your Bot Id is : 90091783822039252
-2025-03-26 10:59:14,422 INFO  NandboxClient:1021 - ====> Your Bot Name is : changed name
-2025-03-26 10:59:14,423 INFO  NandboxClient:268 - 2025/03/26 10:59:14 >>>>>> Sending Message : {"method": "getProductItem", "reference": "23423423", "app_id": "90090684293000559", "id": "5121228327126172", "ref": "23423423"}
-2025-03-26 10:59:14,494 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:59:14,494 INFO  NandboxClient:1006 - 2025/03/26 10:59:14 <<<<<<<<< Update Obj : {"method":"PONG"}
-2025-03-26 10:59:14,494 INFO  NandboxClient:1013 - method: PONG
-2025-03-26 10:59:14,502 INFO  NandboxClient:1002 - INTERNAL: ONMESSAGE
-2025-03-26 10:59:14,503 INFO  NandboxClient:1006 - 2025/03/26 10:59:14 <<<<<<<<< Update Obj : {"ref":"23423423","data":{"exception":null,"addons":null,"description":null,"slot":null,"type":"0","p_code":5121,"price":100.0,"vendor":"0","variant":null,"calendar_type":null,"id":"5121228327126172","attribute":{"cost":0,"quantity":0,"tax":0,"message":"gfsdgds","barcode":""},"tag":null,"sku":"","keyword":null,"bundle":null,"calendar":null,"image":[{"width":512,"url":"https:\/\/m1.nandbox.ca\/v1\/AUTH_137b624a8e434c4e88e9be30fa5e7bed\/g\/90090684293000559_c2218206dc6367864891a6e975ac8452d92192f8b6a56d9e9a4bfe87feec436a.png?temp_url_sig=1367430eb325b96341c5c1494a8f6087d8ea9f68&temp_url_expires=2044796799","height":340}],"compare_at_price":0.00000,"main_group_id":90090684293000559,"collection":[],"params":null,"server_id":"b1","version":"12iA5n","group_id":90090684293000559,"parent_id":"0","name":"gfds","service_profile_id":"9","style":"01","location":null,"created_date":"2024-10-10 00:00:00","updated_date":{},"category":"product","status":"N","option":null},"method":"getProductItemResponse"}
-2025-03-26 10:59:14,503 INFO  NandboxClient:1013 - method: getProductItemResponse
+2025-07-29 15:06:45,292 INFO  NandboxClient:1026 - 2025/07/29 15:06:45 <<<<<<<<< Update Obj : {"method":"messageAck","ack":{"reference":58082520994568256,"date":1753790805862,"gmid":88060,"message_id":"d1_bGWw0ENq126260"}}
+2025-07-29 15:06:45,293 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:06:45,293 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:06:45,294 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:06:45,297 INFO  NandboxClient:1026 - 2025/07/29 15:06:45 <<<<<<<<< Update Obj : {"method":"messageAck","ack":{"reference":45317563296506435,"date":1753790805889,"gmid":88063,"message_id":"d1_0MPADuSa126266"}}
+2025-07-29 15:06:45,297 INFO  NandboxClient:1033 - method: messageAck
+2025-07-29 15:06:45,296 INFO  NandboxClient:1033 - method: messageAck
+2025-07-29 15:06:45,296 INFO  NandboxClient:1026 - 2025/07/29 15:06:45 <<<<<<<<< Update Obj : {"method":"messageAck","ack":{"reference":26328287559614787,"date":1753790805882,"gmid":88062,"message_id":"d1_dcOj3vjF126264"}}
+2025-07-29 15:06:45,296 INFO  NandboxClient:1026 - 2025/07/29 15:06:45 <<<<<<<<< Update Obj : {"method":"messageAck","ack":{"reference":5410435755446086,"date":1753790805874,"gmid":88061,"message_id":"d1_MrZFFtdS126262"}}
+2025-07-29 15:06:45,397 INFO  NandboxClient:1033 - method: messageAck
+2025-07-29 15:06:45,388 INFO  NandboxClient:1033 - method: messageAck
+2025-07-29 15:07:02,473 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:07:02,473 INFO  NandboxClient:1026 - 2025/07/29 15:07:02 <<<<<<<<< Update Obj : {"method":"PONG"}
+2025-07-29 15:07:02,473 INFO  NandboxClient:1033 - method: PONG
+2025-07-29 15:07:32,475 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:07:32,475 INFO  NandboxClient:1026 - 2025/07/29 15:07:32 <<<<<<<<< Update Obj : {"method":"PONG"}
+2025-07-29 15:07:32,475 INFO  NandboxClient:1033 - method: PONG
+2025-07-29 15:08:02,473 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:08:02,474 INFO  NandboxClient:1026 - 2025/07/29 15:08:02 <<<<<<<<< Update Obj : {"method":"PONG"}
+2025-07-29 15:08:02,474 INFO  NandboxClient:1033 - method: PONG
+2025-07-29 15:08:32,474 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:08:32,475 INFO  NandboxClient:1026 - 2025/07/29 15:08:32 <<<<<<<<< Update Obj : {"method":"PONG"}
+2025-07-29 15:08:32,476 INFO  NandboxClient:1033 - method: PONG
+2025-07-29 15:09:02,478 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-07-29 15:09:02,478 INFO  NandboxClient:1026 - 2025/07/29 15:09:02 <<<<<<<<< Update Obj : {"method":"PONG"}
+2025-07-29 15:09:02,479 INFO  NandboxClient:1033 - method: PONG
