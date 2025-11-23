@@ -138,7 +138,7 @@ setup(
     # Any package you put here will be installed by pip when your project is
     # installed, so they must be valid existing projects.
     #
-    # For an analysis of "install_requires" vs pip's requirements files see:
+    # For an analysis of "install_requires" vs pip's requirements.txt files see:
     # https://packaging.python.org/discussions/install-requires-vs-requirements/
     install_requires=['requests==2.26.0', 'websocket-client==1.2.1', 'websockets==10.0'],  # Optional
 

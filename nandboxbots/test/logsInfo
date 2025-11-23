@@ -24,3 +24,13 @@
 2025-07-29 15:09:02,478 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
 2025-07-29 15:09:02,478 INFO  NandboxClient:1026 - 2025/07/29 15:09:02 <<<<<<<<< Update Obj : {"method":"PONG"}
 2025-07-29 15:09:02,479 INFO  NandboxClient:1033 - method: PONG
+2025-11-23 12:58:52,166 INFO  NandboxClient:265 - INTERNAL: ONCONNECT
+2025-11-23 12:58:52,451 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-11-23 12:58:52,451 INFO  NandboxClient:1026 - 2025/11/23 12:58:52 <<<<<<<<< Update Obj : {"date":1763895533617,"is_nandbox":0,"partner_id":0,"method":"TOKEN_AUTH_OK","name":"test threading","ID":"90091783968456064","id":"90091783968456064","localId":90090684298937730,"email":null,"token":"90091783968456064:0:6V7Tqy34IFv5ms0WHyHnzan83Hrsmn"}
+2025-11-23 12:58:52,451 INFO  NandboxClient:1033 - method: TOKEN_AUTH_OK
+2025-11-23 12:58:52,451 INFO  NandboxClient:1036 - Authenticated!
+2025-11-23 12:58:52,452 INFO  NandboxClient:1040 - ====> Your Bot Id is : 90091783968456064
+2025-11-23 12:58:52,452 INFO  NandboxClient:1041 - ====> Your Bot Name is : test threading
+2025-11-23 12:58:52,567 INFO  NandboxClient:1022 - INTERNAL: ONMESSAGE
+2025-11-23 12:58:52,567 INFO  NandboxClient:1026 - 2025/11/23 12:58:52 <<<<<<<<< Update Obj : {"method":"PONG"}
+2025-11-23 12:58:52,567 INFO  NandboxClient:1033 - method: PONG
