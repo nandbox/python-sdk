@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: nandboxbotsapi
-Version: 1.5.3
+Version: 1.5.4
 Summary: A Python library to interact with official nandbox Bot API.
 Home-page: 
 Author: Amir Salah
@@ -20,6 +20,16 @@ Description-Content-Type: text/markdown
 Requires-Dist: requests==2.26.0
 Requires-Dist: websocket-client==1.2.1
 Requires-Dist: websockets==10.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
 
 # A Python nandbox Bot API
 
