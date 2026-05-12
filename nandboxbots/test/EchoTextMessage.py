@@ -26,6 +26,7 @@ napi = nandbox.Api()
 
 CYELLOW = '\033[93m'
 CEND = '\033[0m'
+appId=90090684312609408
 
 
 class nCallBack(nandbox.Callback):
@@ -69,6 +70,9 @@ class nCallBack(nandbox.Callback):
         print(black_list_pattern.to_json_obj())
     def on_product_detail(self,obj):
         print(obj.to_json_obj())
+    def on_payment_request(self,payment_request):
+        napi.payment_confirmation(app_id=appId,chat_id=appId,user_id=payment_request.account_id,order_id=payment_request.order_id,total_amount=payment_request.amount,currency=payment_request.currency,payload=payment_request.payload,secret=payment_request.secret,status="Success",debit_amount_cents=payment_request.debit_amount_cents)
+        print(payment_request.to_json_obj())
 
 callBack = nCallBack()
 client.connect(config['Token'], callBack)

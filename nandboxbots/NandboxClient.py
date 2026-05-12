@@ -5,7 +5,9 @@ import time
 from threading import Thread, Lock
 
 from nandboxbots.data.CollectionProduct import CollectionProduct
+from nandboxbots.data.PaymentRequest import PaymentRequest
 from nandboxbots.data.ProductItem import ProductItem
+from nandboxbots.inmessages.ExtensionDocResponse import ExtensionDocResponse
 from nandboxbots.inmessages.GetCollectionProductResponse import GetCollectionProductResponse
 from nandboxbots.inmessages.GetProductItemResponse import GetProductItemResponse
 from nandboxbots.inmessages.ListCollectionItemResponse import ListCollectionItemResponse
@@ -17,6 +19,7 @@ from nandboxbots.outmessages.CreateChatOutMessage import CreateChatOutMessage
 from nandboxbots.outmessages.GetCollectionProductOutMessage import GetCollectionProductOutMessage
 from nandboxbots.outmessages.GetProductItem import GetProductItemOutMessage
 from nandboxbots.outmessages.ListCollectionItemOutMessage import ListCollectionItemOutMessage
+from nandboxbots.outmessages.PaymentConfirmationOutMessage import PaymentConfirmationOutMessage
 from nandboxbots.outmessages.SetWorkflowActionOutMessage import SetWorkflowActionOutMessage
 from nandboxbots.util.Logger import Logger
 import websocket
@@ -1006,6 +1009,22 @@ class NandboxClient:
 
                     obj, _ = createChatOutMessage.to_json_obj()
                     self.send(obj)
+                def payment_confirmation(self,chat_id,user_id,order_id,payload,secret,currency,total_amount,app_id,status,debit_amount_cents):
+                    paymentConfirmationOutMessage = PaymentConfirmationOutMessage()
+
+                    paymentConfirmationOutMessage.chat_id = chat_id
+                    paymentConfirmationOutMessage.user_id = user_id
+                    paymentConfirmationOutMessage.order_id = order_id
+                    paymentConfirmationOutMessage.payload = payload
+                    paymentConfirmationOutMessage.secret = secret
+                    paymentConfirmationOutMessage.currency = currency
+                    paymentConfirmationOutMessage.total_amount = total_amount
+                    paymentConfirmationOutMessage.app_id=app_id
+                    paymentConfirmationOutMessage.status = status
+                    paymentConfirmationOutMessage.debit_amount_cents = debit_amount_cents
+
+                    obj, _ = paymentConfirmationOutMessage.to_json_obj()
+                    self.send(obj)
 
             NandboxClient.InternalWebSocket.api = nandboxAPI()
 
@@ -1162,6 +1181,34 @@ class NandboxClient:
                 elif method == "workflowCell":
                     workflow_details = WorkflowDetails(dictionary)
                     self.callback.on_workflow_details(workflow_details)
+                    return
+                elif method == "extensionSetDocResponse":
+                    action_type = "insert"
+                    dictionary["method"] = action_type
+                    extensionDocResponse  = ExtensionDocResponse(dictionary)
+                    self.callback.on_extension_doc_response(extensionDocResponse)
+                    return
+                elif method == "extensionGetDocResponse":
+                    action_type = "get"
+                    dictionary["method"] = action_type
+                    extensionDocResponse  = ExtensionDocResponse(dictionary)
+                    self.callback.on_extension_doc_response(extensionDocResponse)
+                    return
+                elif method == "extensionDeleteDocResponse":
+                    action_type = "delete"
+                    dictionary["method"] = action_type
+                    extensionDocResponse  = ExtensionDocResponse(dictionary)
+                    self.callback.on_extension_doc_response(extensionDocResponse)
+                    return
+                elif method == "extensionListDocResponse":
+                    action_type = "list"
+                    dictionary["method"] = action_type
+                    extensionDocResponse  = ExtensionDocResponse(dictionary)
+                    self.callback.on_extension_doc_response(extensionDocResponse)
+                    return
+                elif method == "paymentRequest":
+                    payment_request = PaymentRequest(dictionary)
+                    self.callback.on_payment_request(payment_request)
                     return
                 else:
                     self.callback.on_receive_obj(dictionary)

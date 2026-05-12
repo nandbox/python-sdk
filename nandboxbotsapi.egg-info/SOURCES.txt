@@ -18,6 +18,7 @@ nandboxbots/data/Gif.py
 nandboxbots/data/Image.py
 nandboxbots/data/Location.py
 nandboxbots/data/Menu.py
+nandboxbots/data/PaymentRequest.py
 nandboxbots/data/Photo.py
 nandboxbots/data/ProductItem.py
 nandboxbots/data/Result.py
@@ -37,6 +38,7 @@ nandboxbots/inmessages/BlackList.py
 nandboxbots/inmessages/ChatAdministrators.py
 nandboxbots/inmessages/ChatMember.py
 nandboxbots/inmessages/ChatMenuCallback.py
+nandboxbots/inmessages/ExtensionDocResponse.py
 nandboxbots/inmessages/GetCollectionProductResponse.py
 nandboxbots/inmessages/GetProductItemResponse.py
 nandboxbots/inmessages/IncomingMessage.py
@@ -64,6 +66,7 @@ nandboxbots/outmessages/ContactOutMessage.py
 nandboxbots/outmessages/CreateChatOutMessage.py
 nandboxbots/outmessages/DeleteBlackListOutMessage.py
 nandboxbots/outmessages/DeleteBlackListPatternsOutMessage.py
+nandboxbots/outmessages/DeleteRecordOutMessage.py
 nandboxbots/outmessages/DeleteWhiteListOutMessage.py
 nandboxbots/outmessages/DeleteWhiteListPatternsOutMessage.py
 nandboxbots/outmessages/DocumentOutMessage.py
@@ -75,13 +78,16 @@ nandboxbots/outmessages/GetChatOutMessage.py
 nandboxbots/outmessages/GetCollectionProductOutMessage.py
 nandboxbots/outmessages/GetMyProfiles.py
 nandboxbots/outmessages/GetProductItem.py
+nandboxbots/outmessages/GetRecordOutMessage.py
 nandboxbots/outmessages/GetUserOutMessage.py
 nandboxbots/outmessages/GetWhiteListOutMessage.py
 nandboxbots/outmessages/GifOutMessage.py
 nandboxbots/outmessages/InlineSearchAnswer.py
 nandboxbots/outmessages/ListCollectionItemOutMessage.py
+nandboxbots/outmessages/ListRecordsOutMessage.py
 nandboxbots/outmessages/LocationOutMessage.py
 nandboxbots/outmessages/OutMessage.py
+nandboxbots/outmessages/PaymentConfirmationOutMessage.py
 nandboxbots/outmessages/PhotoOutMessage.py
 nandboxbots/outmessages/RecallOutMessage.py
 nandboxbots/outmessages/RemoveChatMemberOutMessage.py
@@ -89,6 +95,7 @@ nandboxbots/outmessages/SetChatMenuOutMessage.py
 nandboxbots/outmessages/SetChatOutMessage.py
 nandboxbots/outmessages/SetMyProfileOutMessage.py
 nandboxbots/outmessages/SetNavigationButtonOutMessage.py
+nandboxbots/outmessages/SetRecordOutMessage.py
 nandboxbots/outmessages/SetWorkflowActionOutMessage.py
 nandboxbots/outmessages/TextOutMessage.py
 nandboxbots/outmessages/UnbanChatMember.py
@@ -97,6 +104,7 @@ nandboxbots/outmessages/UpdateOutMessage.py
 nandboxbots/outmessages/VideoOutMessage.py
 nandboxbots/outmessages/VoiceOutMessage.py
 nandboxbots/outmessages/__init__.py
+nandboxbots/util/DatabaseService.py
 nandboxbots/util/Logger.py
 nandboxbots/util/MediaTransfer.py
 nandboxbots/util/Utils.py
