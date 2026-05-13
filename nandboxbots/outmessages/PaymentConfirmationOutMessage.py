@@ -5,7 +5,7 @@ from nandboxbots.outmessages.OutMessage import OutMessage
 
 class PaymentConfirmationOutMessage(OutMessage):
     __KEY_ORDER_ID = "order_id"
-    __KEY_PAYLOAD = "payload"
+    __KEY_PAYLOAD = "providerResponse"
     __KEY_SECRET = "secret"
     __KEY_CURRENCY = "currency"
     __KEY_TOTAL_AMOUNT = "total_amount"
@@ -14,10 +14,10 @@ class PaymentConfirmationOutMessage(OutMessage):
     __KEY_DEBIT_AMOUNT_CENTS = "debit_amount_cents"
 
     def __init__(self):
-        self.method = "paymentConfirmation"
+        self.method = "submitPaymentResult"
 
         self.order_id = None
-        self.payload = None
+        self.provider_response = None
         self.secret = None
         self.currency = None
         self.total_amount = None
@@ -31,8 +31,8 @@ class PaymentConfirmationOutMessage(OutMessage):
         if self.order_id is not None:
             obj[self.__KEY_ORDER_ID] = self.order_id
 
-        if self.payload is not None:
-            obj[self.__KEY_PAYLOAD] = self.payload
+        if self.provider_response is not None:
+            obj[self.__KEY_PAYLOAD] = self.provider_response
 
         if self.secret is not None:
             obj[self.__KEY_SECRET] = self.secret

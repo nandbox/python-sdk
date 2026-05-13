@@ -86,7 +86,7 @@ class Nandbox:
             pass
         def on_extension_doc_response(self,extension_doc_response):
             pass
-        def on_payment_request(self,payment_request):
+        def on_payment_authorization_request(self,payment_request):
             pass
 
     class Api:
@@ -245,5 +245,5 @@ class Nandbox:
 
         def add_chat_admin_member(self, chat_id, user_id,app_id):
             pass
-        def payment_confirmation(self,chat_id,user_id,order_id,payload,secret,currency,total_amount,app_id,status,debit_amount_cents):
+        def submit_payment_result(self,chat_id,user_id,order_id,provider_response,secret,currency,total_amount,app_id,status,debit_amount_cents):
             pass

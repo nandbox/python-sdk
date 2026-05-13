@@ -1009,13 +1009,13 @@ class NandboxClient:
 
                     obj, _ = createChatOutMessage.to_json_obj()
                     self.send(obj)
-                def payment_confirmation(self,chat_id,user_id,order_id,payload,secret,currency,total_amount,app_id,status,debit_amount_cents):
+                def submit_payment_result(self,chat_id,user_id,order_id,provider_response,secret,currency,total_amount,app_id,status,debit_amount_cents):
                     paymentConfirmationOutMessage = PaymentConfirmationOutMessage()
 
                     paymentConfirmationOutMessage.chat_id = chat_id
                     paymentConfirmationOutMessage.user_id = user_id
                     paymentConfirmationOutMessage.order_id = order_id
-                    paymentConfirmationOutMessage.payload = payload
+                    paymentConfirmationOutMessage.provider_response = provider_response
                     paymentConfirmationOutMessage.secret = secret
                     paymentConfirmationOutMessage.currency = currency
                     paymentConfirmationOutMessage.total_amount = total_amount
@@ -1206,9 +1206,9 @@ class NandboxClient:
                     extensionDocResponse  = ExtensionDocResponse(dictionary)
                     self.callback.on_extension_doc_response(extensionDocResponse)
                     return
-                elif method == "paymentRequest":
+                elif method == "paymentAuthorizationRequest":
                     payment_request = PaymentRequest(dictionary)
-                    self.callback.on_payment_request(payment_request)
+                    self.callback.on_payment_authorization_request(payment_request)
                     return
                 else:
                     self.callback.on_receive_obj(dictionary)
