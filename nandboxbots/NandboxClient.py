@@ -9,7 +9,7 @@ from nandboxbots.data.PaymentRequest import PaymentRequest
 from nandboxbots.data.MenuCallback import MenuCallback
 from nandboxbots.data.WebhookBody import WebhookBody
 from nandboxbots.data.ProductItem import ProductItem
-from nandboxbots.inmessages.ExtensionDocResponse import ExtensionDocResponse
+from nandboxbots.inmessages.DocumentResponse import DocumentResponse
 from nandboxbots.inmessages.GetCollectionProductResponse import GetCollectionProductResponse
 from nandboxbots.inmessages.GetProductItemResponse import GetProductItemResponse
 from nandboxbots.inmessages.ListCollectionItemResponse import ListCollectionItemResponse
@@ -1238,29 +1238,13 @@ class NandboxClient:
                     workflow_details = WorkflowDetails(dictionary)
                     self.callback.on_workflow_details(workflow_details)
                     return
-                elif method == "extensionSetDocResponse":
-                    action_type = "insert"
-                    dictionary["method"] = action_type
-                    extensionDocResponse  = ExtensionDocResponse(dictionary)
-                    self.callback.on_extension_doc_response(extensionDocResponse)
-                    return
-                elif method == "extensionGetDocResponse":
-                    action_type = "get"
-                    dictionary["method"] = action_type
-                    extensionDocResponse  = ExtensionDocResponse(dictionary)
-                    self.callback.on_extension_doc_response(extensionDocResponse)
-                    return
-                elif method == "extensionDeleteDocResponse":
-                    action_type = "delete"
-                    dictionary["method"] = action_type
-                    extensionDocResponse  = ExtensionDocResponse(dictionary)
-                    self.callback.on_extension_doc_response(extensionDocResponse)
-                    return
-                elif method == "extensionListDocResponse":
-                    action_type = "list"
-                    dictionary["method"] = action_type
-                    extensionDocResponse  = ExtensionDocResponse(dictionary)
-                    self.callback.on_extension_doc_response(extensionDocResponse)
+                # The method name is passed through as-is. It used to be overwritten with
+                # "insert" / "get" / "delete" / "list", which discarded the real name and set a
+                # value that appears nowhere in the protocol.
+                elif method in ("setDocumentResponse", "getDocumentResponse",
+                                "deleteDocumentResponse", "listDocumentsResponse"):
+                    document_response = DocumentResponse(dictionary)
+                    self.callback.on_document_response(document_response)
                     return
                 elif method == "paymentAuthorizationRequest":
                     payment_request = PaymentRequest(dictionary)

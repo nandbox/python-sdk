@@ -84,7 +84,7 @@ class Nandbox:
             pass
         def on_collection_item(self,collectionItem,app_id):
             pass
-        def on_extension_doc_response(self,extension_doc_response):
+        def on_document_response(self, document_response):
             pass
         def on_payment_authorization_request(self,payment_request):
             pass
