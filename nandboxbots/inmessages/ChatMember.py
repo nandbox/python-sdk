@@ -30,9 +30,9 @@ class ChatMember:
 
         self.user = User(chat_member_dict.get(self.__KEY_USER, None))
         self.chat = Chat(chat_member_dict.get(self.__KEY_CHAT, None))
-        self.type = str(chat_member_dict[self.__KEY_TYPE]) if self.__KEY_TYPE in chat_member_dict.keys() else None
-        self.member_since = int(chat_member_dict[self.__KEY_MEMBER_SINCE]) if self.__KEY_MEMBER_SINCE in chat_member_dict.keys() else None
-        self.status = str(chat_member_dict[self.__KEY_STATUS]) if self.__KEY_STATUS in chat_member_dict.keys() else None
+        self.type = str(chat_member_dict[self.__KEY_TYPE]) if chat_member_dict.get(self.__KEY_TYPE) is not None else None
+        self.member_since = int(chat_member_dict[self.__KEY_MEMBER_SINCE]) if chat_member_dict.get(self.__KEY_MEMBER_SINCE) is not None else None
+        self.status = str(chat_member_dict[self.__KEY_STATUS]) if chat_member_dict.get(self.__KEY_STATUS) is not None else None
         self.tags = chat_member_dict[self.__KEY_TAGS] if self.__KEY_TAGS in chat_member_dict.keys() else None
         self.account_type = chat_member_dict[self.__KEY_ACCOUNT_TYPE] if self.__KEY_ACCOUNT_TYPE in chat_member_dict.keys() else None
         self.loginId = chat_member_dict[self.__KEY_LOGIN_ID] if self.__KEY_LOGIN_ID in chat_member_dict.keys() else None
@@ -50,7 +50,8 @@ class ChatMember:
             _, chat_dict = self.chat.to_json_obj()
             dictionary[self.__KEY_CHAT] = chat_dict
         if self.type is not None:
-            dictionary[self.type] = self.type
+            # Was dictionary[self.type], producing {"admin": "admin"}.
+            dictionary[self.__KEY_TYPE] = self.type
         if self.member_since is not None:
             dictionary[self.__KEY_MEMBER_SINCE] = self.member_since
         if self.status is not None:

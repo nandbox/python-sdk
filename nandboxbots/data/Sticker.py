@@ -16,10 +16,10 @@ class Sticker:
     thumbnail = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
-        self.width = int(dictionary[self.__KEY_WIDTH]) if self.__KEY_WIDTH in dictionary.keys() else None
-        self.height = int(dictionary[self.__KEY_HEIGHT]) if self.__KEY_HEIGHT in dictionary.keys() else None
-        self.size = int(dictionary[self.__KEY_SIZE]) if self.__KEY_SIZE in dictionary.keys() else None
+        self.id = str(dictionary[self.__KEY_ID]) if dictionary.get(self.__KEY_ID) is not None else None
+        self.width = int(dictionary[self.__KEY_WIDTH]) if dictionary.get(self.__KEY_WIDTH) is not None else None
+        self.height = int(dictionary[self.__KEY_HEIGHT]) if dictionary.get(self.__KEY_HEIGHT) is not None else None
+        self.size = int(dictionary[self.__KEY_SIZE]) if dictionary.get(self.__KEY_SIZE) is not None else None
         self.thumbnail = Thumbnail(dictionary.get(self.__KEY_THUMBNAIL, {}))
 
     def to_json_obj(self):

@@ -9,8 +9,8 @@ class SignupUser:
     signup_user = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
-        self.signup_user = str(dictionary[self.__KEY_SIGNUP_USER]) if self.__KEY_SIGNUP_USER in dictionary.keys() else None
+        self.id = str(dictionary[self.__KEY_ID]) if dictionary.get(self.__KEY_ID) is not None else None
+        self.signup_user = str(dictionary[self.__KEY_SIGNUP_USER]) if dictionary.get(self.__KEY_SIGNUP_USER) is not None else None
 
     def to_json_obj(self):
 

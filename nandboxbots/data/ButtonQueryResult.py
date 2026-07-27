@@ -11,9 +11,9 @@ class ButtonQueryResult:
     contact = None
 
     def __init__(self, dictionary):
-        self.latitude = str(dictionary[self.__KEY_LATITUDE]) if self.__KEY_LATITUDE in dictionary.keys() else None
-        self.longitude = str(dictionary[self.__KEY_LONGITUDE]) if self.__KEY_LONGITUDE in dictionary.keys() else None
-        self.contact = str(dictionary[self.__KEY_CONTACT]) if self.__KEY_CONTACT in dictionary.keys() else None
+        self.latitude = str(dictionary[self.__KEY_LATITUDE]) if dictionary.get(self.__KEY_LATITUDE) is not None else None
+        self.longitude = str(dictionary[self.__KEY_LONGITUDE]) if dictionary.get(self.__KEY_LONGITUDE) is not None else None
+        self.contact = str(dictionary[self.__KEY_CONTACT]) if dictionary.get(self.__KEY_CONTACT) is not None else None
 
     def to_json_obj(self):
 

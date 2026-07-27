@@ -21,6 +21,9 @@ class WorkflowDetails:
     app_id = None
 
     def __init__(self, dictionary):
+        # Bind a fresh instance list first: the assignment below is conditional, so
+        # a cell-less response used to fall through to the shared class attribute.
+        self.workflowCell = []
         workflow_details_dict = dictionary[
             self.__KEY_WORKFLOW_DETAILS] if self.__KEY_WORKFLOW_DETAILS in dictionary.keys() else {}
         workflow_cell_arr_obj = workflow_details_dict[

@@ -15,7 +15,7 @@ class PaymentRequest:
     __KEY_DEBIT_AMOUNT_CENTS = "debit_amount_cents"
 
     def __init__(self, obj):
-        print("PaymentRequest JSON:", json.dumps(obj))
+        # Deliberately not printed: this payload carries the payment secret.
 
         self.order_id = None
         self.merchant_name = None

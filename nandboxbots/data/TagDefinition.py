@@ -1,5 +1,7 @@
 import json
 
+from nandboxbots.util import Utils
+
 
 class TagDefinition:
     __KEY_NAME = "name"
@@ -14,10 +16,18 @@ class TagDefinition:
 
     def __init__(self, dictionary):
 
-        self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
-        self.name = str(dictionary[self.__KEY_NAME]) if self.__KEY_NAME in dictionary.keys() else None
-        self.description = str(dictionary[self.__KEY_DESCRIPTION]) if self.__KEY_DESCRIPTION in dictionary.keys() else None
-        self.is_private = str(dictionary[self.__KEY_ISPRIVATE]) if self.__KEY_ISPRIVATE in dictionary.keys() else None
+        self.id = str(dictionary[self.__KEY_ID]) if dictionary.get(self.__KEY_ID) is not None else None
+        self.name = str(dictionary[self.__KEY_NAME]) if dictionary.get(self.__KEY_NAME) is not None else None
+        self.description = str(dictionary[self.__KEY_DESCRIPTION]) if dictionary.get(self.__KEY_DESCRIPTION) is not None else None
+        # The server sends isPrivate as a boolean (ApiAddChatTag); str() turned that
+        # into "True"/"False", which is neither the Java nor the JS shape.
+        raw_is_private = dictionary.get(self.__KEY_ISPRIVATE)
+        if raw_is_private is None:
+            self.is_private = None
+        elif isinstance(raw_is_private, bool):
+            self.is_private = 1 if raw_is_private else 0
+        else:
+            self.is_private = Utils.to_long(raw_is_private)
 
     def to_json_obj(self):
 

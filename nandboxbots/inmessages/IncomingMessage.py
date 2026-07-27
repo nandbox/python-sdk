@@ -83,39 +83,51 @@ class IncomingMessage:
     app_id = None
 
     def __init__(self, dictionary):
-        msg_dict = dictionary[self.__KEY_MESSAGE]
+        # .get() rather than a subscript: a frame without "message" raised KeyError.
+        msg_dict = dictionary.get(self.__KEY_MESSAGE) or {}
 
-        from_user = User(msg_dict.get(self.__KEY_FROM, {}))
-        sent_to_user = User(msg_dict.get(self.__KEY_SENT_TO, {}))
+        def _sub(key, cls):
+            """Builds a nested object only when the key is actually present.
 
-        self.chat = Chat(msg_dict.get(self.__KEY_CHAT, {}))
-        self.location = Location(msg_dict.get(self.__KEY_LOCATION, {}))
-        self.contact = Contact(msg_dict.get(self.__KEY_CONTACT, {}))
-        self.document = Document(msg_dict.get(self.__KEY_DOCUMENT, {}))
-        self.photo = Photo(msg_dict.get(self.__KEY_PHOTO, {}))
-        self.gif = Gif(msg_dict.get(self.__KEY_GIF, {}))
-        self.voice = Voice(msg_dict.get(self.__KEY_VOICE, {}))
-        self.video = Video(msg_dict.get(self.__KEY_VIDEO, {}))
-        self.audio = Audio(msg_dict.get(self.__KEY_AUDIO, {}))
-        self.article = Article(msg_dict.get(self.__KEY_ARTICLE, {}))
-        self.sticker = Sticker(msg_dict.get(self.__KEY_STICKER, {}))
-        self.text_file = TextFile(msg_dict.get(self.__KEY_TEXT_FILE, {}))
-        self.text = str(msg_dict[self.__KEY_TEXT]) if self.__KEY_TEXT in msg_dict.keys() else None
-        self.message_id = str(msg_dict[self.__KEY_MESSAGE_ID]) if self.__KEY_MESSAGE_ID in msg_dict.keys() else None
-        self.date = int(str(msg_dict[self.__KEY_DATE])) if self.__KEY_DATE in msg_dict.keys() else None
-        self.reference = int(str(msg_dict[self.__KEY_REFERENCE])) if self.__KEY_REFERENCE in msg_dict.keys() else None
+            Previously every one of these was constructed unconditionally from an
+            empty dict, so a plain text message carried eleven non-None media
+            objects: `if msg.photo:` was always true and to_json_obj() emitted
+            eleven empty {} media entries.
+            """
+            value = msg_dict.get(key)
+            return cls(value) if value else None
+
+        from_user = _sub(self.__KEY_FROM, User)
+        sent_to_user = _sub(self.__KEY_SENT_TO, User)
+
+        self.chat = _sub(self.__KEY_CHAT, Chat)
+        self.location = _sub(self.__KEY_LOCATION, Location)
+        self.contact = _sub(self.__KEY_CONTACT, Contact)
+        self.document = _sub(self.__KEY_DOCUMENT, Document)
+        self.photo = _sub(self.__KEY_PHOTO, Photo)
+        self.gif = _sub(self.__KEY_GIF, Gif)
+        self.voice = _sub(self.__KEY_VOICE, Voice)
+        self.video = _sub(self.__KEY_VIDEO, Video)
+        self.audio = _sub(self.__KEY_AUDIO, Audio)
+        self.article = _sub(self.__KEY_ARTICLE, Article)
+        self.sticker = _sub(self.__KEY_STICKER, Sticker)
+        self.text_file = _sub(self.__KEY_TEXT_FILE, TextFile)
+        self.text = str(msg_dict[self.__KEY_TEXT]) if msg_dict.get(self.__KEY_TEXT) is not None else None
+        self.message_id = str(msg_dict[self.__KEY_MESSAGE_ID]) if msg_dict.get(self.__KEY_MESSAGE_ID) is not None else None
+        self.date = int(str(msg_dict[self.__KEY_DATE])) if msg_dict.get(self.__KEY_DATE) is not None else None
+        self.reference = int(str(msg_dict[self.__KEY_REFERENCE])) if msg_dict.get(self.__KEY_REFERENCE) is not None else None
         self.from_ = from_user
         self.sent_to = sent_to_user
-        self.from_admin = int(msg_dict[self.__KEY_FROM_ADMIN]) if self.__KEY_FROM_ADMIN in msg_dict.keys() else None
-        self.type = str(msg_dict[self.__KEY_TYPE]) if self.__KEY_TYPE in msg_dict.keys() else None
-        self.caption = str(msg_dict[self.__KEY_CAPTION]) if self.__KEY_CAPTION in msg_dict.keys() else None
-        self.url = str(msg_dict[self.__KEY_URL]) if self.__KEY_URL in msg_dict.keys() else None
-        self.reply_to_message_id = str(msg_dict[self.__KEY_REPLY_TO_MESSAGE_ID]) if self.__KEY_REPLY_TO_MESSAGE_ID in msg_dict.keys() else None
-        self.status = str(msg_dict[self.__KEY_STATUS]) if self.__KEY_STATUS in msg_dict.keys() else None
-        self.chat_settings = int(msg_dict[self.__KEY_CHAT_SETTINGS]) if self.__KEY_CHAT_SETTINGS in msg_dict.keys() else None
-        self.bg_color = str(msg_dict[self.__KEY_BG_COLOR]) if self.__KEY_BG_COLOR in msg_dict.keys() else None
-        self.white_list_user = WhiteListUser(msg_dict.get(self.__KEY_WHITELIST_USER, {}))
-        self.schedule_date = int(str(msg_dict[self.__KEY_SCHEDULE_DATE]))if self.__KEY_SCHEDULE_DATE in msg_dict.keys() else None
+        self.from_admin = int(msg_dict[self.__KEY_FROM_ADMIN]) if msg_dict.get(self.__KEY_FROM_ADMIN) is not None else None
+        self.type = str(msg_dict[self.__KEY_TYPE]) if msg_dict.get(self.__KEY_TYPE) is not None else None
+        self.caption = str(msg_dict[self.__KEY_CAPTION]) if msg_dict.get(self.__KEY_CAPTION) is not None else None
+        self.url = str(msg_dict[self.__KEY_URL]) if msg_dict.get(self.__KEY_URL) is not None else None
+        self.reply_to_message_id = str(msg_dict[self.__KEY_REPLY_TO_MESSAGE_ID]) if msg_dict.get(self.__KEY_REPLY_TO_MESSAGE_ID) is not None else None
+        self.status = str(msg_dict[self.__KEY_STATUS]) if msg_dict.get(self.__KEY_STATUS) is not None else None
+        self.chat_settings = int(msg_dict[self.__KEY_CHAT_SETTINGS]) if msg_dict.get(self.__KEY_CHAT_SETTINGS) is not None else None
+        self.bg_color = str(msg_dict[self.__KEY_BG_COLOR]) if msg_dict.get(self.__KEY_BG_COLOR) is not None else None
+        self.white_list_user = _sub(self.__KEY_WHITELIST_USER, WhiteListUser)
+        self.schedule_date = int(str(msg_dict[self.__KEY_SCHEDULE_DATE]))if msg_dict.get(self.__KEY_SCHEDULE_DATE) is not None else None
         self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
         self.tags= msg_dict[self.__KEY_TAGS] if self.__KEY_TAGS in msg_dict.keys() else None
 
@@ -139,6 +151,9 @@ class IncomingMessage:
             dictionary[self.__KEY_FROM_ADMIN] = self.from_admin
         if self.status is not None:
             dictionary[self.__KEY_STATUS] = self.status
+        if self.chat_settings is not None:
+            # Parsed in __init__ but previously never serialized.
+            dictionary[self.__KEY_CHAT_SETTINGS] = self.chat_settings
         if self.sent_to is not None:
             _, sent_to_dict = self.sent_to.to_json_obj()
             dictionary[self.__KEY_SENT_TO] = sent_to_dict

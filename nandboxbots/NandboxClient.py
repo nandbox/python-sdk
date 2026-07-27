@@ -6,6 +6,8 @@ from threading import Thread, Lock
 
 from nandboxbots.data.CollectionProduct import CollectionProduct
 from nandboxbots.data.PaymentRequest import PaymentRequest
+from nandboxbots.data.MenuCallback import MenuCallback
+from nandboxbots.data.WebhookBody import WebhookBody
 from nandboxbots.data.ProductItem import ProductItem
 from nandboxbots.inmessages.ExtensionDocResponse import ExtensionDocResponse
 from nandboxbots.inmessages.GetCollectionProductResponse import GetCollectionProductResponse
@@ -20,6 +22,7 @@ from nandboxbots.outmessages.GetCollectionProductOutMessage import GetCollection
 from nandboxbots.outmessages.GetProductItem import GetProductItemOutMessage
 from nandboxbots.outmessages.ListCollectionItemOutMessage import ListCollectionItemOutMessage
 from nandboxbots.outmessages.PaymentConfirmationOutMessage import PaymentConfirmationOutMessage
+from nandboxbots.outmessages.SendUserNotificationOutMessage import SendUserNotificationOutMessage
 from nandboxbots.outmessages.SetWorkflowActionOutMessage import SetWorkflowActionOutMessage
 from nandboxbots.util.Logger import Logger
 import websocket
@@ -108,14 +111,13 @@ class NandboxClient:
 
     @staticmethod
     def init(config):
-        NandboxClient.lock.acquire()
+        # `with` guarantees release: the previous early return left the lock held,
+        # deadlocking any later init() call.
+        with NandboxClient.lock:
+            if NandboxClient.nandboxClient is not None:
+                return
 
-        if NandboxClient.nandboxClient is not None:
-            return
-
-        NandboxClient.nandboxClient = NandboxClient(config)
-
-        NandboxClient.lock.release()
+            NandboxClient.nandboxClient = NandboxClient(config)
 
     @staticmethod
     def get(config):
@@ -174,7 +176,10 @@ class NandboxClient:
                         }
 
                         NandboxClient.InternalWebSocket.send(json.dumps(obj))
-                    except():
+                    except Exception:
+                        # `except():` is an empty tuple of exception types and
+                        # therefore catches nothing, so a failing send killed the
+                        # ping thread outright.
                         NandboxClient.log.error("Exception when sending ping")
 
                     if self.interrupted:
@@ -183,7 +188,7 @@ class NandboxClient:
                     try:
                         time.sleep(
                             30)  # this blocks the thread not the process: https://stackoverflow.com/questions/92928/time-sleep-sleeps-thread-or-process
-                    except():
+                    except Exception:
                         self.interrupted = True
                         return
 
@@ -194,7 +199,7 @@ class NandboxClient:
             self.callback = callback
             self.message_thread_pool=message_thread_pool
 
-        def on_close(self, close_status_code, close_msg):
+        def on_close(self, ws, close_status_code, close_msg):
             NandboxClient.log.info("INTERNAL: ONCLOSE")
             NandboxClient.log.info(f"StatusCode = {str(close_status_code)}")
             NandboxClient.log.info(f"Reason : {str(close_msg)}")
@@ -205,15 +210,19 @@ class NandboxClient:
 
             NandboxClient.InternalWebSocket.authenticated = False
 
-            if NandboxClient.InternalWebSocket.pingThread is not None:
-                NandboxClient.InternalWebSocket.PingThread.interrupted = True
+            if self.pingThread is not None:
+                # Interrupt this socket's ping thread, not the class attribute,
+                # which would signal every ping thread in the process.
+                self.pingThread.interrupted = True
 
-            NandboxClient.InternalWebSocket.pingThread = None
+            self.pingThread = None
 
-            NandboxClient.InternalWebSocket.callback.onClose()
+            # The interface method is on_close, and `callback` is an instance
+            # attribute; the class attribute is always None.
+            self.callback.on_close()
 
             if (
-                    close_status_code == 1000 or close_status_code == 1006 or close_status_code == 1001 or close_status_code == close_status_code == 1005) and NandboxClient.closingCounter < NandboxClient.InternalWebSocket.NO_OF_RETRIES_IF_CONN_CLOSED:
+                    close_status_code == 1000 or close_status_code == 1006 or close_status_code == 1001 or close_status_code == 1005) and NandboxClient.closingCounter < NandboxClient.InternalWebSocket.NO_OF_RETRIES_IF_CONN_CLOSED:
                 try:
                     NandboxClient.log.info("Please wait 10 seconds for Reconnecting ")
                     time.sleep(10)
@@ -255,12 +264,15 @@ class NandboxClient:
             n_client = NandboxClient.get(NandboxClient.config)
 
             NandboxClient.log.info("Calling nandbox client connect")
-            n_client.connect(NandboxClient.InternalWebSocket.token, NandboxClient.InternalWebSocket.callback)
+            # token/callback are instance attributes; the class attributes are
+            # always None, so reconnecting used to pass None for both.
+            n_client.connect(self.token, self.callback)
 
         @staticmethod
         def send(string):
-            print(
-                f'{CGREEN} {Utils.format_date(datetime.datetime.now())} >>>>>>>>> Sent JSON : {string} {CEND}')
+            # Never print the payload: the auth frame carries the bot token and
+            # submit_payment_result carries the payment secret.
+            NandboxClient.log.debug("Sending JSON payload")
             NandboxClient.webSocketClient.send(data=string)
 
         def on_open(self, ws):
@@ -621,6 +633,10 @@ class NandboxClient:
                                                                  caption=None,tags=tags,app_id=app_id)
 
                         message.method = "sendLocation"
+                        # The coordinates were never assigned, so every location
+                        # message was sent without latitude/longitude.
+                        message.latitude = latitude
+                        message.longitude = longitude
                         message.name = name
                         message.details = details
 
@@ -722,7 +738,6 @@ class NandboxClient:
                     getProductItem.app_id=app_id
                     getProductItem.reference = reference
                     obj, _ = getProductItem.to_json_obj()
-                    print(obj)
                     self.send(obj)
 
                 def list_collection_item(self,app_id=None,reference=None):
@@ -730,7 +745,6 @@ class NandboxClient:
                     getCollectionItem.app_id=app_id
                     getCollectionItem.reference=reference
                     obj, _ = getCollectionItem.to_json_obj()
-                    print(obj)
                     self.send(obj)
 
                 def update_text_msg(self, message_id, text, to_user_id,app_id=None):
@@ -912,6 +926,9 @@ class NandboxClient:
                     recallOutMessage.chat_id = chat_id
                     recallOutMessage.message_id = message_id
                     recallOutMessage.to_user_id = to_user_id
+                    # reference is a required parameter but was never assigned, so
+                    # the ack could not be correlated with the request.
+                    recallOutMessage.reference = reference
 
                     obj, _ = recallOutMessage.to_json_obj()
                     self.send(obj)
@@ -927,6 +944,8 @@ class NandboxClient:
                 def set_chat(self, chat,app_id=None,reference=None):
                     setChatOutMessage = SetChatOutMessage()
                     setChatOutMessage.app_id=app_id
+                    # reference was accepted and discarded.
+                    setChatOutMessage.reference = reference
 
                     setChatOutMessage.chat = chat
 
@@ -1026,16 +1045,43 @@ class NandboxClient:
                     obj, _ = paymentConfirmationOutMessage.to_json_obj()
                     self.send(obj)
 
+                def send_notification(self, user_id, notification_type, title, message, app_id=None):
+                    """Sends an SMS/Email/Push notification to a user.
+
+                    notification_type is one of SendUserNotificationOutMessage.SMS,
+                    .EMAIL or .PUSH; it defaults to Push when None.
+                    """
+                    sendNotificationOutMessage = SendUserNotificationOutMessage()
+
+                    sendNotificationOutMessage.account_id = user_id
+                    sendNotificationOutMessage.type = notification_type
+                    sendNotificationOutMessage.title = title
+                    sendNotificationOutMessage.message = message
+                    sendNotificationOutMessage.app_id = app_id
+
+                    obj, _ = sendNotificationOutMessage.to_json_obj()
+                    self.send(obj)
+
             NandboxClient.InternalWebSocket.api = nandboxAPI()
 
             NandboxClient.InternalWebSocket.send(json.dumps(auth_object))
 
         def on_message(self, ws, message):
+            future = self.message_thread_pool.submit(self._handle_message, ws, message)
+            # submit() only raises if the pool is shut down; without this callback
+            # any exception raised inside _handle_message was captured in the
+            # discarded Future and silently lost.
+            future.add_done_callback(NandboxClient.InternalWebSocket._log_task_exception)
+
+        @staticmethod
+        def _log_task_exception(future):
             try:
-                self.message_thread_pool.submit(self._handle_message, ws, message)
-            except Exception as e:
-                NandboxClient.log.error(f"Error handling message: {e}")
-                print(f"{CRED}Error handling message: {e}{CEND}")
+                exception = future.exception()
+            except Exception:
+                return
+            if exception is not None:
+                NandboxClient.log.error(f"Error handling message: {exception}")
+
         def _handle_message(self, ws, message):
 
             NandboxClient.log.info("INTERNAL: ONMESSAGE")
@@ -1043,31 +1089,35 @@ class NandboxClient:
             dictionary = json.loads(message)
 
             NandboxClient.log.info(f"{Utils.format_date(datetime.datetime.now())} <<<<<<<<< Update Obj : {message}")
-            print(
-                f'{CRED} {Utils.format_date(datetime.datetime.now())} <<<<<<<<< Update Obj : {message} {CEND}')
 
-            method = str(dictionary[NandboxClient.KEY_METHOD])
+            # .get() rather than a subscript: an error frame carries only "error"
+            # and used to raise KeyError before the else branch could handle it.
+            # str() was also applied unconditionally, so the None check below could
+            # never succeed.
+            method = dictionary.get(NandboxClient.KEY_METHOD)
 
             if method is not None:
                 NandboxClient.log.info(f"method: {method}")
                 if method == "TOKEN_AUTH_OK":
-                    print("Authenticated!")
                     NandboxClient.log.info("Authenticated!")
                     NandboxClient.BOT_ID = str(dictionary[NandboxClient.InternalWebSocket.KEY_ID])
-                    print(f"====> Your Bot Id is : {NandboxClient.BOT_ID}")
-                    print(f"====> Your Bot Name is : {str(dictionary[NandboxClient.InternalWebSocket.KEY_NAME])}")
                     NandboxClient.log.info(f"====> Your Bot Id is : {NandboxClient.BOT_ID}")
                     NandboxClient.log.info(
                         f"====> Your Bot Name is : {str(dictionary[NandboxClient.InternalWebSocket.KEY_NAME])}")
 
-                    if NandboxClient.InternalWebSocket.pingThread is not None:
+                    if self.pingThread is not None:
                         try:
-                            NandboxClient.InternalWebSocket.pingThread.interrupted = True
+                            self.pingThread.interrupted = True
                         except Exception as e:
                             NandboxClient.log.error(e)
 
                     ping_thread = NandboxClient.InternalWebSocket.PingThread()
                     ping_thread.name = "PingThread"
+                    # Daemon: run() loops forever, so a non-daemon thread stops the
+                    # interpreter from ever exiting. Keep the instance reference so
+                    # on_close can interrupt this socket's thread specifically.
+                    ping_thread.daemon = True
+                    self.pingThread = ping_thread
                     ping_thread.start()
                     self.callback.on_connect(self.api)
                     return
@@ -1150,11 +1200,17 @@ class NandboxClient:
                     user = User(dictionary[NandboxClient.InternalWebSocket.KEY_USER])
                     self.callback.user_left_bot(user)
                     return
-                elif method == "addWhitelistPatterns_ack":
+                elif method in ("addWhitelistPatterns_ack", "removeWhitelistPatterns_ack",
+                                "deleteWhitelistPatterns_ack"):
+                    # The delete ack was not handled and fell through to
+                    # on_receive_obj; the Java SDK routes both to the same callback.
                     whitelistPattern = Pattern(dictionary)
                     self.callback.on_white_list_pattern(whitelistPattern)
                     return
-                elif method == "addBlacklistPatterns_ack":
+                # removeBlacklistPatterns_ack is what the server actually sends; the
+                # delete* spelling is kept only for backward compatibility.
+                elif method in ("addBlacklistPatterns_ack", "removeBlacklistPatterns_ack",
+                                "deleteBlacklistPatterns_ack"):
                     blacklistPattern = Pattern(dictionary)
                     self.callback.on_black_list_pattern(blacklistPattern)
                     return
@@ -1210,18 +1266,22 @@ class NandboxClient:
                     payment_request = PaymentRequest(dictionary)
                     self.callback.on_payment_authorization_request(payment_request)
                     return
+                elif method == "menuCallback":
+                    menu_callback = MenuCallback(dictionary)
+                    self.callback.on_menu_callback(menu_callback)
+                    return
+                elif method == "WebhookEvent":
+                    webhook_event = WebhookBody(dictionary)
+                    self.callback.on_webhook_event(webhook_event)
+                    return
                 else:
                     self.callback.on_receive_obj(dictionary)
                     return
             else:
-                error = str(dictionary[NandboxClient.KEY_ERROR])
+                error = dictionary.get(NandboxClient.KEY_ERROR)
                 NandboxClient.log.error(f"Error : {error}")
-                print(f"Error : {error}")
 
 
         def on_error(self, ws, error):
-            print(ws, error)
             NandboxClient.log.error("INTERNAL: ONERROR")
-            print("INTERNAL: ONERROR")
             NandboxClient.log.error(f"Error due to : {str(error)} On : {Utils.format_date(datetime.datetime.now())}")
-            print(f"Error due to : {str(error)} On : {Utils.format_date(datetime.datetime.now())}")

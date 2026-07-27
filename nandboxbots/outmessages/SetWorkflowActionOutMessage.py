@@ -16,7 +16,7 @@ class SetWorkflowActionOutMessage(OutMessage):
     nextScreen = None
     reference = None
 
-    def __int__(self):
+    def __init__(self):
         self.method = "setWorkflowAction"
 
     def to_json_obj(self):

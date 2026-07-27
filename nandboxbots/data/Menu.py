@@ -19,7 +19,7 @@
 #         for i in range(len(rows_arr)):
 #             _, row_dict = Row(rows_arr[i]).to_json_obj()
 #             self.rows.append(row_dict)
-#         self.menu_ref = str(dictionary[self.__KEY_MENU_REF]) if self.__KEY_MENU_REF in dictionary.keys() else None
+#         self.menu_ref = str(dictionary[self.__KEY_MENU_REF]) if dictionary.get(self.__KEY_MENU_REF) is not None else None
 #
 #     def to_json_obj(self):
 #

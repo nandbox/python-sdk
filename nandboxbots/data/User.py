@@ -1,6 +1,7 @@
 import json
 
 from nandboxbots.data.Photo import Photo
+from nandboxbots.util import Utils
 
 
 class User:
@@ -34,18 +35,22 @@ class User:
         if dictionary is None:
             dictionary = {}
         # print(str(dictionary))
-        self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
-        self.name = str(dictionary[self.__KEY_NAME]) if self.__KEY_NAME in dictionary.keys() else None
-        self.version = str(dictionary[self.__KEY_VERSION]) if self.__KEY_VERSION in dictionary.keys() else None
-        self.terminal = str(dictionary[self.__KEY_TERMINAL]) if self.__KEY_TERMINAL in dictionary.keys() else None
-        self.type = str(dictionary[self.__KEY_TYPE]) if self.__KEY_TYPE in dictionary.keys() else None
-        self.is_bot = bool(dictionary[self.__KEY_IS_BOT]) if self.__KEY_IS_BOT in dictionary.keys() else None
-        self.last_seen = str(dictionary[self.__KEY_LAST_SEEN]) if self.__KEY_LAST_SEEN in dictionary.keys() else None
-        self.status = str(dictionary[self.__KEY_STATUS]) if self.__KEY_STATUS in dictionary.keys() else None
-        self.profile = str(dictionary[self.__KEY_PROFILE]) if self.__KEY_PROFILE in dictionary.keys() else "other"
-        self.photo = Photo(dictionary.get(self.__KEY_PHOTO))if self.__KEY_PROFILE in dictionary.keys() else None
-        self.short_name = str(dictionary[self.__KEY_SHORT_NAME]) if self.__KEY_SHORT_NAME in dictionary.keys() else None
-        self.loginId = int(dictionary[self.__KEY_LOGIN_ID]) if self.__KEY_LOGIN_ID in dictionary.keys() else None
+        self.id = str(dictionary[self.__KEY_ID]) if dictionary.get(self.__KEY_ID) is not None else None
+        self.name = str(dictionary[self.__KEY_NAME]) if dictionary.get(self.__KEY_NAME) is not None else None
+        self.version = str(dictionary[self.__KEY_VERSION]) if dictionary.get(self.__KEY_VERSION) is not None else None
+        self.terminal = str(dictionary[self.__KEY_TERMINAL]) if dictionary.get(self.__KEY_TERMINAL) is not None else None
+        self.type = str(dictionary[self.__KEY_TYPE]) if dictionary.get(self.__KEY_TYPE) is not None else None
+        self.is_bot = Utils.to_bool(dictionary.get(self.__KEY_IS_BOT))
+        self.last_seen = str(dictionary[self.__KEY_LAST_SEEN]) if dictionary.get(self.__KEY_LAST_SEEN) is not None else None
+        self.status = str(dictionary[self.__KEY_STATUS]) if dictionary.get(self.__KEY_STATUS) is not None else None
+        # Guarded on the value so an explicit null yields the "other" default
+        # rather than the literal string "None".
+        self.profile = str(dictionary[self.__KEY_PROFILE]) if dictionary.get(self.__KEY_PROFILE) is not None else "other"
+        # Was gated on __KEY_PROFILE: a user with a profile but no photo called
+        # Photo(None) and crashed, and a user with a photo but no profile lost it.
+        self.photo = Photo(dictionary[self.__KEY_PHOTO]) if dictionary.get(self.__KEY_PHOTO) is not None else None
+        self.short_name = str(dictionary[self.__KEY_SHORT_NAME]) if dictionary.get(self.__KEY_SHORT_NAME) is not None else None
+        self.loginId = int(dictionary[self.__KEY_LOGIN_ID]) if dictionary.get(self.__KEY_LOGIN_ID) is not None else None
 
 
     def to_json_obj(self):

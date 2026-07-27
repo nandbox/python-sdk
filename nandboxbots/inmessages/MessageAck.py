@@ -13,9 +13,9 @@ class MessageAck:
 
         ack_dict = dictionary[self.__KEY_ACK] if self.__KEY_ACK in dictionary.keys() else {}
 
-        self.message_id = str(ack_dict[self.__KEY_MESSAGE_ID]) if self.__KEY_MESSAGE_ID in ack_dict.keys() else None
-        self.reference = str(ack_dict[self.__KEY_REFERENCE]) if self.__KEY_REFERENCE in ack_dict.keys() else None
-        self.date = int(ack_dict[self.__KEY_DATE]) if self.__KEY_DATE in ack_dict.keys() else None
+        self.message_id = str(ack_dict[self.__KEY_MESSAGE_ID]) if ack_dict.get(self.__KEY_MESSAGE_ID) is not None else None
+        self.reference = str(ack_dict[self.__KEY_REFERENCE]) if ack_dict.get(self.__KEY_REFERENCE) is not None else None
+        self.date = int(ack_dict[self.__KEY_DATE]) if ack_dict.get(self.__KEY_DATE) is not None else None
 
     def to_json_obj(self):
 

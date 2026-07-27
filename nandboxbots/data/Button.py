@@ -35,19 +35,19 @@
 #     nav_type = None
 #
 #     def __init__(self, dictionary):
-#         self.button_order = int(dictionary[self.__KEY_BUTTON_ORDER]) if self.__KEY_BUTTON_ORDER in dictionary.keys() else None
-#         self.button_span = int(dictionary[self.__KEY_BUTTON_SPAN]) if self.__KEY_BUTTON_SPAN in dictionary.keys() else None
-#         self.button_textcolor = str(dictionary[self.__KEY_BUTTON_TEXT_COLOR]) if self.__KEY_BUTTON_TEXT_COLOR in dictionary.keys() else None
-#         self.button_bgcolor = str(dictionary[self.__KEY_BUTTON_BG_COLOR]) if self.__KEY_BUTTON_BG_COLOR in dictionary.keys() else None
-#         self.button_callback = str(dictionary[self.__KEY_BUTTON_CALLBACK]) if self.__KEY_BUTTON_CALLBACK in dictionary.keys() else None
-#         self.button_label = str(dictionary[self.__KEY_BUTTON_LABEL]) if self.__KEY_BUTTON_LABEL in dictionary.keys() else None
-#         self.button_url = str(dictionary[self.__KEY_BUTTON_URL]) if self.__KEY_BUTTON_URL in dictionary.keys() else None
-#         self.button_query = str(dictionary[self.__KEY_BUTTON_QUERY]) if self.__KEY_BUTTON_QUERY in dictionary.keys() else None
-#         self.next_menu = str(dictionary[self.__KEY_NEXT_MENU]) if self.__KEY_NEXT_MENU in dictionary.keys() else None
-#         self.chat = str(dictionary[self.__KEY_CHAT]) if self.__KEY_CHAT in dictionary.keys() else None
-#         self.button_icon = str(dictionary[self.__KEY_BUTTON_ICON]) if self.__KEY_BUTTON_ICON in dictionary.keys() else None
-#         self.button_icon_bgcolor = str(dictionary[self.__KEY_BUTTON_ICON_BG_COLOR]) if self.__KEY_BUTTON_ICON_BG_COLOR in dictionary.keys() else None
-#         self.nav_type = str(dictionary[self.__KEY_BUTTON_NAV_TYPE]) if self.__KEY_BUTTON_NAV_TYPE in dictionary.keys() else None
+#         self.button_order = int(dictionary[self.__KEY_BUTTON_ORDER]) if dictionary.get(self.__KEY_BUTTON_ORDER) is not None else None
+#         self.button_span = int(dictionary[self.__KEY_BUTTON_SPAN]) if dictionary.get(self.__KEY_BUTTON_SPAN) is not None else None
+#         self.button_textcolor = str(dictionary[self.__KEY_BUTTON_TEXT_COLOR]) if dictionary.get(self.__KEY_BUTTON_TEXT_COLOR) is not None else None
+#         self.button_bgcolor = str(dictionary[self.__KEY_BUTTON_BG_COLOR]) if dictionary.get(self.__KEY_BUTTON_BG_COLOR) is not None else None
+#         self.button_callback = str(dictionary[self.__KEY_BUTTON_CALLBACK]) if dictionary.get(self.__KEY_BUTTON_CALLBACK) is not None else None
+#         self.button_label = str(dictionary[self.__KEY_BUTTON_LABEL]) if dictionary.get(self.__KEY_BUTTON_LABEL) is not None else None
+#         self.button_url = str(dictionary[self.__KEY_BUTTON_URL]) if dictionary.get(self.__KEY_BUTTON_URL) is not None else None
+#         self.button_query = str(dictionary[self.__KEY_BUTTON_QUERY]) if dictionary.get(self.__KEY_BUTTON_QUERY) is not None else None
+#         self.next_menu = str(dictionary[self.__KEY_NEXT_MENU]) if dictionary.get(self.__KEY_NEXT_MENU) is not None else None
+#         self.chat = str(dictionary[self.__KEY_CHAT]) if dictionary.get(self.__KEY_CHAT) is not None else None
+#         self.button_icon = str(dictionary[self.__KEY_BUTTON_ICON]) if dictionary.get(self.__KEY_BUTTON_ICON) is not None else None
+#         self.button_icon_bgcolor = str(dictionary[self.__KEY_BUTTON_ICON_BG_COLOR]) if dictionary.get(self.__KEY_BUTTON_ICON_BG_COLOR) is not None else None
+#         self.nav_type = str(dictionary[self.__KEY_BUTTON_NAV_TYPE]) if dictionary.get(self.__KEY_BUTTON_NAV_TYPE) is not None else None
 #
 #     def to_json_obj(self):
 #

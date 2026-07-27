@@ -15,7 +15,9 @@ class DeleteWhiteListPatternsOutMessage(OutMessage):
         _, dictionary = super(DeleteWhiteListPatternsOutMessage, self).to_json_obj()
 
         if self.pattern is not None:
-            dictionary[self.pattern] = self.pattern
+            # Was dictionary[self.pattern], i.e. the value used as the key: a list
+            # pattern raised TypeError and a string produced {"<pattern>": ...}.
+            dictionary[self.__KEY_PATTERN] = self.pattern
 
         return json.dumps(dictionary), dictionary
     

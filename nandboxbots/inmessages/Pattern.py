@@ -21,7 +21,8 @@ class Pattern:
         dictionary = {}
 
         if self.data:
-            dictionary[self.__KEY_DATA] = [item.to_json_obj() for item in self.data]
+            # to_json_obj() returns (json_str, dict); take the dict half.
+            dictionary[self.__KEY_DATA] = [item.to_json_obj()[1] for item in self.data]
         if self.app_id:
             dictionary[self.__KEY_APP_ID] = self.app_id
         if self.chat_id:

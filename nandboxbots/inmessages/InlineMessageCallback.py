@@ -35,13 +35,13 @@ class InlineMessageCallback:
         self.chat = Chat(inline_message_dict.get(self.__KEY_CHAT, {}))
 
         btn_query_result = ButtonQueryResult(inline_message_dict.get(self.__KEY_BUTTON_QUERY_RESULTS, {}))
-        self.message_id = str(inline_message_dict[self.__KEY_MESSAGE_ID]) if self.__KEY_MESSAGE_ID in inline_message_dict.keys() else None
-        self.menu_ref = str(inline_message_dict[self.__KEY_MENU_REF]) if self.__KEY_MENU_REF in inline_message_dict.keys() else None
-        self.reference = str(inline_message_dict[self.__KEY_REFERENCE]) if self.__KEY_REFERENCE in inline_message_dict.keys() else None
+        self.message_id = str(inline_message_dict[self.__KEY_MESSAGE_ID]) if inline_message_dict.get(self.__KEY_MESSAGE_ID) is not None else None
+        self.menu_ref = str(inline_message_dict[self.__KEY_MENU_REF]) if inline_message_dict.get(self.__KEY_MENU_REF) is not None else None
+        self.reference = str(inline_message_dict[self.__KEY_REFERENCE]) if inline_message_dict.get(self.__KEY_REFERENCE) is not None else None
         self.from_ = from_user
         self.button_query_result = btn_query_result
-        self.button_callback = str(inline_message_dict[self.__KEY_BUTTON_CALLBACK]) if self.__KEY_BUTTON_CALLBACK in inline_message_dict.keys() else None
-        self.date = int(inline_message_dict[self.__KEY_DATE]) if self.__KEY_DATE in inline_message_dict.keys() else None
+        self.button_callback = str(inline_message_dict[self.__KEY_BUTTON_CALLBACK]) if inline_message_dict.get(self.__KEY_BUTTON_CALLBACK) is not None else None
+        self.date = int(inline_message_dict[self.__KEY_DATE]) if inline_message_dict.get(self.__KEY_DATE) is not None else None
         self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
     def to_json_obj(self):

@@ -18,7 +18,7 @@ class WhiteList:
 
     def __init__(self, whitelist_dict):
 
-        self.eop = str(whitelist_dict[self.__KEY_EOP]) if self.__KEY_EOP in whitelist_dict.keys() else None
+        self.eop = str(whitelist_dict[self.__KEY_EOP]) if whitelist_dict.get(self.__KEY_EOP) is not None else None
 
         users_arr_obj = whitelist_dict[self.__KEY_USERS] if self.__KEY_USERS in whitelist_dict.keys() else []
         self.users = [SignupUser({})] * len(users_arr_obj)
@@ -35,7 +35,10 @@ class WhiteList:
         if self.users is not None:
             users_arr = []
             for i in range(len(self.users)):
-                users_arr.append(self.users[i].to_json_obj())
+                # to_json_obj() returns (json_str, dict); appending the tuple
+                # serialized each element as a 2-item array instead of an object.
+                _, user_dict = self.users[i].to_json_obj()
+                users_arr.append(user_dict)
 
             dictionary[self.__KEY_USERS] = users_arr
 

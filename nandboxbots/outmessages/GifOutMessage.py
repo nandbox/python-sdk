@@ -18,11 +18,12 @@ class GifOutMessage(OutMessage):
     def __init__(self, gif_type=None):
         self.gif_type = gif_type
 
-        if gif_type == GifOutMessage.GifType.PHOTO:
-            self.method = "sendPhoto"
-        elif gif_type == GifOutMessage.GifType.PHOTO:
+        if gif_type == GifOutMessage.GifType.VIDEO:
             self.method = "sendVideo"
         else:
+            # PHOTO is the documented default for any other/absent type. The
+            # previous elif also tested PHOTO, so VIDEO was unreachable and a
+            # video GIF was sent with method "sendPhoto".
             self.method = "sendPhoto"
 
     def to_json_obj(self):

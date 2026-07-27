@@ -20,11 +20,9 @@ class UpdateOutMessage(OutMessage):
             dictionary[self.__KEY_MESSAGE_ID] = self.message_id
         if self.text is not None:
             dictionary[self.__KEY_TEXT] = self.text
-        if self.caption is not None:
-            dictionary[self.__KEY_CAPTION] = self.caption
-        if self.to_user_id is not None:
-            dictionary[self.__KEY_TO_USER_ID] = self.to_user_id
-        if self.chat_id is not None:
-            dictionary[self.__KEY_CHAT_ID] = self.chat_id
+        # caption, to_user_id and chat_id are already emitted by OutMessage. The
+        # explicit copies here referenced self.__KEY_* from this subclass, which
+        # name-mangles to _UpdateOutMessage__KEY_* and does not exist, so every
+        # update_* call raised AttributeError.
 
         return json.dumps(dictionary), dictionary

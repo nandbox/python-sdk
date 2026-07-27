@@ -23,15 +23,15 @@ class Result:
     height = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
-        self.caption = str(dictionary[self.__KEY_CAPTION]) if self.__KEY_CAPTION in dictionary.keys() else None
-        self.title = str(dictionary[self.__KEY_TITLE]) if self.__KEY_TITLE in dictionary.keys() else None
-        self.description = str(dictionary[self.__KEY_DESCRIPTION]) if self.__KEY_DESCRIPTION in dictionary.keys() else None
-        self.url = str(dictionary[self.__KEY_URL]) if self.__KEY_URL in dictionary.keys() else None
-        self.type = str(dictionary[self.__KEY_TYPE]) if self.__KEY_TYPE in dictionary.keys() else None
-        self.thumb_url = str(dictionary[self.__KEY_THUMB_URL]) if self.__KEY_THUMB_URL in dictionary.keys() else None
-        self.width = int(dictionary[self.__KEY_WIDTH]) if self.__KEY_WIDTH in dictionary.keys() else None
-        self.height = int(dictionary[self.__KEY_HEIGHT]) if self.__KEY_HEIGHT in dictionary.keys() else None
+        self.id = str(dictionary[self.__KEY_ID]) if dictionary.get(self.__KEY_ID) is not None else None
+        self.caption = str(dictionary[self.__KEY_CAPTION]) if dictionary.get(self.__KEY_CAPTION) is not None else None
+        self.title = str(dictionary[self.__KEY_TITLE]) if dictionary.get(self.__KEY_TITLE) is not None else None
+        self.description = str(dictionary[self.__KEY_DESCRIPTION]) if dictionary.get(self.__KEY_DESCRIPTION) is not None else None
+        self.url = str(dictionary[self.__KEY_URL]) if dictionary.get(self.__KEY_URL) is not None else None
+        self.type = str(dictionary[self.__KEY_TYPE]) if dictionary.get(self.__KEY_TYPE) is not None else None
+        self.thumb_url = str(dictionary[self.__KEY_THUMB_URL]) if dictionary.get(self.__KEY_THUMB_URL) is not None else None
+        self.width = int(dictionary[self.__KEY_WIDTH]) if dictionary.get(self.__KEY_WIDTH) is not None else None
+        self.height = int(dictionary[self.__KEY_HEIGHT]) if dictionary.get(self.__KEY_HEIGHT) is not None else None
 
     def to_json_obj(self):
 

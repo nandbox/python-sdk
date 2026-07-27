@@ -13,10 +13,10 @@ class Location:
     details = None
 
     def __init__(self, dictionary):
-        self.name = str(dictionary[self.__KEY_NAME]) if self.__KEY_NAME in dictionary.keys() else None
-        self.details = str(dictionary[self.__KEY_DETAILS]) if self.__KEY_DETAILS in dictionary.keys() else None
-        self.longitude = str(dictionary[self.__KEY_LONGITUDE]) if self.__KEY_LONGITUDE in dictionary.keys() else None
-        self.latitude = str(dictionary[self.__KEY_LATITUDE]) if self.__KEY_LATITUDE in dictionary.keys() else None
+        self.name = str(dictionary[self.__KEY_NAME]) if dictionary.get(self.__KEY_NAME) is not None else None
+        self.details = str(dictionary[self.__KEY_DETAILS]) if dictionary.get(self.__KEY_DETAILS) is not None else None
+        self.longitude = str(dictionary[self.__KEY_LONGITUDE]) if dictionary.get(self.__KEY_LONGITUDE) is not None else None
+        self.latitude = str(dictionary[self.__KEY_LATITUDE]) if dictionary.get(self.__KEY_LATITUDE) is not None else None
 
     def to_json_obj(self):
 

@@ -35,7 +35,10 @@ class BlackList:
         if self.users is not None:
             users_arr = []
             for i in range(len(self.users)):
-                users_arr.append(self.users[i].to_json_obj())
+                # to_json_obj() returns (json_str, dict); appending the tuple
+                # serialized each element as a 2-item array instead of an object.
+                _, user_dict = self.users[i].to_json_obj()
+                users_arr.append(user_dict)
 
             dictionary[self.__KEY_USERS] = users_arr
 

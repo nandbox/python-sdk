@@ -16,7 +16,7 @@ class CreateChatOutMessage(OutMessage):
     isPublic = None
     reference = None
 
-    def __int__(self):
+    def __init__(self):
         self.method = "createChat"
 
     def to_json_obj(self):

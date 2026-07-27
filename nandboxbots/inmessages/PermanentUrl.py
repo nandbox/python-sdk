@@ -11,9 +11,9 @@ class PermanentUrl:
     param1 = None
     app_id = None
     def __init__(self, dictionary):
-        self.url = str(dictionary[self.__KEY_URL]) if self.__KEY_URL in dictionary.keys() else None
-        self.file = str(dictionary[self.__KEY_FILE]) if self.__KEY_FILE in dictionary.keys() else None
-        self.param1 = str(dictionary[self.__KEY_PARAM1]) if self.__KEY_PARAM1 in dictionary.keys() else None
+        self.url = str(dictionary[self.__KEY_URL]) if dictionary.get(self.__KEY_URL) is not None else None
+        self.file = str(dictionary[self.__KEY_FILE]) if dictionary.get(self.__KEY_FILE) is not None else None
+        self.param1 = str(dictionary[self.__KEY_PARAM1]) if dictionary.get(self.__KEY_PARAM1) is not None else None
         self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
     def to_json_obj(self):

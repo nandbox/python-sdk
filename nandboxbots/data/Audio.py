@@ -15,11 +15,11 @@ class Audio:
     duration = None
 
     def __init__(self, dictionary):
-        self.id = str(dictionary[self.__KEY_ID]) if self.__KEY_ID in dictionary.keys() else None
-        self.title = str(dictionary[self.__KEY_TITLE]) if self.__KEY_TITLE in dictionary.keys() else None
-        self.performer = str(dictionary[self.__KEY_PERFORMER]) if self.__KEY_PERFORMER in dictionary.keys() else None
-        self.size = int(dictionary[self.__KEY_SIZE]) if self.__KEY_SIZE in dictionary.keys() else None
-        self.duration = int(dictionary[self.__KEY_DURATION]) if self.__KEY_DURATION in dictionary.keys() else None
+        self.id = str(dictionary[self.__KEY_ID]) if dictionary.get(self.__KEY_ID) is not None else None
+        self.title = str(dictionary[self.__KEY_TITLE]) if dictionary.get(self.__KEY_TITLE) is not None else None
+        self.performer = str(dictionary[self.__KEY_PERFORMER]) if dictionary.get(self.__KEY_PERFORMER) is not None else None
+        self.size = int(dictionary[self.__KEY_SIZE]) if dictionary.get(self.__KEY_SIZE) is not None else None
+        self.duration = int(dictionary[self.__KEY_DURATION]) if dictionary.get(self.__KEY_DURATION) is not None else None
 
     def to_json_obj(self):
 

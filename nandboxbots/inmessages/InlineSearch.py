@@ -31,12 +31,12 @@ class InlineSearch:
         from_user = User(inline_search_dict.get(self.__KEY_FROM, {}))
 
         self.chat = Chat(inline_search_dict.get(self.__KEY_CHAT, None))
-        self.method = str(inline_search_dict[self.__KEY_METHOD]) if self.__KEY_METHOD in inline_search_dict.keys() else None
+        self.method = str(inline_search_dict[self.__KEY_METHOD]) if inline_search_dict.get(self.__KEY_METHOD) is not None else None
         self.from_ = from_user
-        self.date = int(inline_search_dict[self.__KEY_DATE]) if self.__KEY_DATE in inline_search_dict.keys() else None
-        self.search_id = int(inline_search_dict[self.__KEY_SEARCH_ID]) if self.__KEY_SEARCH_ID in inline_search_dict.keys() else None
-        self.offset = str(inline_search_dict[self.__KEY_OFFSET]) if self.__KEY_OFFSET in inline_search_dict.keys() else None
-        self.keywords = str(inline_search_dict[self.__KEY_KEYWORDS]) if self.__KEY_KEYWORDS in inline_search_dict.keys() else None
+        self.date = int(inline_search_dict[self.__KEY_DATE]) if inline_search_dict.get(self.__KEY_DATE) is not None else None
+        self.search_id = int(inline_search_dict[self.__KEY_SEARCH_ID]) if inline_search_dict.get(self.__KEY_SEARCH_ID) is not None else None
+        self.offset = str(inline_search_dict[self.__KEY_OFFSET]) if inline_search_dict.get(self.__KEY_OFFSET) is not None else None
+        self.keywords = str(inline_search_dict[self.__KEY_KEYWORDS]) if inline_search_dict.get(self.__KEY_KEYWORDS) is not None else None
         self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
     def to_json_obj(self):

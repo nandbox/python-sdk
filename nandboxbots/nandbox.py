@@ -89,6 +89,21 @@ class Nandbox:
         def on_payment_authorization_request(self,payment_request):
             pass
 
+        def on_menu_callback(self, menu_callback):
+            """Called when a user submits a menu form.
+
+            menu_callback is a MenuCallback carrying the submitted cells; use
+            Utils.get_fields_and_values(menu_callback.cells) for a flat mapping.
+            """
+            pass
+
+        def on_webhook_event(self, webhook_event):
+            """Called for an inbound WebhookEvent.
+
+            webhook_event is a WebhookBody exposing ref, app_id, method and body.
+            """
+            pass
+
     class Api:
         def send(self, message):
             pass
@@ -246,4 +261,7 @@ class Nandbox:
         def add_chat_admin_member(self, chat_id, user_id,app_id):
             pass
         def submit_payment_result(self,chat_id,user_id,order_id,provider_response,secret,currency,total_amount,app_id,status,debit_amount_cents):
+            pass
+
+        def send_notification(self, user_id, notification_type, title, message, app_id=None):
             pass

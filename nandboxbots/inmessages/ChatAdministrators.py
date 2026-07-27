@@ -15,6 +15,10 @@ class ChatAdministrators:
     app_id = None
 
     def __init__(self, dictionary):
+        # Bind a fresh instance list first: the assignment below is conditional, so
+        # an admin-less response used to fall through to the shared class attribute
+        # and expose whatever the previous instance had parsed.
+        self.administrators = []
         self.app_id = dictionary[self.__KEY_APP_ID] if self.__KEY_APP_ID in dictionary.keys() else None
 
         chat_administrators_dict = dictionary[self.__KEY_CHAT_ADMINISTRATORS] if self.__KEY_CHAT_ADMINISTRATORS in dictionary.keys() else {}
@@ -37,7 +41,10 @@ class ChatAdministrators:
         if self.administrators is not None:
             admins_arr = []
             for i in range(len(self.administrators)):
-                admins_arr.append(self.administrators[i].to_json_obj())
+                # to_json_obj() returns (json_str, dict); appending the tuple
+                # serialized each element as a 2-item array instead of an object.
+                _, admin_dict = self.administrators[i].to_json_obj()
+                admins_arr.append(admin_dict)
 
             dictionary[self.__KEY_ADMINISTRATORS] = admins_arr
 

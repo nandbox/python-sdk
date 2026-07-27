@@ -10,7 +10,7 @@ class AddChatMemberOutMessage(OutMessage):
     chatId = None
     userId = None
 
-    def __int__(self):
+    def __init__(self):
         self.method = "addChatMember"
 
     def to_json_obj(self):

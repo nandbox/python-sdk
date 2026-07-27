@@ -39,14 +39,14 @@ class ChatMenuCallback:
 
         btn_query_result = ButtonQueryResult(chat_menu_callback_dict.get(self.__KEY_BUTTON_QUERY_RESULTS, {}))
 
-        self.method = str(chat_menu_callback_dict[self.__KEY_METHOD]) if self.__KEY_METHOD in chat_menu_callback_dict.keys() else None
-        self.menu_ref = str(chat_menu_callback_dict[self.__KEY_MENU_REF]) if self.__KEY_MENU_REF in chat_menu_callback_dict.keys() else None
-        self.appId = str(chat_menu_callback_dict[self.__KEY_APP_ID]) if self.__KEY_APP_ID in chat_menu_callback_dict.keys() else None
+        self.method = str(chat_menu_callback_dict[self.__KEY_METHOD]) if chat_menu_callback_dict.get(self.__KEY_METHOD) is not None else None
+        self.menu_ref = str(chat_menu_callback_dict[self.__KEY_MENU_REF]) if chat_menu_callback_dict.get(self.__KEY_MENU_REF) is not None else None
+        self.appId = str(chat_menu_callback_dict[self.__KEY_APP_ID]) if chat_menu_callback_dict.get(self.__KEY_APP_ID) is not None else None
         self.from_ = from_user
         self.button_query_result = btn_query_result
-        self.button_callback = str(chat_menu_callback_dict[self.__KEY_BUTTON_CALLBACK]) if self.__KEY_BUTTON_CALLBACK in chat_menu_callback_dict.keys() else None
-        self.next_menu = str(chat_menu_callback_dict[self.__KEY_NEXT_MENU]) if self.__KEY_NEXT_MENU in chat_menu_callback_dict.keys() else None
-        self.date = int(chat_menu_callback_dict[self.__KEY_DATE]) if self.__KEY_DATE in chat_menu_callback_dict.keys() else None
+        self.button_callback = str(chat_menu_callback_dict[self.__KEY_BUTTON_CALLBACK]) if chat_menu_callback_dict.get(self.__KEY_BUTTON_CALLBACK) is not None else None
+        self.next_menu = str(chat_menu_callback_dict[self.__KEY_NEXT_MENU]) if chat_menu_callback_dict.get(self.__KEY_NEXT_MENU) is not None else None
+        self.date = int(chat_menu_callback_dict[self.__KEY_DATE]) if chat_menu_callback_dict.get(self.__KEY_DATE) is not None else None
 
     def to_json_obj(self):
 

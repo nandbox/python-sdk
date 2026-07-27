@@ -25,7 +25,7 @@ class ArticleOutMessage(OutMessage):
         if self.url is not None:
             dictionary[self.__KEY_URL] = self.url
         if self.title is not None:
-            dictionary[self.KEY_TIILE] = self.title
+            dictionary[self.__KEY_TITLE] = self.title
         if self.description is not None:
             dictionary[self.__KEY_DESCRIPTION] = self.description
         if self.photo is not None:
