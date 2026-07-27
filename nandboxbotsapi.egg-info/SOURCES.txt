@@ -18,6 +18,7 @@ nandboxbots/data/Gif.py
 nandboxbots/data/Image.py
 nandboxbots/data/Location.py
 nandboxbots/data/Menu.py
+nandboxbots/data/MenuCallback.py
 nandboxbots/data/PaymentRequest.py
 nandboxbots/data/Photo.py
 nandboxbots/data/ProductItem.py
@@ -31,6 +32,7 @@ nandboxbots/data/Thumbnail.py
 nandboxbots/data/User.py
 nandboxbots/data/Video.py
 nandboxbots/data/Voice.py
+nandboxbots/data/WebhookBody.py
 nandboxbots/data/WhiteListUser.py
 nandboxbots/data/WorkflowCell.py
 nandboxbots/data/__init__.py
@@ -91,6 +93,7 @@ nandboxbots/outmessages/PaymentConfirmationOutMessage.py
 nandboxbots/outmessages/PhotoOutMessage.py
 nandboxbots/outmessages/RecallOutMessage.py
 nandboxbots/outmessages/RemoveChatMemberOutMessage.py
+nandboxbots/outmessages/SendUserNotificationOutMessage.py
 nandboxbots/outmessages/SetChatMenuOutMessage.py
 nandboxbots/outmessages/SetChatOutMessage.py
 nandboxbots/outmessages/SetMyProfileOutMessage.py
