@@ -104,6 +104,22 @@ class Nandbox:
             """
             pass
 
+        def on_event_response(self, event_response):
+            """Reply to subscribe_to_event, unsubscribe_from_event or list_event_subscriptions.
+
+            event_response is an EventResponse; check ack before assuming the subscription
+            changed.
+            """
+            pass
+
+        def on_event_message(self, event_message):
+            """Called for a change on an event this account is subscribed to.
+
+            event_message is an EventMessage whose body is the raw payload; its keys vary by
+            event and by the server side filter, so read defensively.
+            """
+            pass
+
     class Api:
         def send(self, message):
             pass

@@ -10,6 +10,8 @@ from nandboxbots.data.MenuCallback import MenuCallback
 from nandboxbots.data.WebhookBody import WebhookBody
 from nandboxbots.data.ProductItem import ProductItem
 from nandboxbots.inmessages.DocumentResponse import DocumentResponse
+from nandboxbots.inmessages.EventResponse import EventResponse
+from nandboxbots.inmessages.EventMessage import EventMessage
 from nandboxbots.inmessages.GetCollectionProductResponse import GetCollectionProductResponse
 from nandboxbots.inmessages.GetProductItemResponse import GetProductItemResponse
 from nandboxbots.inmessages.ListCollectionItemResponse import ListCollectionItemResponse
@@ -1257,6 +1259,14 @@ class NandboxClient:
                 elif method == "WebhookEvent":
                     webhook_event = WebhookBody(dictionary)
                     self.callback.on_webhook_event(webhook_event)
+                    return
+                elif method in ("eventResponse", "listEventSubscriptionsResponse"):
+                    event_response = EventResponse(dictionary)
+                    self.callback.on_event_response(event_response)
+                    return
+                elif method == "eventMessage":
+                    event_message = EventMessage(dictionary)
+                    self.callback.on_event_message(event_message)
                     return
                 else:
                     self.callback.on_receive_obj(dictionary)
